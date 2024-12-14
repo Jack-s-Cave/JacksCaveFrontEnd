@@ -1,14 +1,28 @@
 /* CAVE WRAPPER */
-t {        
+div.cave-wrapper {        
     width: 100%;
     height: fit-content;    
-    position: absolute;
-    background-color: rebeccapurple; /* just for debugging*/
+    position: absolute;    
 }
 
 div.cave-wrapper img{    
     width: 100%; /* Ensures the images scale properly */
-    height: auto; /* Maintain aspect ratio */        
+    height: auto; /* Maintain aspect ratio */            
+}
+
+/* CAVE INSIDE AND MIDDLE */
+.cave-inside{
+    position: absolute;
+    z-index: 0;
+    top: 50%;
+    transform: translateY(-50%)
+}
+
+.cave-middle{
+    position: absolute;
+    z-index: 0;
+    top: 50%;
+    transform: translateY(-50%)
 }
 
 /* CAVE OUTSIDE WRAPPER */
@@ -21,15 +35,10 @@ div.cave-outside-wrapper img{
     z-index: 1;
 }
 
-/* CAVE INSIDE WRAPPER */
-div.cave-inside-wrapper{    
-    background-color: blueviolet;
-}
 
-div.cave-inside-wrapper img{    
-    position: absolute;
-    z-index: 0;
-}
+
+
+
 
 
   
