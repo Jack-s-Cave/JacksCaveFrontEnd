@@ -2,7 +2,8 @@
 div.cave-wrapper {        
     width: 100%;
     height: fit-content;    
-    position: absolute;    
+    position: absolute;   
+    overflow: hidden; 
 }
 
 div.cave-wrapper img{    

@@ -32,13 +32,13 @@ const Cave = () => {
                 className='cave-inside'
                 src="/cave_imgs/IN.svg"
                 alt="Inside"
-                style={{ transform: `translateY(-50%) ${moveElement('inside', 35)}` }}
+                style={{ transform: `translateY(-50%) ${moveElement('inside', 50)}` }}
             />
             <img
                 className='cave-middle'
                 src="/cave_imgs/MID.svg"
                 alt="Middle"
-                style={{ transform: `translateY(-50%) ${moveElement('middle', 50)}` }}
+                style={{ transform: `translateY(-50%) ${moveElement('middle', 80)}` }}
             />
             <div className='cave-outside-wrapper'>
                 <img className='cave-outside' src="/cave_imgs/OUT.svg" alt="Outside" />
