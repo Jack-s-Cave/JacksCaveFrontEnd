@@ -1,0 +1,35 @@
+/* CAVE WRAPPER */
+t {        
+    width: 100%;
+    height: fit-content;    
+    position: absolute;
+    background-color: rebeccapurple; /* just for debugging*/
+}
+
+div.cave-wrapper img{    
+    width: 100%; /* Ensures the images scale properly */
+    height: auto; /* Maintain aspect ratio */        
+}
+
+/* CAVE OUTSIDE WRAPPER */
+div.cave-outside-wrapper {
+    height: fit-content;    
+}
+
+div.cave-outside-wrapper img{    
+    position: relative;
+    z-index: 1;
+}
+
+/* CAVE INSIDE WRAPPER */
+div.cave-inside-wrapper{    
+    background-color: blueviolet;
+}
+
+div.cave-inside-wrapper img{    
+    position: absolute;
+    z-index: 0;
+}
+
+
+  
