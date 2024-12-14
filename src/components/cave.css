@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;500;900&display=swap');
+
 /* CAVE WRAPPER */
 div.cave-wrapper {        
     width: 100%;
@@ -14,14 +16,14 @@ div.cave-wrapper img{
 /* CAVE INSIDE AND MIDDLE */
 .cave-inside{
     position: absolute;
-    z-index: 0;
+    z-index: 1;
     top: 50%;
     transform: translateY(-50%)
 }
 
 .cave-middle{
     position: absolute;
-    z-index: 0;
+    z-index: 1;
     top: 50%;
     transform: translateY(-50%)
 }
@@ -33,13 +35,43 @@ div.cave-outside-wrapper {
 
 div.cave-outside-wrapper img{    
     position: relative;
-    z-index: 1;
+    z-index: 2;
 }
 
+/* CAVE TITTLE */
+.cave-text {
+    color: rgb(214, 91, 77);
 
+    /* Positioning */
+    margin: 0;
+    position: absolute;
 
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center; /* Center-align child text elements */
+    width: fit-content; /* Ensure .cave-text wraps its content */
+}
 
+.cave-tittle {
+    /* Font */
+    font-family: "Roboto", sans-serif;
+    font-weight: 900;
+    font-style: normal;
+    font-size: 7vw;
 
+    margin: 0;
+}
 
+.cave-subtittle {
+    /* Font */
+    font-family: "Roboto", serif;
+    font-weight: 300;
+    font-style: normal;
+    font-size: 1.5vw;    
 
-  
+    /* Centering */
+    margin: 0;
+    margin-top: 1vw;
+    position: relative;
+}

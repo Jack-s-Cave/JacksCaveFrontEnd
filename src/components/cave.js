@@ -27,7 +27,13 @@ const Cave = () => {
     };
 
     return (
+        <>    
         <div className='cave-wrapper'>
+            <div className='cave-text'>
+                <h1 className='cave-tittle'>JACK'S CAVE</h1>
+                <h5 className='cave-subtittle'>El lugar de tecnología para dragones</h5>
+            </div>
+
             <img
                 className='cave-inside'
                 src="/cave_imgs/IN.svg"
@@ -42,8 +48,10 @@ const Cave = () => {
             />
             <div className='cave-outside-wrapper'>
                 <img className='cave-outside' src="/cave_imgs/OUT.svg" alt="Outside" />
-            </div>
+            </div>            
         </div>
+        
+        </>
     );
 };
 
