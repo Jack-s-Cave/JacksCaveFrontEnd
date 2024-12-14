@@ -1,17 +1,49 @@
 import React, { useEffect, useState } from 'react';
 import './cave.css';
 
-const Cave = (props) => {
-    return (    
-    <div className='cave-wrapper'>
-        
-        <img className='cave-inside' src="/cave_imgs/IN.svg" alt="Inside" />
-        <img className='cave-middle' src="/cave_imgs/MID.svg" alt="Middle" />
-        
-        <div className='cave-outside-wrapper' >
-            <img className='cave-outside' src="/cave_imgs/OUT.svg" alt="Outside" />
-        </div>        
-    </div>    
+const Cave = () => {
+    const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
+
+    useEffect(() => {
+        const handleMouseMove = (event) => {
+            setMousePosition({
+                x: event.clientX,
+                y: event.clientY
+            });
+        };
+
+        window.addEventListener('mousemove', handleMouseMove);
+
+        // Clean up the event listener
+        return () => {
+            window.removeEventListener('mousemove', handleMouseMove);
+        };
+    }, []);
+
+    const moveElement = (element, sensitivity = 10) => {
+        const moveX = (mousePosition.x - window.innerWidth / 2) / sensitivity;
+        const moveY = (mousePosition.y - window.innerHeight / 2) / sensitivity;
+        return `translate(${moveX}px, ${moveY}px)`;
+    };
+
+    return (
+        <div className='cave-wrapper'>
+            <img
+                className='cave-inside'
+                src="/cave_imgs/IN.svg"
+                alt="Inside"
+                style={{ transform: `translateY(-50%) ${moveElement('inside', 35)}` }}
+            />
+            <img
+                className='cave-middle'
+                src="/cave_imgs/MID.svg"
+                alt="Middle"
+                style={{ transform: `translateY(-50%) ${moveElement('middle', 50)}` }}
+            />
+            <div className='cave-outside-wrapper'>
+                <img className='cave-outside' src="/cave_imgs/OUT.svg" alt="Outside" />
+            </div>
+        </div>
     );
 };
 
