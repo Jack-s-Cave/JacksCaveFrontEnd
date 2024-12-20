@@ -4,6 +4,7 @@ import './cave.css';
 const Cave = () => {
     const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
     const [windowWidth, setWindowWidth] = useState(window.innerWidth);
+    const [windowHeight, setWindowHeight] = useState(window.innerHeight);
 
     useEffect(() => {
         const handleMouseMove = (event) => {
@@ -15,6 +16,7 @@ const Cave = () => {
 
         const handleResize = () => {
             setWindowWidth(window.innerWidth); // Update window width on resize
+            setWindowHeight(window.innerHeight);
         };
 
         window.addEventListener('mousemove', handleMouseMove);
@@ -30,9 +32,17 @@ const Cave = () => {
         
         const moveX = (mousePosition.x - window.innerWidth / 2) / sensitivity;
         const moveY = (mousePosition.y - window.innerHeight / 2) / sensitivity;
-        if (windowWidth > 768){
-            return `translateY(-50%) translate(${moveX}px, ${moveY}px)`;    
+        if (windowWidth > 768){            
+            return `translateY(-50%) translate(${moveX}px, ${moveY}px)`;
+
         }else{
+            // This is for small mobile screens
+            if (windowWidth/windowHeight >= 1) {
+                console.log('width: ' + windowWidth);
+                console.log('height: ' + windowHeight);
+                return `translate(0%, -50%)`;            
+            }
+
             return `translate(-50%, -50%)`;    
         }
         

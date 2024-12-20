@@ -78,7 +78,7 @@ div.cave-outside-wrapper img{
 }
 
 /* MOBILE SPECIFIC STYLES */
-@media (max-width: 768px) {
+@media (max-width: 768px) and (max-aspect-ratio: 1/1) {
     /* CAVE WRAPPER */
     div.cave-wrapper {
         overflow: hidden;
