@@ -3,6 +3,7 @@ import './cave.css';
 
 const Cave = () => {
     const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
+    const [windowWidth, setWindowWidth] = useState(window.innerWidth);
 
     useEffect(() => {
         const handleMouseMove = (event) => {
@@ -12,7 +13,12 @@ const Cave = () => {
             });
         };
 
+        const handleResize = () => {
+            setWindowWidth(window.innerWidth); // Update window width on resize
+        };
+
         window.addEventListener('mousemove', handleMouseMove);
+        window.addEventListener('resize', handleResize)
 
         // Clean up the event listener
         return () => {
@@ -21,9 +27,15 @@ const Cave = () => {
     }, []);
 
     const moveElement = (element, sensitivity = 10) => {
+        
         const moveX = (mousePosition.x - window.innerWidth / 2) / sensitivity;
         const moveY = (mousePosition.y - window.innerHeight / 2) / sensitivity;
-        return `translate(${moveX}px, ${moveY}px)`;
+        if (windowWidth > 768){
+            return `translateY(-50%) translate(${moveX}px, ${moveY}px)`;    
+        }else{
+            return `translate(-50%, -50%)`;    
+        }
+        
     };
 
     return (
@@ -33,19 +45,20 @@ const Cave = () => {
                 <h1 className='cave-tittle'>JACK'S CAVE</h1>
                 <h5 className='cave-subtittle'>El lugar de tecnología para dragones</h5>
             </div>
-
-            <img
-                className='cave-inside'
-                src="/cave_imgs/IN.svg"
-                alt="Inside"
-                style={{ transform: `translateY(-50%) ${moveElement('inside', 50)}` }}
-            />
-            <img
-                className='cave-middle'
-                src="/cave_imgs/MID.svg"
-                alt="Middle"
-                style={{ transform: `translateY(-50%) ${moveElement('middle', 80)}` }}
-            />
+                
+                <img
+                    className='cave-inside'
+                    src="/cave_imgs/IN.svg"
+                    alt="Inside"
+                    style={{ transform: `${moveElement('inside', 50)}` }}
+                />
+                <img
+                    className='cave-middle'
+                    src="/cave_imgs/MID.svg"
+                    alt="Middle"
+                    style={{ transform: `${moveElement('middle', 80)}` }}
+                />
+            
             <div className='cave-outside-wrapper'>
                 <img className='cave-outside' src="/cave_imgs/OUT.svg" alt="Outside" />
             </div>            

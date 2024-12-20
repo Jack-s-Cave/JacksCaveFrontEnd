@@ -40,7 +40,7 @@ div.cave-outside-wrapper img{
 
 /* CAVE TITTLE */
 .cave-text {
-    color: rgb(214, 91, 77);
+    color: var(--primary-color4);
 
     /* Positioning */
     margin: 0;
@@ -58,7 +58,7 @@ div.cave-outside-wrapper img{
     font-family: "Roboto", sans-serif;
     font-weight: 900;
     font-style: normal;
-    font-size: 7vw;
+    font-size: clamp(3rem, 7vw + .5rem, 7rem);
 
     margin: 0;
 }
@@ -67,11 +67,61 @@ div.cave-outside-wrapper img{
     /* Font */
     font-family: "Roboto", serif;
     font-weight: 300;
-    font-style: normal;
-    font-size: 1.5vw;    
+    font-style: normal;      
+    font-size: clamp(0.5rem, 1.5vw + .5rem, 1.5rem);
 
     /* Centering */
     margin: 0;
     margin-top: 1vw;
+    margin-top: 1svw;
     position: relative;
+}
+
+/* MOBILE SPECIFIC STYLES */
+@media (max-width: 768px) {
+    /* CAVE WRAPPER */
+    div.cave-wrapper {
+        overflow: hidden;
+        /* we have two heights for browser support */
+        height: 100vh;
+        height: 100svh;
+        width: 100%;        
+    }
+
+    div.cave-wrapper img{            
+        height: 100%; /* Maintain aspect ratio */            
+        width: auto;
+        transform: translateX(-50%);
+    }
+    
+    /* CAVE OUTSIDE WRAPPER */
+    div.cave-outside-wrapper {
+        height: 100%;
+        overflow: hidden;        
+        align-content: center;
+    }
+    
+
+    div.cave-outside-wrapper img {
+        height: 100%;
+        width: auto; 
+        left: 50%;
+        transform: translateX(-50%)            
+    }
+
+    /* CAVE INSIDE WRAPPER */
+    .cave-inside {
+        left: 50%;  
+        /* we have two heights for browser support */      
+        height: 100vh;
+        height: 100svh;
+    }
+
+    .cave-middle{
+        left: 50%;
+        /* we have two heights for browser support */
+        height: 100vh;
+        height: 100svh;
+    }
+    
 }
