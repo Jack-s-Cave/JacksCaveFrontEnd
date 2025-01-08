@@ -37,9 +37,7 @@ const Cave = () => {
 
         }else{
             // This is for small mobile screens
-            if (windowWidth/windowHeight >= 1) {
-                console.log('width: ' + windowWidth);
-                console.log('height: ' + windowHeight);
+            if (windowWidth/windowHeight >= 1) {                
                 return `translate(0%, -50%)`;            
             }
 
