@@ -1,7 +1,11 @@
 import React, { useEffect, useState } from 'react';
 import './navbar.css';
 
-const NavBar = ({isLandingPage}) => {
+type NavBarProps = {
+    isLandingPage?: boolean;
+}
+
+const NavBar: React.FC<NavBarProps> = ({ isLandingPage }) => {
     return(
         <>
         <nav className='nav-bar'>
