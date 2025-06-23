@@ -1,13 +1,18 @@
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import './cave.css';
 
+type MousePosition = {
+    x: number;
+    y: number;
+}
+
 const Cave = () => {
-    const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
-    const [windowWidth, setWindowWidth] = useState(window.innerWidth);
-    const [windowHeight, setWindowHeight] = useState(window.innerHeight);
+    const [mousePosition, setMousePosition] = useState<MousePosition>({ x: 0, y: 0 });
+    const [windowWidth, setWindowWidth] = useState<number>(window.innerWidth);
+    const [windowHeight, setWindowHeight] = useState<number>(window.innerHeight);
 
     useEffect(() => {
-        const handleMouseMove = (event) => {
+        const handleMouseMove = (event: MouseEvent) => {
             setMousePosition({
                 x: event.clientX,
                 y: event.clientY
@@ -25,10 +30,11 @@ const Cave = () => {
         // Clean up the event listener
         return () => {
             window.removeEventListener('mousemove', handleMouseMove);
+            window.removeEventListener('resize', handleResize)
         };
     }, []);
 
-    const moveElement = (element, sensitivity = 10) => {
+    const moveElement = (_element: string, sensitivity: number = 10) => {
         
         const moveX = (mousePosition.x - window.innerWidth / 2) / sensitivity;
         const moveY = (mousePosition.y - window.innerHeight / 2) / sensitivity;

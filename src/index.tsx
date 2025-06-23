@@ -2,11 +2,11 @@ import React from 'react';
 import ReactDOM from 'react-dom/client';
 import './index.css';
 // import App from './App';
-import Cave from './components/cave'
-import NavBar from './components/navbar'
+import Cave from './components/cave/cave'
+import NavBar from './components/navbar/navbar'
 import reportWebVitals from './reportWebVitals';
 
-const root = ReactDOM.createRoot(document.getElementById('root'));
+const root = ReactDOM.createRoot(document.getElementById('root')!);
 root.render(
   <React.StrictMode>    
     <NavBar/>
