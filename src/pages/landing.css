@@ -1,0 +1,42 @@
+div.landing-page {
+    background-color: var(--primary-color1);
+    position: relative;
+    min-height: auto;
+    padding: 8rem 16rem 8rem 16rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.landing-subSection{
+    width: 100%;
+}
+
+.landing-subT-section{
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.landing-subT {
+    color: var(--font-color1);
+}
+
+.see-more {
+    background-color: transparent;
+    color: var(--font-color1);
+    border-color: transparent;
+    border-radius: 0.5rem;
+    height: fit-content;
+    font-size: large;
+    transition: all 0.3s ease; 
+}
+
+.see-more:hover {
+    background-color: var(--primary-color3);
+    cursor: pointer;
+    color: var(--primary-color1);
+    transform: scale(1.1);
+}

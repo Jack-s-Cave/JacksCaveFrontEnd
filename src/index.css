@@ -11,6 +11,7 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  color: var(--font-color1);
 }
 
 code {
@@ -28,6 +29,11 @@ code {
   --primary-color3: #C5ABD6;
   --primary-color4: #D55C51;
   --background-light: #392949;
+  --font-color1: #ffffff;
   --root-em: 16px;
   --mobile-width: 768px;
+}
+
+footer { 
+  font-family: "Space Mono", serif;
 }
