@@ -1,7 +1,32 @@
 import React, { useEffect, useState } from 'react';
 import './landing.css';
 import RecentCard from '../components/landingpage/recentCard';
+import NewsCard from '../components/landingpage/newsCard';
 
+//Place Holder
+const newsData = [
+  {
+    title: 'Primera noticia',
+    author: 'Diego Duarte',
+    date: 'Jun 23, 2025',
+    imageSrc: 'https://i.pinimg.com/236x/51/30/77/5130770e4cdec78276415c649837bef0.jpg',
+    imageDescription: 'Gatito feliz al sol',
+  },
+  {
+    title: 'Segunda noticia',
+    author: 'Sofía Rayo',
+    date: 'Jun 22, 2025',
+    imageSrc: 'https://i.pinimg.com/736x/a0/f6/d8/a0f6d8722e2ca13e433591c68bc5401f.jpg',
+    imageDescription: 'Gato pensativo',
+  },
+  {
+    title: 'Tercera noticia',
+    author: 'Carlos Luna',
+    date: 'Jun 21, 2025',
+    imageSrc: 'https://i.imgflip.com/4/34tt3s.jpg',
+    imageDescription: 'Gato con corbata',
+  },
+];
 
 type NavBarProps = {
     isLandingPage?: boolean;
@@ -16,12 +41,48 @@ const LandingPage: React.FC<NavBarProps> = ({ isLandingPage }) => {
                         <button className='see-more'>Ver Más <strong>+</strong></button>
                     </div>
                     <div className='landing-recent-section'>
-                        <RecentCard />
-                        <RecentCard />
-                        <RecentCard />
-                        <RecentCard />
-                        <RecentCard />
-                        <RecentCard />
+                        <RecentCard
+                            date="Oct 30, 2024"
+                            author="Francis Aguilar"
+                            title="Título Placeholder un poco más largo para pruebas"
+                            imageSrc="https://www.patasencasa.com/sites/default/files/2024-07/meme-del-gato-riendo_0.jpg"
+                            tags={['tags', 'gato', 'jeje', 'gato2', 'gato3', 'gato4']}
+                        />
+                        <RecentCard
+                            date="Jun 3, 2025"
+                            author="Gustavo Gonzales"
+                            title="Título Placeholder un poco más largo para pruebas"
+                            imageSrc="https://www.patasencasa.com/sites/default/files/2024-07/meme-del-gato-riendo_0.jpg"
+                            tags={['Sanitas', 'Teconologia', 'Videojuegos', 'gato2', 'gato3', 'gato4']}
+                        />
+                        <RecentCard
+                            date="Jun 3, 2025"
+                            author="Daniel Rayo"
+                            title="Título Placeholder un poco más largo para pruebas un poco mas por si acaso"
+                            imageSrc="https://www.patasencasa.com/sites/default/files/2024-07/meme-del-gato-riendo_0.jpg"
+                            tags={['tags', 'gato', 'jeje', 'gato2', 'gato3', 'gato4', 'prueba']}
+                        />
+                        <RecentCard
+                            date="Jun 3, 2025"
+                            author="María Martinez"
+                            title="Título Placeholder un poco más largo para pruebas"
+                            imageSrc="https://www.patasencasa.com/sites/default/files/2024-07/meme-del-gato-riendo_0.jpg"
+                            tags={['tags', 'gato', 'jeje', 'gato2', 'gato3', 'gato4']}
+                        />
+                        <RecentCard
+                            date="Feb 17, 2025"
+                            author="Diego Duarte"
+                            title="Título Placeholder un poco más largo para pruebas"
+                            imageSrc="https://www.patasencasa.com/sites/default/files/2024-07/meme-del-gato-riendo_0.jpg"
+                            tags={['tags', 'gato', 'jeje', 'gato2', 'gato3', 'gato4']}
+                        />
+                        <RecentCard
+                            date="Abr 7, 2025"
+                            author="Sebastian Huertas"
+                            title="Título Placeholder un poco más largo para pruebas"
+                            imageSrc="https://www.patasencasa.com/sites/default/files/2024-07/meme-del-gato-riendo_0.jpg"
+                            tags={['tags', 'gato', 'jeje', 'gato2', 'gato3', 'gato4']}
+                        />
                     </div>
                 </div>
                 <div className='landing-subSection'>
@@ -30,7 +91,7 @@ const LandingPage: React.FC<NavBarProps> = ({ isLandingPage }) => {
                         <button className='see-more'>Ver Más <strong>+</strong></button>
                     </div>
                     <div className='landing-news-section'>
-                        
+                        <NewsCard newsList={newsData} />
                     </div>
                 </div>
                 <div className='landing-subSection'>

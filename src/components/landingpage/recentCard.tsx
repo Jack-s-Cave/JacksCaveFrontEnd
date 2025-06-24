@@ -1,29 +1,37 @@
 import React from 'react';
 import './recentCard.css';
 
-const RecentCard = () => {
+type RecentCardProps = {
+  date: string;
+  author: string;
+  title: string;
+  imageSrc: string;
+  tags: string[];
+};
+
+
+const RecentCard: React.FC<RecentCardProps> = ({ date, author, title, imageSrc, tags }) => {
     return (
         <div className='recent-card'>
             <div className='recentC-header'>
-                <p>Jun 3, 2025</p>
-                <p>Daniel Rayo</p>
+                <p>{date}</p>
+                <p>{author}</p>
             </div>
             <img
                 className='recent-image'
-                src="https://www.patasencasa.com/sites/default/files/2024-07/meme-del-gato-riendo_0.jpg"
-                alt="Imagen de ejemplo"
+                src={imageSrc}
+                alt={title}
             />
-            <h3 className='recentC-title'>Título Placeholder un poco mas largo pruebas de si pongo aun mas</h3>
+            <h3 className='recentC-title'>{title}</h3>
             <div className='recentC-tags'>
-                <p>#tags</p>
-                <p>#gato</p>
-                <p>#jeje</p>
-                <p>#gato2</p>
-                <p>#gato3</p>
-                <p>#gato4</p>
+                {tags.slice(0, 3).map((tag, index) => (
+                    <p key={index}>#{tag}</p>
+                ))}
+                {tags.length > 3 && <p>+{tags.length - 3}</p>}
             </div>
         </div>
-    );
+  );
 };
 
 export default RecentCard;
+
