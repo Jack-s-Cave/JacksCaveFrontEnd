@@ -1,8 +1,11 @@
+@import url('../styles/fonts.css');
+
+
 div.landing-page {
     background-color: var(--primary-color1);
     position: relative;
     min-height: auto;
-    padding: 8rem 16rem 8rem 16rem;
+    padding: 8rem 14rem 8rem 14rem;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -22,6 +25,8 @@ div.landing-page {
 
 .landing-subT {
     color: var(--font-color1);
+    font-family: 'TheBoldFont';
+    font-size: clamp(1rem, 5vw + 1rem, 3rem);
 }
 
 .see-more {
@@ -29,9 +34,11 @@ div.landing-page {
     color: var(--font-color1);
     border-color: transparent;
     border-radius: 0.5rem;
-    height: fit-content;
+    height: 3rem;
+    width: 8rem;
     font-size: large;
     transition: all 0.3s ease; 
+    font-family: 'Satoshi';
 }
 
 .see-more:hover {
@@ -39,4 +46,27 @@ div.landing-page {
     cursor: pointer;
     color: var(--primary-color1);
     transform: scale(1.1);
+}
+
+.landing-recent-section {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr); 
+    gap: 1rem;
+    width: 100%;
+    max-width: 1000px; 
+    margin: 0 auto;
+    place-items: center;
+}
+
+@media (max-width: 1199px) {
+  .landing-recent-section {
+    grid-template-columns: repeat(1, 1fr);
+    max-width: 100%;
+  }
+}
+
+@media (min-width: 1200px) and (max-width: 1450px) {
+  .landing-recent-section {
+    grid-template-columns: repeat(2, 1fr);
+  }
 }
