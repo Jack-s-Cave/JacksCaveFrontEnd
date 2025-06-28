@@ -49,7 +49,7 @@ const NewsCard: React.FC<NewsCardProps> = ({ newsList }) => {
         {newsList.map((news, index) => (
           <div
             key={index}
-            className={`new ${index === selectedIndex ? 'active-news' : ''}`}
+            className={`new ${index === selectedIndex && !isHovered ? 'active-news' : ''}`}
             onMouseEnter={() => handleMouseEnter(index)}
             onMouseLeave={handleMouseLeave}
           >
