@@ -141,3 +141,16 @@
     width: 4rem;
     padding-bottom: 1rem;
 }
+
+
+@media (max-width: 768px) {
+  .dot {
+    width: 7px;
+    height: 7px;
+  }
+
+  .carousel-arrow {
+    font-size: 2rem;
+    padding: 0.1rem 0.5rem;
+   }
+}

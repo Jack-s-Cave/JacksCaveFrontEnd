@@ -158,7 +158,6 @@
   }
 }
 
-/* TABLETS Y PANTALLAS MEDIANAS (entre 768px y 1024px) */
 @media (max-width: 1024px) {
   .news-card {
     flex-direction: column;
@@ -181,6 +180,38 @@
     width: 40rem;      
     max-width: 90vw;    
     max-height: 30rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .new {
+    min-width: 90vw;
+    max-width: 90vw;
+    padding: 0.5rem;
+  }
+
+  .news-image-section {
+    min-width: 90vw;
+    width: 90vw;
+    margin-top: 1rem;
+  }
+
+  .image-container img {
+    width: 100%;
+    max-width: 90vw;
+    max-height: 20rem;
+  }
+
+  .new h2 {
+    font-size: 1rem;
+  }
+
+  .new-footer p {
+    font-size: 0.8rem;
+  }
+
+  .image-container p {
+    font-size: 0.8rem;
   }
 }
 

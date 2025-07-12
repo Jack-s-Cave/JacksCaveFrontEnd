@@ -16,6 +16,17 @@ const PodcastCarousel: React.FC<PodcastCarouselProps> = ({ videos }) => {
   const [fade, setFade] = useState(true);
   const [isHovered, setIsHovered] = useState(false);
   const intervalRef = useRef<NodeJS.Timeout | null>(null);
+  const [itemsPerPage, setItemsPerPage] = useState(2);
+
+    useEffect(() => {
+    const handleResize = () => {
+        setItemsPerPage(window.innerWidth < 768 ? 1 : 2);
+    };
+
+  handleResize(); // llama al inicio
+  window.addEventListener('resize', handleResize);
+  return () => window.removeEventListener('resize', handleResize);
+}, []);
 
   const clearAutoSwitch = () => {
     if (intervalRef.current) clearInterval(intervalRef.current);
@@ -36,7 +47,7 @@ const PodcastCarousel: React.FC<PodcastCarouselProps> = ({ videos }) => {
   const goNext = () => {
     setFade(false);
     setTimeout(() => {
-      setStartIndex((prev) => (prev + 2) % videos.length);
+      setStartIndex((prev) => (prev + itemsPerPage) % videos.length);
       setFade(true);
     }, 400);
   };
@@ -45,7 +56,7 @@ const PodcastCarousel: React.FC<PodcastCarouselProps> = ({ videos }) => {
     setFade(false);
     setTimeout(() => {
       setStartIndex((prev) =>
-        (prev - 2 + videos.length) % videos.length
+        (prev - itemsPerPage + videos.length) % videos.length
       );
       setFade(true);
     }, 400);
@@ -70,13 +81,14 @@ const PodcastCarousel: React.FC<PodcastCarouselProps> = ({ videos }) => {
   const handleMouseEnter = () => setIsHovered(true);
   const handleMouseLeave = () => setIsHovered(false);
 
-  const visibleVideos = [
-    videos[startIndex],
-    videos[(startIndex + 1) % videos.length],
-  ];
+  const visibleVideos = [];
 
-  const totalPages = Math.ceil(videos.length / 2);
-  const currentPage = Math.floor(startIndex / 2);
+    for (let i = 0; i < itemsPerPage; i++) {
+    visibleVideos.push(videos[(startIndex + i) % videos.length]);
+    }
+
+  const totalPages = Math.ceil(videos.length / itemsPerPage);
+  const currentPage = Math.floor(startIndex / itemsPerPage);
 
   return (
     <>
