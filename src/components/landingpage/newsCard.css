@@ -14,13 +14,13 @@
   position: relative;
   display: flex;
   flex-direction: column;
-  min-width: 35rem;
+  min-width: 41rem;
   padding: 0.5rem 1rem;
   overflow: hidden;
   background-color: transparent;
   z-index: 1;
   font-family: 'Satoshi';
-  max-width: 45rem;
+  max-width: 35rem;
 }
 
 .new:hover{
@@ -155,6 +155,32 @@
   }
   100% {
     background-size: 100% 100%;
+  }
+}
+
+/* TABLETS Y PANTALLAS MEDIANAS (entre 768px y 1024px) */
+@media (max-width: 1024px) {
+  .news-card {
+    flex-direction: column;
+    padding: 2rem; /* mejor que 1rem en móvil/tablet para espacio */
+  }
+
+  .new {
+    min-width: 90vw;
+    max-width: 90vw;
+    padding: 1rem;
+  }
+
+  .news-image-section {
+    min-width: 90vw;
+    width: 90vw;
+    margin-top: 2rem;
+  }
+
+  .image-container img {
+    width: 40rem;      
+    max-width: 90vw;    
+    max-height: 30rem;
   }
 }
 

@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import './landing.css';
 import RecentCard from '../components/landingpage/recentCard';
 import NewsCard from '../components/landingpage/newsCard';
+import PodcastCarousel from '../components/landingpage/podcastCarousel';
 
 //Place Holder
 const newsData = [
@@ -26,6 +27,24 @@ const newsData = [
     imageSrc: 'https://i.imgflip.com/4/34tt3s.jpg',
     imageDescription: 'Fig 1. Gato con corbata haciendo una pose siu',
   },
+];
+
+const videoList = [
+  {
+    thumbnail: 'https://img.youtube.com/vi/zlSbBsJYFGA/maxresdefault.jpg',
+    title: 'Desarrollar videojuegos en Guatemala | EP 1 Dennis Aldana',
+    date: 'Sept 19, 2024'
+  },
+  {
+    thumbnail: 'https://img.youtube.com/vi/6guzh_QQKJA/maxresdefault.jpg',
+    title: '¿Cómo ser estudiante y trabajar al mismo tiempo? | EP 2 Ludwing Cano',
+    date: 'Oct 17, 2024'
+  },
+  {
+    thumbnail: 'https://img.youtube.com/vi/qVDqPct6b_k/maxresdefault.jpg',
+    title: 'Así piensan los contratistas en IT | #ep3 Alberto Suriano nos cuenta su experiencia al conseguir',
+    date: 'Nov 28, 2024'
+  }
 ];
 
 type NavBarProps = {
@@ -99,6 +118,7 @@ const LandingPage: React.FC<NavBarProps> = ({ isLandingPage }) => {
                         <h1 className='landing-subT'>PODCAST ENTERATE!</h1>
                         <button className='see-more'>Ver Más <strong>+</strong></button>
                     </div>
+                    <PodcastCarousel videos={videoList} />
                     <div className='landing-podcast-section'>
                         
                     </div>
