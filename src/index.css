@@ -1,4 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;500;900&family=Space+Mono:wght@400;700&display=swap');
+@import url('./styles/fonts.css');
 
 html{
   font-size: var(--root-em);
@@ -24,6 +25,10 @@ code {
 }
 
 :root{
+  --font-title: 'TheBoldFont';
+  --font-subtitle: 'Satoshi';
+  --font-paragraph: 'Mononoki Mono';
+  --font-paragraph2: 'Mononoki Propo';
   --primary-color1: #19002a;
   --primary-color2: #935FB8;
   --primary-color3: #C5ABD6;

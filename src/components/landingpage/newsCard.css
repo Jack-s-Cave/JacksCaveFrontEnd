@@ -19,7 +19,7 @@
   overflow: hidden;
   background-color: transparent;
   z-index: 1;
-  font-family: 'Satoshi';
+  font-family: var(--font-subtitle);
   max-width: 35rem;
 }
 
@@ -29,7 +29,7 @@
 }
 
 .new h2{
-    font-family: 'Satoshi';
+    font-family: var(--font-subtitle);
     display: -webkit-box;
     -webkit-line-clamp: 1;       
     -webkit-box-orient: vertical;
@@ -92,7 +92,7 @@
     flex-direction: column;
     align-items: center;
     width: 100%;
-    font-family: 'Mononoki Propo';
+    font-family: var(--font-paragraph2);
     font-style: italic;
     font-size: small;
     height: 28rem;

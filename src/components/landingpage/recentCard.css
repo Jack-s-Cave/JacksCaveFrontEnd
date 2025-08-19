@@ -1,5 +1,3 @@
-@import url('../../styles/fonts.css');
-
 .recent-card {
   width: clamp(180px, 25vw, 270px);
   display: flex;
@@ -29,11 +27,11 @@
     display: flex;
     flex-direction: row;
     justify-content: space-between;
-    font-family: 'Satoshi';
+    font-family: var(--font-subtitle);
 }
 
 .recentC-title {
-  font-family: 'Satoshi';
+  font-family: var(--font-subtitle);
   display: -webkit-box;
   -webkit-line-clamp: 2;     
   -webkit-box-orient: vertical;
@@ -48,7 +46,7 @@
 }
 
 .recentC-tags {
-  font-family: 'Mononoki Mono';
+  font-family: var(--font-paragraph);
   display: flex;
   flex-wrap: wrap;          
   width: 100%;

@@ -1,6 +1,3 @@
-@import url('../styles/fonts.css');
-
-
 div.landing-page {
     background-color: var(--primary-color1);
     position: relative;
@@ -33,7 +30,7 @@ div.landing-page {
 
 .landing-subT {
     color: var(--font-color1);
-    font-family: 'TheBoldFont';
+    font-family: var(--font-title);
     font-size: clamp(1rem, 5vw + 1rem, 3rem);
 }
 
