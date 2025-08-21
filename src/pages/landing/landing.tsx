@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import './landing.css';
-import RecentCard from '../components/landingpage/recentCard';
-import NewsCard from '../components/landingpage/newsCard';
-import PodcastCarousel from '../components/landingpage/podcastCarousel';
+import RecentCard from '../../components/landingpage/recentCard';
+import NewsCard from '../../components/landingpage/newsCard';
+import PodcastCarousel from '../../components/landingpage/podcastCarousel';
 
 //Place Holder
 const newsData = [
