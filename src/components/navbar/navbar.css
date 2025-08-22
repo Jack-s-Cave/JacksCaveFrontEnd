@@ -40,6 +40,7 @@ nav.nav-bar ul{
 
 .nav-bar-item:hover{
     background-color: var(--primary-color3);
+    cursor: pointer;
 }
 
 @media (max-width: 768px) and (max-aspect-ratio: 1/1) {

@@ -1,4 +1,5 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
+import { useNavigate } from 'react-router-dom';
 import './navbar.css';
 
 type NavBarProps = {
@@ -6,16 +7,31 @@ type NavBarProps = {
 }
 
 const NavBar: React.FC<NavBarProps> = ({ isLandingPage }) => {
-    return(
-        <>
+    const navigate = useNavigate();
+
+    return (
         <nav className='nav-bar'>
             <ul>
-                <li className='nav-bar-item'>[B] Blog</li>
-                <li className='nav-bar-item'>[P] Podcast</li>
-                <li className='nav-bar-item'>[N] Nosotros</li>
-            </ul> 
+                <li
+                    className='nav-bar-item'
+                    onClick={() => navigate('/blog')}
+                >
+                    [B] Blog
+                </li>
+                <li
+                    className='nav-bar-item'
+                    onClick={() => navigate('/podcast')}
+                >
+                    [P] Podcast
+                </li>
+                <li
+                    className='nav-bar-item'
+                    onClick={() => navigate('/aboutus')}
+                >
+                    [N] Nosotros
+                </li>
+            </ul>
         </nav>
-        </>
     );
 }
 
