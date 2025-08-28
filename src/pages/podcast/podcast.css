@@ -278,7 +278,7 @@
 .cover-placeholder {
   width: 200px;
   height: 200px;
-  border: 3px solid var(--primary-color3);
+  border: 3px solid var(--primary-color1);
   border-radius: 12px;
   display: flex;
   align-items: center;
