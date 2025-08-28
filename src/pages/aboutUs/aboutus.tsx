@@ -44,11 +44,8 @@ const AboutUs: React.FC = () => {
                 <span className="estudiantes-text">ESTUDIANTES</span>
               </div>
             </div>
-            <div className="logo-image">
-              {/* Placeholder para logo de la asociación */}
-              <div className="logo-placeholder">
+            <div className="logo-placeholder">
                 <span>Imagen Asociacion (bonitos y gorditos)</span>
-              </div>
             </div>
           </div>
           
