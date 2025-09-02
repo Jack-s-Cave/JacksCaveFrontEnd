@@ -20,6 +20,7 @@
   background-color: transparent;
   z-index: 1;
   font-family: var(--font-subtitle);
+  color: var(--font-color);
   max-width: 35rem;
 }
 

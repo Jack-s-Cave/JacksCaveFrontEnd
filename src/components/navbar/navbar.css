@@ -1,3 +1,5 @@
+
+
 nav.nav-bar ul{
     list-style-type: none;
     display: flex;
@@ -8,7 +10,7 @@ nav.nav-bar ul{
     
     padding-right: 2%;
     padding-top: 1%;
-    padding-bottom: 0;
+    padding-bottom: 1rem;
     padding-inline-start: 0;
 }
 
@@ -48,4 +50,8 @@ nav.nav-bar ul{
         height: 5vh;
         height: 5svh;
     }
+}
+
+.header-logo{
+    height: 2vh;
 }

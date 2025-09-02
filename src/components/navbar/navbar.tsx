@@ -11,7 +11,11 @@ const NavBar: React.FC<NavBarProps> = ({ isLandingPage }) => {
 
     return (
         <nav className='nav-bar'>
+            
             <ul>
+                <div>
+                    <img className="header-logo" src="https://raw.githubusercontent.com/Jack-s-Cave/Assets/refs/heads/main/Icons/logo-text.svg" alt="Logo"></img>
+                </div>
                 <li
                     className='nav-bar-item'
                     onClick={() => navigate('/blog')}
