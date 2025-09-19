@@ -1,5 +1,4 @@
-import React from 'react';
-import { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import './navbar.css';
 
@@ -9,7 +8,27 @@ type NavBarProps = {
 
 const NavBar: React.FC<NavBarProps> = ({ isLandingPage }) => {
     const navigate = useNavigate();
+    const [logo, setLogo] = useState(''); 
 
+    //Deteccion de modo claro
+    useEffect(() => {
+        const setLogoBasedOnTheme = (e?: MediaQueryListEvent) => {
+            const darkModeOn = e ? e.matches : window.matchMedia('(prefers-color-scheme: dark)').matches;
+            setLogo(darkModeOn ? '/logos/jacks-text-dark.svg' : '/logos/jacks-text-light.svg');
+        };
+
+        const mediaQuery = window.matchMedia('(prefers-color-scheme: dark)');
+
+        setLogoBasedOnTheme();
+
+        mediaQuery.addEventListener('change', setLogoBasedOnTheme);
+
+        return () => {
+            mediaQuery.removeEventListener('change', setLogoBasedOnTheme);
+        };
+    }, []);
+
+    // Listener para teclas
     useEffect(() => {
         const handleKeyPress = (e: KeyboardEvent) => {
             const key = e.key.toLowerCase();
@@ -20,7 +39,6 @@ const NavBar: React.FC<NavBarProps> = ({ isLandingPage }) => {
 
         window.addEventListener('keydown', handleKeyPress);
 
-        // Cleanup para remover el listener cuando el componente se desmonte
         return () => {
             window.removeEventListener('keydown', handleKeyPress);
         };
@@ -31,7 +49,7 @@ const NavBar: React.FC<NavBarProps> = ({ isLandingPage }) => {
             <div className="nav-left">
                 <img 
                     className="header-logo" 
-                    src="https://raw.githubusercontent.com/Jack-s-Cave/Assets/refs/heads/main/Icons/logo-text.svg" 
+                    src={logo} 
                     alt="Logo"
                     onClick={() => navigate('/')}
                 />
