@@ -4,7 +4,7 @@ div.cave-wrapper {
     height: fit-content;    
     position: relative;   
     overflow: hidden; 
-    background-color: var(--font-color);
+    background-color: var(--cave-background);
 }
 
 div.cave-wrapper img{    
