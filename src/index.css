@@ -24,21 +24,42 @@ code {
   height: 100vh;
 }
 
-:root{
+:root {
   --font-title: 'TheBoldFont';
   --font-subtitle: 'Satoshi';
   --font-paragraph: 'Mononoki Mono';
   --font-paragraph2: 'Mononoki Propo';
-  --primary-color1: #19002a;
-  --primary-color2: #935FB8;
-  --primary-color3: #C5ABD6;
+  
+  --primary-color1: #fbf7f4;
+  --primary-color2: #f2e9e2;
+  --primary-color3: #f1c4be;
   --primary-color4: #D55C51;
-  --background-light: #392949;
-  --font-color1: #ffffff;
+  
+  --background-color: #f5f5f5;
+  --font-color: #19002a;
+  --cave-background: #3c3042;
+  
   --root-em: 16px;
   --mobile-width: 768px;
 }
 
+/* --- Tema Oscuro --- */
+@media (prefers-color-scheme: dark) {
+  :root {
+    --primary-color1: #19002a;
+    --primary-color2: #935FB8;
+    --primary-color3: #C5ABD6;
+    --primary-color4: #D55C51;
+    
+    --background-color: ;
+    --font-color: #ffffff;
+    --cave-background: #ffffff;
+
+  }
+}
+
+
 footer { 
   font-family: "Space Mono", serif;
+  color: var(--font-color);
 }

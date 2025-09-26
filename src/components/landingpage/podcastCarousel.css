@@ -4,6 +4,7 @@
   justify-content: center;
   width: fit-content;
   gap: 1.5rem;
+  color: var(--font-color);
 }
 
 .fade-in {
@@ -73,7 +74,7 @@
 .carousel-arrow {
   background: transparent;
   border: none;
-  color: white;
+  color: var(--font-color);
   font-size: 4rem;
   padding: 0.5rem 1rem;
   cursor: pointer;
