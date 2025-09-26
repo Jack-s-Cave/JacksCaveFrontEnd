@@ -44,9 +44,10 @@ const AboutUs: React.FC = () => {
                 <span className="estudiantes-text">ESTUDIANTES</span>
               </div>
             </div>
+            {/* BUG */}
             <div className="logo-placeholder">
                 <span>Imagen Asociacion (bonitos y gorditos)</span>
-            </div>
+              </div>
           </div>
           
           <div className="hero-description">
