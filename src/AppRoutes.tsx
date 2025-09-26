@@ -5,6 +5,7 @@ import Cave from './components/cave/cave';
 import Blog from './pages/blog/blog';
 import Podcast from './pages/podcast/podcast';
 import AboutUs from './pages/aboutUs/aboutus';
+import BlogPost from './pages/blogpost/blogpost';
 
 const AppRoutes = () => {
   return (
@@ -13,6 +14,7 @@ const AppRoutes = () => {
       <Route path="/blog" element={<Blog/>}/>
       <Route path="/podcast" element={<Podcast/>}/>
       <Route path="/aboutus" element={<AboutUs/>}/>
+      <Route path="/blogpost" element={<BlogPost/>}/>
     </Routes>
   );
 };

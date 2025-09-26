@@ -37,6 +37,7 @@ code {
   
   --background-color: #f5f5f5;
   --font-color: #19002a;
+  --font-color2:rgb(54, 1, 90);
   --cave-background: #3c3042;
   
   --root-em: 16px;
@@ -53,6 +54,7 @@ code {
     
     --background-color: ;
     --font-color: #ffffff;
+    --font-color2:rgb(255, 255, 255)f;
     --cave-background: #ffffff;
 
   }
