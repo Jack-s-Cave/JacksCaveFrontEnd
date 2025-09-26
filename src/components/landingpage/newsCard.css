@@ -14,13 +14,13 @@
   position: relative;
   display: flex;
   flex-direction: column;
-  min-width: 41rem;
   padding: 0.5rem 1rem;
   overflow: hidden;
   background-color: transparent;
   z-index: 1;
   font-family: var(--font-subtitle);
-  max-width: 35rem;
+  color: var(--font-color);
+  max-width: 80vh;
 }
 
 .new:hover{

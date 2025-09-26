@@ -1,51 +1,44 @@
-nav.nav-bar ul{
-    list-style-type: none;
+nav.nav-bar {
     display: flex;
-    justify-content: flex-end;  
-    background-color: var(--primary-color1);      
-    padding: 3px;
-    margin: 0;
-    
-    padding-right: 2%;
-    padding-top: 1%;
-    padding-bottom: 0;
-    padding-inline-start: 0;
+    justify-content: space-between; /* Logo izquierda, links derecha */
+    align-items: center;
+    background-color: var(--primary-color1);
+    padding: 0.5rem 2%;
 }
 
-.nav-bar-item{
-    color: white;
-    margin-left: 2%;
-    padding-top: 3px;
-    padding-bottom: 3px;
-    padding-left: 15px;
-    padding-right: 15px;
+.nav-left {
+    display: flex;
+    align-items: center;
+}
 
+.nav-right {
+    list-style-type: none;
+    display: flex;
+    gap: 10px; /* Espaciado entre links */
+    margin: 0;
+    padding: 0;
+}
+
+.nav-bar-item {
+    color: var(--font-color);
+    padding: 0.3rem 1rem;
     background-color: var(--background-light);
-
-    /* font */
     font-family: "Space Mono", serif;
     font-weight: 700;
-    font-style: normal;
     font-size: clamp(0.7rem, 1.3vw, 1.5rem);
-    
-    /* text placement */
-    display: flex; /* Enables Flexbox */
-    align-items: center; /* Vertically centers the content */
-    justify-content: center; /* Horizontally centers the content (optional) */
-
-
-    border-radius: 3px; /* Rounded corners */    
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 3px;
     transition: background-color 0.5s ease, transform 0.5s ease;
 }
 
-.nav-bar-item:hover{
+.nav-bar-item:hover {
     background-color: var(--primary-color3);
     cursor: pointer;
 }
 
-@media (max-width: 768px) and (max-aspect-ratio: 1/1) {
-    .nav-bar ul{
-        height: 5vh;
-        height: 5svh;
-    }
+.header-logo {
+    height: 3vh;
+    cursor: pointer;
 }
