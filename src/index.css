@@ -12,7 +12,7 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  color: var(--font-color1);
+  color: var(--font-color);
 }
 
 code {
@@ -34,6 +34,7 @@ code {
   --primary-color2: #f2e9e2;
   --primary-color3: #f1c4be;
   --primary-color4: #D55C51;
+  --primary-color5: #ceb4b1;
   
   --background-color: #f5f5f5;
   --font-color: #19002a;
@@ -51,6 +52,7 @@ code {
     --primary-color2: #935FB8;
     --primary-color3: #C5ABD6;
     --primary-color4: #D55C51;
+    --primary-color5: #af93c2;
     
     --background-color: ;
     --font-color: #ffffff;

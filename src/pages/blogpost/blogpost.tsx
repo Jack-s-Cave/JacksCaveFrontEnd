@@ -12,6 +12,8 @@ const BlogPost: React.FC = () => {
       .catch(err => console.error(err));
   }, []);
 
+  
+
   return (
     <div className='blog-post'>
         <div className='blog-container' style={{ padding: '2rem', maxWidth: '800px', margin: 'auto' }}>

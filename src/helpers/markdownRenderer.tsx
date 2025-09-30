@@ -6,6 +6,19 @@ interface MarkdownRendererProps {
 }
 
 const MarkdownRenderer: React.FC<MarkdownRendererProps> = ({ markdownContent }) => {
+
+  React.useEffect(() => {
+    const buttons = document.querySelectorAll<HTMLButtonElement>(".copy-btn");
+    buttons.forEach(btn => {
+      btn.onclick = () => {
+        const code = btn.dataset.code || "";
+        navigator.clipboard.writeText(code);
+        btn.textContent = "Copied!";
+        setTimeout(() => (btn.textContent = "Copy"), 1500);
+      };
+    });
+  }, [markdownContent]);
+
   const parseMarkdown = (md: string): string => {
     // Normalize line endings and trim
     let html = md.trim().replace(/\r\n/g, '\n').replace(/\r/g, '\n');
