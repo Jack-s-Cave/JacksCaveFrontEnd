@@ -1,5 +1,5 @@
 .about-us {
-  background-color: #fbf7f4;
+  background-color: var(--primary-color1);
   color: var(--primary-color1);
   min-height: 100vh;
   padding-top: 2rem;
@@ -41,7 +41,7 @@
 .association-subtitle {
   font-family: var(--font-title);
   font-size: clamp(1.5rem, 4vw, 2.5rem);
-  color: var(--primary-color1);
+  color: var(--font-color);
   margin: 0.2rem 0;
   padding: 0.2rem 0.5rem;
   display: inline-block;
@@ -59,7 +59,7 @@
 .de-text {
   font-family: var(--font-title);
   font-size: clamp(1.5rem, 4vw, 2.5rem);
-  color: var(--primary-color1);
+  color: var(--font-color);
   padding: 0.2rem 0.5rem;
   line-height: 1;
   font-weight: normal;
@@ -106,7 +106,7 @@
 }
 
 .hero-description {
-  background-color: var(--background-light);
+  background-color: var(--primary-color2);
   padding: 2rem;
   border-radius: 8px;
   max-width: 800px;
@@ -119,14 +119,13 @@
   font-size: 1.1rem;
   line-height: 1.6;
   margin: 0;
-  color: var(--font-color1);
+  color: var(--font-color);
 }
 
 /* Years Section */
 .years-section {
-  background-color: #fbf7f4; /* Fondo página */
-  padding: 0; /* sin padding extra */
-  border-bottom: 1px solid #e0e0e0; /* Línea justo debajo */
+  background-color: var(--primary-color1);
+  padding: 0; 
 }
 
 .years-nav {
@@ -135,13 +134,15 @@
   gap: 0.5rem;
   max-width: 1200px;
   margin: 0 auto;
+  background-color: var(--primary-color1);
+  border-bottom: 1px solid #e0e0e0; /* Línea justo debajo */
 }
 
 .year-btn {
-  background-color: #fbf7f4;
+  background-color: var(--primary-color1);
   border: 1px solid #e0e0e0;
   border-bottom: none; /* para que la línea de abajo se vea limpia */
-  color: #2c2233;
+  color: var(--font-color);
   padding: 0.7rem 1.5rem;
   border-radius: 10px 10px 0 0; /* solo arriba redondeado */
   font-family: 'Mononoki', monospace; /* tipografía correcta */
@@ -164,7 +165,7 @@
 
 /* Members Section */
 .members-section {
-  background-color: #fbf7f4;
+  background-color: var(--primary-color1);
   color: var(--primary-color1);
   padding: 3rem 2rem 4rem;
   max-width: 1200px;
@@ -175,7 +176,7 @@
   text-align: center;
   font-family: var(--font-title);
   font-size: clamp(2rem, 5vw, 3rem);
-  color: var(--primary-color1);
+  color: var(--font-color);
   margin-bottom: 3rem;
   font-weight: normal;
 }
@@ -244,8 +245,12 @@
   font-family: var(--font-paragraph2);
   font-size: 0.95rem;
   line-height: 1.5;
-  color: #666;
+  color: var(--font-color);
   margin: 0;
+}
+
+/* Dark Mode */
+@media (prefers-color-scheme: dark) {
 }
 
 /* Responsive Design */
