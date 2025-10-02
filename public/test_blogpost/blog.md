@@ -1,7 +1,3 @@
-# Guía completa para aprender React en 2025
-
-*Publicado el 25 de Septiembre, 2025 por Diego Duarte*
-
 ![React Logo](https://blog.risingstack.com/wp-content/uploads/2021/07/react_best_practices_1453211146748-1466684142679.png)
 
 ## Introducción
@@ -32,7 +28,6 @@ Los conceptos clave que debes entender:
 3. **Props y state**
 4. **Hooks básicos**: `useState`, `useEffect`
 
-Ejemplo de un contador simple:
 
 ```jsx
 import React, { useState } from 'react';
@@ -113,4 +108,3 @@ No tengas miedo de romper cosas y experimentar: cada error es una oportunidad pa
 
 ---
 
-*Fin del post.*

@@ -11,34 +11,49 @@ const MarkdownRenderer: React.FC<MarkdownRendererProps> = ({ markdownContent }) 
     const buttons = document.querySelectorAll<HTMLButtonElement>(".copy-btn");
     buttons.forEach(btn => {
       btn.onclick = () => {
-        const code = btn.dataset.code || "";
+        // Decodificar las entidades HTML del atributo data-code
+        const encodedCode = btn.dataset.code || "";
+        const textarea = document.createElement('textarea');
+        textarea.innerHTML = encodedCode;
+        const code = textarea.value;
+        
         navigator.clipboard.writeText(code);
-        btn.textContent = "Copied!";
-        setTimeout(() => (btn.textContent = "Copy"), 1500);
+        btn.textContent = "✓ Copiado";
+        setTimeout(() => (btn.textContent = "Copiar"), 2000);
       };
     });
   }, [markdownContent]);
 
+  const escapeHtml = (text: string): string => {
+    const div = document.createElement('div');
+    div.textContent = text;
+    return div.innerHTML;
+  };
+
   const parseMarkdown = (md: string): string => {
-    // Normalize line endings and trim
     let html = md.trim().replace(/\r\n/g, '\n').replace(/\r/g, '\n');
     
     // Code blocks first (to avoid interfering with other patterns)
-    html = html.replace(/```(\w+)?\n([\s\S]*?)\n```/gim, (match, lang, code) => {
-      const escaped = escapeHtml(code.trim());
-      const language = lang ? ` class="language-${lang}"` : '';
+    html = html.replace(/```(\w+)?\n([\s\S]*?)```/gim, (match, lang, code) => {
+      const trimmedCode = code.trim();
+      const escaped = escapeHtml(trimmedCode);
+      // Para data-code, necesitamos escapar las comillas para que funcione en el atributo HTML
+      const dataCode = trimmedCode.replace(/"/g, '&quot;').replace(/'/g, '&#39;');
+      const language = lang || 'code';
       
       return `
         <div class="code-block-wrapper">
-          <button class="copy-btn" data-code="${escaped}">Copy</button>
-          <pre><code${language}>${escaped}</code></pre>
+          <div class="code-header">
+            <span class="code-language">${language}</span>
+            <button class="copy-btn" data-code="${dataCode}">Copiar</button>
+          </div>
+          <pre><code class="language-${language}">${escaped}</code></pre>
         </div>
       `;
     });
     
-  
     // Inline code (after code blocks)
-    html = html.replace(/`([^`\n]+)`/gim, '<code>$1</code>');
+    html = html.replace(/`([^`\n]+)`/gim, '<code class="inline-code">$1</code>');
     
     // Headers (in order from most specific to least)
     html = html.replace(/^######\s+(.*$)/gim, '<h6>$1</h6>');
@@ -56,11 +71,11 @@ const MarkdownRenderer: React.FC<MarkdownRendererProps> = ({ markdownContent }) 
     html = html.replace(/\*\*(.*?)\*\*/gim, '<strong>$1</strong>');
     html = html.replace(/\*(.*?)\*/gim, '<em>$1</em>');
 
-    // Images
-    html = html.replace(/!\[([^\]]*)\]\(([^)]+)\)/gim, '<img src="$2" alt="$1" style="max-width: 100%; height: auto;" />');
+    // Images (before links to avoid conflicts)
+    html = html.replace(/!\[([^\]]*)\]\(([^)]+)\)/gim, '<img src="$2" alt="$1" class="markdown-image" />');
 
     // Links
-    html = html.replace(/\[([^\]]+)\]\(([^)]+)\)/gim, '<a href="$2" target="_blank" rel="noopener noreferrer">$1</a>');
+    html = html.replace(/\[([^\]]+)\]\(([^)]+)\)/gim, '<a href="$2" target="_blank" rel="noopener noreferrer" class="markdown-link">$1</a>');
     
     // Lists - Handle multiple consecutive items
     html = processLists(html);
@@ -73,12 +88,6 @@ const MarkdownRenderer: React.FC<MarkdownRendererProps> = ({ markdownContent }) 
     html = processParagraphs(html);
     
     return html;
-  };
-  
-  const escapeHtml = (text: string): string => {
-    const div = document.createElement('div');
-    div.textContent = text;
-    return div.innerHTML;
   };
   
   const processLists = (html: string): string => {
@@ -117,7 +126,7 @@ const MarkdownRenderer: React.FC<MarkdownRendererProps> = ({ markdownContent }) 
         if (!block) return '';
         
         // Don't wrap block elements in paragraphs
-        if (block.match(/^<(h[1-6]|blockquote|pre|ul|ol|hr)/)) {
+        if (block.match(/^<(h[1-6]|blockquote|pre|ul|ol|hr|div|img)/)) {
           return block;
         }
         
@@ -133,13 +142,6 @@ const MarkdownRenderer: React.FC<MarkdownRendererProps> = ({ markdownContent }) 
   return (
     <div
       className="markdown-renderer blog-content"
-      style={{
-        lineHeight: "1.6",
-        fontSize: "16px",
-        fontFamily: "system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif",
-        color: "#333",
-        maxWidth: "100%"
-      }}
       dangerouslySetInnerHTML={{ __html: parseMarkdown(markdownContent) }}
     />
   );
