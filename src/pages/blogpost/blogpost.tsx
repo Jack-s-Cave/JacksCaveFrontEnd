@@ -71,7 +71,7 @@ const BlogPost: React.FC = () => {
     <div className='blog-post'>
 
       {/* Contenido Markdown */}
-      <div className='blog-container' style={{ padding: '2rem', maxWidth: '800px', margin: 'auto' }}>
+      <div className='blog-container' style={{ padding: '2rem', maxWidth: '1000px', margin: 'auto' }}>
         <div className='blog-header'>
           <h1 className='blog-title'>{blog_name}</h1>
           <div className='header-info'>
