@@ -42,3 +42,33 @@ nav.nav-bar {
     height: 3vh;
     cursor: pointer;
 }
+
+.search-bar-section {
+    display: flex; /* Para que los hijos estén en línea */
+    align-items: center; /* Centrar verticalmente */
+    background-color: var(--primary-color3);
+    color: var(--font-color);
+    width: 40vw;
+    height: 2rem;
+    border-radius: 7px;
+    padding: 0 0.5rem; /* opcional, para que no pegue el contenido al borde */
+}
+
+.input-section {
+    flex: 1; 
+    background-color: transparent;
+    border: none; 
+    height: 100%;
+    color: inherit; 
+    font-size: 1rem; 
+    outline: none; 
+}
+
+.search-button {
+    background-color: transparent;
+    border: none;
+    width: 5vh; 
+    height: 100%; 
+    cursor: pointer; 
+}
+

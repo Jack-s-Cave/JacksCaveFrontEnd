@@ -1,16 +1,18 @@
 import React, { useEffect, useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useLocation } from 'react-router-dom';
+import { FaSearch } from "react-icons/fa";
 import './navbar.css';
 
 type NavBarProps = {
-    isLandingPage?: boolean;
+    isSearchBar?: boolean;
 }
 
-const NavBar: React.FC<NavBarProps> = ({ isLandingPage }) => {
+const NavBar: React.FC<NavBarProps> = ({ isSearchBar }) => {
     const navigate = useNavigate();
+    const location = useLocation(); // <-- Hook para saber la ruta actual
     const [logo, setLogo] = useState(''); 
 
-    //Deteccion de modo claro
+    //Detección de modo claro
     useEffect(() => {
         const setLogoBasedOnTheme = (e?: MediaQueryListEvent) => {
             const darkModeOn = e ? e.matches : window.matchMedia('(prefers-color-scheme: dark)').matches;
@@ -18,9 +20,7 @@ const NavBar: React.FC<NavBarProps> = ({ isLandingPage }) => {
         };
 
         const mediaQuery = window.matchMedia('(prefers-color-scheme: dark)');
-
         setLogoBasedOnTheme();
-
         mediaQuery.addEventListener('change', setLogoBasedOnTheme);
 
         return () => {
@@ -44,6 +44,9 @@ const NavBar: React.FC<NavBarProps> = ({ isLandingPage }) => {
         };
     }, [navigate]);
 
+    // Rutas donde queremos mostrar la barra de búsqueda
+    const showSearchBar = ['/blog', '/blogpost', '/author'].includes(location.pathname);
+
     return (
         <nav className='nav-bar'>
             <div className="nav-left">
@@ -54,6 +57,16 @@ const NavBar: React.FC<NavBarProps> = ({ isLandingPage }) => {
                     onClick={() => navigate('/')}
                 />
             </div>
+
+            {showSearchBar && (
+                <div className='search-bar-section'>
+                    <button className='search-button'>
+                        <FaSearch />
+                    </button>
+                    <input className='input-section' type="text" placeholder='Buscar...'></input>
+                </div>
+            )}
+
             <ul className="nav-right">
                 <li className='nav-bar-item' onClick={() => navigate('/blog')}>[B] Blog</li>
                 <li className='nav-bar-item' onClick={() => navigate('/podcast')}>[P] Podcast</li>
