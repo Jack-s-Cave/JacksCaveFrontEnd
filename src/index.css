@@ -40,6 +40,8 @@ code {
   --secondary-color3: #d55c51;
   --secondary-color4: #898787;
   --secondary-color5: #fbf7f4;
+  --secondary-color6: #f2e9e2; /*PARA PAGINA BLOG*/
+  --secondary-color7: #f1c4be; /*PARA PAGINA BLOG*/
 
   --hover-color1: #f0ece9;
 
@@ -65,6 +67,8 @@ code {
     --secondary-color3: #935fb8;
     --secondary-color4: #9886a1;
     --secondary-color5: #935fb8;
+    --secondary-color6: #4a116e; /*PARA PAGINA BLOG*/
+    --secondary-color7: #d55c51; /*PARA PAGINA BLOG*/
 
     --hover-color1: #4a116e;
 
