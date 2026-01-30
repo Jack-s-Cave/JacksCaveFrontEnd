@@ -39,11 +39,13 @@ code {
   --secondary-color2: #c5abd6;
   --secondary-color3: #d55c51;
   --secondary-color4: #898787;
+  --secondary-color5: #fbf7f4;
 
   --hover-color1: #f0ece9;
 
   --background-color: #fbf7f4;
   --font-color: #19002a;
+  --font-color2: #d55c51;
   --cave-background: #3c3042;
 
   --root-em: 16px;
@@ -62,10 +64,13 @@ code {
     --secondary-color2: #f1c4be;
     --secondary-color3: #935fb8;
     --secondary-color4: #9886a1;
+    --secondary-color5: #935fb8;
+
     --hover-color1: #4a116e;
 
     --background-color: #19002a;
     --font-color: #ffffff;
+    --font-color2: #fbf7f4;
     --cave-background: #ffffff;
 
   }
