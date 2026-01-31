@@ -3,6 +3,7 @@ import './landing.css';
 import RecentCard from '../../components/landingpage/recentCard';
 import NewsCard from '../../components/landingpage/newsCard';
 import PodcastCarousel from '../../components/landingpage/podcastCarousel';
+import { useNavigate } from 'react-router-dom';
 
 //Place Holder
 const newsData = [
@@ -52,12 +53,14 @@ type NavBarProps = {
 }
 
 const LandingPage: React.FC<NavBarProps> = ({ isLandingPage }) => {
+    const navigate = useNavigate();
+
     return(
         <>  <div className='landing-page'>
                 <div className='landing-subSection'>
                     <div className='landing-subT-section'>
                         <h1 className='landing-subT'>RECIENTES</h1>
-                        <button className='see-more'>Ver Más <strong>+</strong></button>
+                        <button className='see-more' onClick={() => navigate('/blog')}>Ver Más <strong>+</strong></button>
                     </div>
                     <div className='landing-recent-section'>
                         <RecentCard
@@ -116,7 +119,7 @@ const LandingPage: React.FC<NavBarProps> = ({ isLandingPage }) => {
                 <div className='landing-subSection'>
                     <div className='landing-subT-section'>
                         <h1 className='landing-subT'>PODCAST ENTERATE!</h1>
-                        <button className='see-more'>Ver Más <strong>+</strong></button>
+                        <button className='see-more' onClick={() => navigate('/podcast')}>Ver Más <strong>+</strong></button>
                     </div>
                     <PodcastCarousel videos={videoList} />
                     <div className='landing-podcast-section'>
