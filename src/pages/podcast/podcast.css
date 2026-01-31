@@ -1,6 +1,6 @@
 .podcasts-page {
-  background-color: #fbf7f4;
-  color: var(--primary-color1);
+  background-color: var(--primary-color1);
+  color: var(--font-color);
   min-height: 100vh;
 }
 
@@ -27,6 +27,7 @@
 /* About Section */
 .about-section {
   padding: 4rem 2rem;
+  background-color: var(--primary-color1);
 }
 
 .about-container {
@@ -45,7 +46,7 @@
 .about-title {
   font-family: var(--font-title);
   font-size: clamp(2rem, 5vw, 3rem);
-  color: var(--primary-color1);
+  color: var(--font-color);
   margin-bottom: 1.5rem;
   font-weight: normal;
 }
@@ -54,7 +55,8 @@
   font-family: var(--font-paragraph2);
   font-size: 1.1rem;
   line-height: 1.6;
-  color: #666;
+  color: var(--font-color);
+  opacity: 0.8;
   margin-bottom: 2rem;
 }
 
@@ -87,10 +89,11 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  color: var(--primary-color2);
+  color: var(--primary-color3);
   font-family: var(--font-subtitle);
   font-size: 1.2rem;
   font-weight: 500;
+  background-color: var(--primary-color2);
 }
 
 .logo-image {
@@ -104,7 +107,8 @@
 /* Tabs Section */
 .tabs-section {
   padding: 0;
-  border-bottom: 1px solid #e0e0e0;
+  border-bottom: 1px solid var(--primary-color3);
+  background-color: var(--primary-color1);
 }
 
 .tabs-nav {
@@ -116,10 +120,10 @@
 }
 
 .tab-btn {
-  background-color: #fbf7f4;
-  border: 1px solid #e0e0e0;
+  background-color: var(--primary-color2);
+  border: 1px solid var(--primary-color3);
   border-bottom: none;
-  color: #2c2233;
+  color: var(--font-color);
   padding: 0.7rem 1.5rem;
   border-radius: 10px 10px 0 0;
   font-family: var(--font-paragraph);
@@ -136,12 +140,14 @@
 }
 
 .tab-btn:hover:not(.active) {
-  background-color: #f0ece9;
+  background-color: var(--primary-color3);
+  opacity: 0.9;
 }
 
 /* Publications Section */
 .publications-section {
   padding: 2rem;
+  background-color: var(--primary-color1);
 }
 
 .publications-container {
@@ -157,6 +163,7 @@
   padding: 1.5rem;
   border-radius: 8px;
   height: fit-content;
+  background-color: var(--background-color);
 }
 
 .sidebar-title {
@@ -164,11 +171,12 @@
   font-size: 1.2rem;
   font-weight: 600;
   margin-bottom: 1.5rem;
-  color: var(--primary-color1);
+  color: var(--font-color);
 }
 
 .folder-icon {
-    margin-right: 0.5rem;
+  margin-right: 0.5rem;
+  color: var(--font-color);
 }
 
 .year-filters {
@@ -183,6 +191,7 @@
   gap: 0.5rem;
   font-family: var(--font-paragraph2);
   font-size: 1rem;
+  color: var(--font-color);
   cursor: pointer;
 }
 
@@ -190,6 +199,7 @@
   width: 16px;
   height: 16px;
   accent-color: var(--primary-color4);
+  cursor: pointer;
 }
 
 /* Content Area */
@@ -200,17 +210,17 @@
 }
 
 .search-bar {
-  display: flex;          
-  align-items: center;    
-  gap: 1rem;              
-  width: 100%;           
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  width: 100%;
 }
 
 .search-input-wrapper {
   position: relative;
   flex-grow: 1;
-  display: flex;      
-  align-items: center;  
+  display: flex;
+  align-items: center;
 }
 
 .search-icon {
@@ -218,28 +228,37 @@
   left: 12px;
   top: 50%;
   transform: translateY(-50%);
-  color: #666;
-  pointer-events: none; /* para que no bloquee el click en el input */
+  color: var(--font-color);
+  opacity: 0.6;
+  pointer-events: none;
 }
 
 .search-input {
   width: 100%;
-  padding: 0.8rem 1rem 0.8rem 2.5rem; /* más espacio a la izquierda para la lupa */
-  border: 1px solid #f8ece4;
+  padding: 0.8rem 1rem 0.8rem 2.5rem;
+  border: 1px solid var(--primary-color3);
   border-radius: 8px;
   font-family: var(--font-paragraph2);
   font-size: 1rem;
-  background-color: #f8ece4;
+  background-color: var(--primary-color2);
+  color: var(--font-color);
+  transition: border-color 0.3s ease;
+}
+
+.search-input::placeholder {
+  color: var(--font-color);
+  opacity: 0.5;
 }
 
 .search-input:focus {
   outline: none;
-  border-color: var(--primary-color2);
+  border-color: var(--primary-color3);
 }
 
 .post-count {
   font-family: var(--font-paragraph2);
-  color: #666;
+  color: var(--font-color);
+  opacity: 0.7;
   font-size: 0.9rem;
 }
 
@@ -283,7 +302,8 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  color: var(--primary-color2);
+  color: var(--primary-color3);
+  background-color: var(--primary-color2);
   font-family: var(--font-subtitle);
   font-size: 1rem;
   font-weight: 500;
@@ -293,24 +313,27 @@
   font-family: var(--font-subtitle);
   font-size: 1.2rem;
   font-weight: 600;
-  color: var(--primary-color1);
+  color: var(--font-color);
   margin: 0;
 }
 
 .podcast-card {
-  border: 2px solid #e0e0e0;
+  border: 3px solid var(--primary-color3);
   border-radius: 12px;
   overflow: hidden;
-  transition: box-shadow 0.3s ease;
+  transition: all 0.3s ease;
+  background-color: var(--primary-color2);
 }
 
 .podcast-card:hover {
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+  transform: translateY(-2px);
 }
 
 .podcast-video {
   width: 100%;
   aspect-ratio: 16/9;
+  background-color: #000;
 }
 
 .podcast-video iframe {
@@ -326,7 +349,7 @@
   font-family: var(--font-subtitle);
   font-size: 1.3rem;
   font-weight: 600;
-  color: var(--primary-color1);
+  color: var(--font-color);
   margin-bottom: 0.8rem;
   line-height: 1.3;
 }
@@ -334,7 +357,8 @@
 .podcast-description {
   font-family: var(--font-paragraph2);
   font-size: 1rem;
-  color: #666;
+  color: var(--font-color);
+  opacity: 0.8;
   margin-bottom: 1.5rem;
   line-height: 1.5;
 }
@@ -347,9 +371,14 @@
 
 .more-details {
   font-family: var(--font-paragraph2);
-  color: var(--primary-color2);
+  color: var(--primary-color4);
   font-size: 0.9rem;
   cursor: pointer;
+  transition: opacity 0.3s ease;
+}
+
+.more-details:hover {
+  opacity: 0.8;
 }
 
 .platform-links {
@@ -366,7 +395,7 @@
   font-size: 0.9rem;
   padding: 0.4rem 0.8rem;
   border-radius: 20px;
-  transition: background-color 0.3s ease;
+  transition: all 0.3s ease;
 }
 
 .youtube-link {
@@ -387,6 +416,21 @@
 .spotify-link:hover {
   background-color: var(--primary-color4);
   color: white;
+}
+
+/* Dark mode specific adjustments */
+@media (prefers-color-scheme: dark) {
+  .hero-background {
+    filter: grayscale(100%) contrast(1.2) brightness(0.7);
+  }
+
+  .podcast-card:hover {
+    box-shadow: 0 4px 12px rgba(255, 255, 255, 0.1);
+  }
+
+  .sidebar {
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+  }
 }
 
 /* Responsive Design */
