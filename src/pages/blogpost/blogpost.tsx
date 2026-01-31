@@ -6,8 +6,9 @@ import SeriesCard from '../../components/blog/seriesCard';
 import { IoShareSocial } from "react-icons/io5";
 
 const BlogPost: React.FC = () => {
+  // Muy probablemente se tendra que pasar el id del blog por la url /?blogpost=12 
   const [content, setContent] = useState('');
-  const [visibleSeriesCount, setVisibleSeriesCount] = useState(3); // 👈 Por defecto 3 visibles
+  const [visibleSeriesCount, setVisibleSeriesCount] = useState(3); 
   const name_series = "Serie de Prueba";
   const autor = "Daniel Rayo";
   const blog_name = "Como utilizar REACT";
@@ -71,7 +72,7 @@ const BlogPost: React.FC = () => {
     <div className='blog-post'>
 
       {/* Contenido Markdown */}
-      <div className='blog-container' style={{ padding: '2rem', maxWidth: '1000px', margin: 'auto' }}>
+      <div className='blogpost-container'>
         <div className='blog-header'>
           <h1 className='blog-title'>{blog_name}</h1>
           <div className='header-info'>
