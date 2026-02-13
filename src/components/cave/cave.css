@@ -1,11 +1,10 @@
-@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;500;900&display=swap');
-
 /* CAVE WRAPPER */
 div.cave-wrapper {        
     width: 100%;
     height: fit-content;    
-    position: absolute;   
+    position: relative;   
     overflow: hidden; 
+    background-color: var(--cave-background);
 }
 
 div.cave-wrapper img{    
@@ -30,12 +29,13 @@ div.cave-wrapper img{
 
 /* CAVE OUTSIDE WRAPPER */
 div.cave-outside-wrapper {
-    height: fit-content;    
+    height: 99%;    
 }
 
 div.cave-outside-wrapper img{    
     position: relative;
     z-index: 2;
+    height: 95%;
 }
 
 /* CAVE TITTLE */
@@ -77,14 +77,16 @@ div.cave-outside-wrapper img{
     position: relative;
 }
 
+
+
 /* MOBILE SPECIFIC STYLES */
-@media (max-width: 768px) {
+@media (max-width: 768px) and (max-aspect-ratio: 1/1) {
     /* CAVE WRAPPER */
     div.cave-wrapper {
         overflow: hidden;
         /* we have two heights for browser support */
-        height: 100vh;
-        height: 100svh;
+        height: 95vh;
+        height: 95svh;
         width: 100%;        
     }
 
@@ -113,15 +115,15 @@ div.cave-outside-wrapper img{
     .cave-inside {
         left: 50%;  
         /* we have two heights for browser support */      
-        height: 100vh;
-        height: 100svh;
+        height: 95vh;
+        height: 95svh;
     }
 
     .cave-middle{
         left: 50%;
         /* we have two heights for browser support */
-        height: 100vh;
-        height: 100svh;
+        height: 95vh;
+        height: 95svh;
     }
     
 }
