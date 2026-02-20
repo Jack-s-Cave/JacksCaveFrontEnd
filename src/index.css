@@ -1,53 +1,44 @@
-@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;500;900&family=Space+Mono:wght@400;700&display=swap');
-@import url('./styles/fonts.css');
+@import url("https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;500;900&family=Space+Mono:wght@400;700&display=swap");
+@import url("./styles/fonts.css");
 
-html{
+html {
   font-size: var(--root-em);
 }
 
 body {
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
+    "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  color: var(--font-color1);
+  color: var(--font-color);
 }
 
 code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;
 }
 
-#root{
+#root {
   height: 100vh;
 }
 
 :root {
-  --font-title: 'TheBoldFont';
-  --font-subtitle: 'Satoshi';
-  --font-paragraph: 'Mononoki Mono';
-  --font-paragraph2: 'Mononoki Propo';
-  
+  --font-title: "TheBoldFont";
+  --font-subtitle: "Satoshi";
+  --font-paragraph: "Mononoki Mono";
+  --font-paragraph2: "Mononoki Propo";
+
   --primary-color1: #fbf7f4;
   --primary-color2: #f2e9e2;
   --primary-color3: #f1c4be;
   --primary-color4: #d55c51;
   --primary-color5: #cebca4;
-  --secondary-color1: #19002a;
-  --secondary-color2: #c5abd6;
-  --secondary-color3: #d55c51;
-  --secondary-color4: #898787;
-  --secondary-color5: #fbf7f4;
-  --secondary-color6: #f2e9e2; /*PARA PAGINA BLOG*/
-  --secondary-color7: #f1c4be; /*PARA PAGINA BLOG*/
 
-  --hover-color1: #f0ece9;
-
-  --background-color: #fbf7f4;
+  --background-color: #f5f5f5;
   --font-color: #19002a;
-  --font-color2: #d55c51;
+  --font-color2:rgb(54, 1, 90);
   --cave-background: #3c3042;
 
   --root-em: 16px;
@@ -62,26 +53,15 @@ code {
     --primary-color3: #c5abd6;
     --primary-color4: #d55c51;
     --primary-color5: #dbaffa;
-    --secondary-color1: #fbf7f4;
-    --secondary-color2: #f1c4be;
-    --secondary-color3: #935fb8;
-    --secondary-color4: #9886a1;
-    --secondary-color5: #935fb8;
-    --secondary-color6: #4a116e; /*PARA PAGINA BLOG*/
-    --secondary-color7: #d55c51; /*PARA PAGINA BLOG*/
 
-    --hover-color1: #4a116e;
-
-    --background-color: #19002a;
+    --background-color: #1a1a1a;
     --font-color: #ffffff;
-    --font-color2: #fbf7f4;
+    --font-color2:rgb(255, 255, 255)f;
     --cave-background: #ffffff;
-
   }
 }
 
-
-footer { 
+footer {
   font-family: "Space Mono", serif;
   color: var(--font-color);
 }

@@ -5,14 +5,13 @@
  * Permite alternar entre vista de cuadrícula y lista, filtrar por tags y rango de fechas.
  * 
  * @module Blog
- * @author Maria Marta Ramirez
+ * @author Daniel Rayo
  * @version 1.0.0
  */
 
 import React, { useState } from 'react';
 import './blog.css';
 import { FaMountain } from 'react-icons/fa';
-import { ListOrdered } from "lucide-react";
 
 // ============================================================================
 // ICONOS SVG PERSONALIZADOS
@@ -378,7 +377,7 @@ const Blog: React.FC = () => {
               aria-label="Vista en lista"
               title="Vista en lista"
             >
-              <ListOrdered size={22} />
+              <ListIcon />
             </button>
           </div>
         </div>

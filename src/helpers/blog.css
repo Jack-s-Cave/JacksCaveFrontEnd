@@ -1,0 +1,494 @@
+/* ========================================
+   Contenedor principal del blog
+   ======================================== */
+.blog-content {
+  font-family: var(--font-paragraph2);
+  font-size: 1.1rem;
+  line-height: 1.8;
+  color: var(--font-color);
+  max-width: 1000px;
+  margin: 2rem auto;
+  padding: 3rem 2.5rem;
+  background-color: var(--primary-color1);
+  border-radius: 12px;
+}
+
+/* ========================================
+   Headers - Títulos
+   ======================================== */
+.markdown-renderer h1,
+.markdown-renderer h2,
+.markdown-renderer h3,
+.markdown-renderer h4,
+.markdown-renderer h5,
+.markdown-renderer h6 {
+  font-family: var(--font-title);
+  color: var(--font-color);
+  margin: 2rem 0 1rem 0;
+  line-height: 1.3;
+  font-weight: 700;
+}
+
+.markdown-renderer h1 {
+  font-size: 2.5rem;
+  border-bottom: 3px solid var(--primary-color4);
+  padding-bottom: 0.75rem;
+  margin-top: 0;
+  margin-bottom: 1.5rem;
+}
+
+.markdown-renderer h2 {
+  font-size: 2rem;
+  border-left: 5px solid var(--primary-color4);
+  padding-left: 1rem;
+  margin-top: 2.5rem;
+}
+
+.markdown-renderer h3 {
+  font-size: 1.6rem;
+  color: var(--font-color);
+  position: relative;
+  padding-left: 0.5rem;
+}
+
+.markdown-renderer h3::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 4px;
+  height: 60%;
+  background: var(--primary-color4);
+  border-radius: 2px;
+}
+
+.markdown-renderer h4 {
+  font-size: 1.35rem;
+  font-weight: 600;
+}
+
+.markdown-renderer h5 {
+  font-size: 1.2rem;
+  font-weight: 600;
+}
+
+.markdown-renderer h6 {
+  font-size: 1.05rem;
+  font-weight: 600;
+  color: var(--font-color2);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+/* ========================================
+   Párrafos y texto
+   ======================================== */
+.markdown-renderer p {
+  color: var(--font-color);
+  margin: 1.25rem 0;
+  line-height: 1.8;
+}
+
+.markdown-renderer span,
+.markdown-renderer li {
+  color: var(--font-color);
+}
+
+/* ========================================
+   Links
+   ======================================== */
+.markdown-renderer a,
+.markdown-renderer .markdown-link {
+  color: var(--primary-color4);
+  text-decoration: none;
+  font-weight: 500;
+  transition: all 0.2s ease;
+  border-bottom: 2px solid transparent;
+  padding-bottom: 2px;
+}
+
+.markdown-renderer a:hover,
+.markdown-renderer .markdown-link:hover {
+  border-bottom-color: var(--primary-color4);
+  color: var(--primary-color3);
+}
+
+/* ========================================
+   Énfasis - Bold e Italic
+   ======================================== */
+.markdown-renderer strong {
+  font-weight: 700;
+  color: var(--font-color);
+}
+
+.markdown-renderer em {
+  font-style: italic;
+  color: var(--font-color);
+}
+
+/* ========================================
+   Código inline
+   ======================================== */
+.markdown-renderer code.inline-code {
+  background-color: var(--primary-color3);
+  color: var(--font-color);
+  padding: 0.25rem 0.5rem;
+  border-radius: 5px;
+  font-family: var(--font-paragraph);
+  font-size: 0.92rem;
+  font-weight: 500;
+  border: 1px solid rgba(0, 0, 0, 0.05);
+}
+
+/* ========================================
+   Bloques de código
+   ======================================== */
+.code-block-wrapper {
+  position: relative;
+  margin: 2rem 0;
+  background-color: var( --primary-color3);
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+  border: 1px solid rgba(0, 0, 0, 0.05);
+}
+
+.code-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: var(--primary-color2);
+  padding: 0.85rem 1.25rem;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+}
+
+.code-language {
+  font-size: 0.8rem;
+  color: var(--font-color2);
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  font-family: var(--font-paragraph2);
+}
+
+.copy-btn {
+  position: absolute;   /* ahora se posiciona relativo al wrapper */
+  top: 15px;
+  right: 8px;
+  background: var(--primary-color4);
+  color: white;
+  font-family: var(--font-paragraph2);
+  font-size: 0.8rem;
+  font-weight: 600;
+  border: none;
+  border-radius: 6px;
+  padding: 0.4rem 0.9rem;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.copy-btn:hover {
+  background: var(--primary-color3);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+}
+
+.copy-btn:active {
+  transform: translateY(0);
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+}
+
+.code-block-wrapper pre {
+  margin: 0;
+  padding: 1.5rem 1.25rem;
+  overflow-x: auto;
+  background-color: var( --primary-color3);
+}
+
+.code-block-wrapper code {
+  font-family: var(--font-paragraph);
+  font-size: 0.95rem;
+  line-height: 1.7;
+  color: var(--font-color);
+  display: block;
+  background: none;
+  padding: 0;
+}
+
+/* Scrollbar personalizado para bloques de código */
+.code-block-wrapper pre::-webkit-scrollbar {
+  height: 10px;
+}
+
+.code-block-wrapper pre::-webkit-scrollbar-track {
+  background: var(--primary-color2);
+  border-radius: 5px;
+}
+
+.code-block-wrapper pre::-webkit-scrollbar-thumb {
+  background: var(--primary-color4);
+  border-radius: 5px;
+  transition: background 0.2s ease;
+}
+
+.code-block-wrapper pre::-webkit-scrollbar-thumb:hover {
+  background: var(--primary-color3);
+}
+
+/* ========================================
+   Listas
+   ======================================== */
+.markdown-renderer ul,
+.markdown-renderer ol {
+  margin: 1.5rem 0;
+  padding-left: 2.5rem;
+  color: var(--font-color);
+}
+
+.markdown-renderer ul {
+  list-style-type: none;
+}
+
+.markdown-renderer ul li {
+  position: relative;
+  padding-left: 0.5rem;
+}
+
+.markdown-renderer ul li::before {
+  content: '▸';
+  position: absolute;
+  left: -1.5rem;
+  color: var(--primary-color4);
+  font-weight: bold;
+}
+
+.markdown-renderer ol {
+  list-style-type: decimal;
+  list-style-position: outside;
+}
+
+.markdown-renderer ol li::marker {
+  color: var(--primary-color4);
+  font-weight: 700;
+}
+
+.markdown-renderer li {
+  margin: 0.75rem 0;
+  line-height: 1.8;
+  color: var(--font-color);
+}
+
+.markdown-renderer li > ul,
+.markdown-renderer li > ol {
+  margin: 0.5rem 0;
+}
+
+/* ========================================
+   Blockquotes
+   ======================================== */
+.markdown-renderer blockquote {
+  border-left: 5px solid var(--primary-color4);
+  padding: 1.25rem 1.5rem;
+  color: var(--font-color2);
+  font-style: italic;
+  margin: 2rem 0;
+  background: var(--primary-color3);
+  border-radius: 0 10px 10px 0;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+  position: relative;
+}
+
+.markdown-renderer blockquote::before {
+  content: '"';
+  position: absolute;
+  top: 0.5rem;
+  left: 1rem;
+  font-size: 3rem;
+  color: var(--primary-color4);
+  opacity: 0.2;
+  font-family: Georgia, serif;
+  line-height: 1;
+}
+
+.markdown-renderer blockquote p {
+  margin: 0.5rem 0;
+  position: relative;
+  z-index: 1;
+}
+
+/* ========================================
+   Línea horizontal
+   ======================================== */
+.markdown-renderer hr {
+  border: none;
+  height: 2px;
+  background: linear-gradient(
+    to right,
+    transparent,
+    var(--primary-color4),
+    transparent
+  );
+  margin: 3rem 0;
+  opacity: 0.5;
+}
+
+/* ========================================
+   Imágenes
+   ======================================== */
+.markdown-renderer img,
+.markdown-renderer .markdown-image {
+  max-width: 100%;
+  height: auto;
+  border-radius: 10px;
+  margin: 2rem auto;
+  display: block;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.markdown-renderer img:hover,
+.markdown-renderer .markdown-image:hover {
+  transform: translateY(-4px);
+}
+
+/* ========================================
+   Responsive Design
+   ======================================== */
+@media (max-width: 768px) {
+  .blog-content {
+    font-size: 1rem;
+    padding: 2rem 1.5rem;
+    margin: 1rem;
+  }
+  
+  .markdown-renderer h1 {
+    font-size: 2rem;
+  }
+  
+  .markdown-renderer h2 {
+    font-size: 1.6rem;
+  }
+  
+  .markdown-renderer h3 {
+    font-size: 1.4rem;
+  }
+
+  .markdown-renderer h4 {
+    font-size: 1.2rem;
+  }
+  
+  .code-block-wrapper pre {
+    padding: 1rem;
+    font-size: 0.9rem;
+  }
+
+  .code-header {
+    padding: 0.7rem 1rem;
+  }
+  
+  .markdown-renderer ul,
+  .markdown-renderer ol {
+    padding-left: 2rem;
+  }
+
+  .markdown-renderer ul li::before {
+    left: -1.2rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .blog-content {
+    padding: 1.5rem 1rem;
+    border-radius: 8px;
+  }
+
+  .markdown-renderer h1 {
+    font-size: 1.75rem;
+  }
+
+  .markdown-renderer h2 {
+    font-size: 1.4rem;
+  }
+
+  .copy-btn {
+    font-size: 0.75rem;
+    padding: 0.35rem 0.7rem;
+  }
+}
+
+
+/* Contenedor padre para asegurar que el blog esté centrado */
+.blog-page-wrapper {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  position: relative;
+}
+
+/* El bloque del blog se mantiene centrado */
+.blog-content-center {
+  max-width: 1000px;
+  width: 100%;
+}
+
+/* La Tabla de Contenidos anclada a la derecha de la pantalla */
+.blog-toc-fixed {
+  position: fixed;
+  right: 2rem;       /* Distancia desde el borde derecho del navegador */
+  top: 50%;          /* Lo centramos verticalmente */
+  transform: translateY(-50%); /* Ajuste fino del centrado vertical */
+  width: 200px;
+  max-height: 80vh;
+  padding: 1.5rem;
+  background: var(--primary-color1);
+  border-radius: 12px;
+  border-left: 3px solid var(--primary-color4);
+  overflow-y: auto;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+  z-index: 100;
+}
+
+.blog-toc-fixed h4 {
+  font-family: var(--font-title);
+  font-size: 0.85rem;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  margin-bottom: 1rem;
+  color: var(--primary-color4);
+  font-weight: 800;
+}
+
+.blog-toc-fixed ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.blog-toc-fixed li {
+  margin-bottom: 0.7rem;
+  line-height: 1.3;
+}
+
+.blog-toc-fixed a {
+  text-decoration: none;
+  color: var(--font-color);
+  font-size: 0.85rem;
+  opacity: 0.8;
+  transition: all 0.2s ease;
+  display: block;
+}
+
+.blog-toc-fixed a:hover {
+  opacity: 1;
+  color: var(--primary-color4);
+  transform: translateX(3px);
+}
+
+/* Responsive: Ocultar si la pantalla es muy angosta */
+@media (max-width: 1450px) {
+  /* Si la pantalla mide menos de 1450px, el TOC podría chocar con el texto */
+  .blog-toc-fixed {
+    display: none;
+  }
+}
