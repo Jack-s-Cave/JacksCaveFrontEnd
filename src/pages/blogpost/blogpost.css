@@ -10,6 +10,14 @@
 }
 
 
+.blogpost-container{
+  padding: 2rem; 
+  max-width: 1200px; 
+  margin: auto;
+  display: flex;
+  flex-direction: column;
+}
+
 .by-author-section{
     display: flex;
     flex-direction: row;

@@ -4,6 +4,7 @@ import RecentCard from '../../components/landingpage/recentCard';
 import NewsCard from '../../components/landingpage/newsCard';
 import PodcastCarousel from '../../components/landingpage/podcastCarousel';
 import { useNavigate } from 'react-router-dom';
+import LoadingCard from '../../components/landingpage/loadingCard';
 
 //Place Holder
 const newsData = [
@@ -48,12 +49,101 @@ const videoList = [
   }
 ];
 
+const blogCards = [
+  {
+    date: "Oct 30, 2024",
+    author: "Francis Aguilar",
+    title: "Título Placeholder un poco más largo para pruebas",
+    imageSrc:
+      "https://www.patasencasa.com/sites/default/files/2024-07/meme-del-gato-riendo_0.jpg",
+    tags: ["tags", "gato", "jeje", "gato2", "gato3", "gato4"]
+  },
+  {
+    date: "Jun 3, 2025",
+    author: "Gustavo Gonzales",
+    title: "Título Placeholder un poco más largo para pruebas",
+    imageSrc:
+      "https://www.patasencasa.com/sites/default/files/2024-07/meme-del-gato-riendo_0.jpg",
+    tags: ["Sanitas", "Tecnología", "Videojuegos", "gato2", "gato3", "gato4"]
+  },
+  {
+    date: "Jun 3, 2025",
+    author: "Daniel Rayo",
+    title: "Título Placeholder un poco más largo para pruebas un poco más por si acaso",
+    imageSrc:
+      "https://www.patasencasa.com/sites/default/files/2024-07/meme-del-gato-riendo_0.jpg",
+    tags: ["tags", "gato", "jeje", "gato2", "gato3", "gato4", "prueba"]
+  },
+  {
+    date: "Jun 3, 2025",
+    author: "María Martinez",
+    title: "Título Placeholder un poco más largo para pruebas",
+    imageSrc:
+      "https://www.patasencasa.com/sites/default/files/2024-07/meme-del-gato-riendo_0.jpg",
+    tags: ["tags", "gato", "jeje", "gato2", "gato3", "gato4"]
+  },
+  {
+    date: "Feb 17, 2025",
+    author: "Diego Duarte",
+    title: "Título Placeholder un poco más largo para pruebas",
+    imageSrc:
+      "https://www.patasencasa.com/sites/default/files/2024-07/meme-del-gato-riendo_0.jpg",
+    tags: ["tags", "gato", "jeje", "gato2", "gato3", "gato4"]
+  },
+  {
+    date: "Abr 7, 2025",
+    author: "Sebastian Huertas",
+    title: "Título Placeholder un poco más largo para pruebas",
+    imageSrc:
+      "https://www.patasencasa.com/sites/default/files/2024-07/meme-del-gato-riendo_0.jpg",
+    tags: ["tags", "gato", "jeje", "gato2", "gato3", "gato4"]
+  },
+]
+
 type NavBarProps = {
     isLandingPage?: boolean;
 }
 
 const LandingPage: React.FC<NavBarProps> = ({ isLandingPage }) => {
     const navigate = useNavigate();
+
+    const maxVisibleRecentCards = 6
+    const [blogs, setBlogs] = useState([])
+    const [loading, setLoading] = useState(true)
+
+    useEffect(() => {
+      // Simular traer datos del back
+      const fetchBlogs = async () => {
+        setLoading(true)
+
+        setTimeout(() => {
+          setBlogs(blogCards)
+          setLoading(false)
+        }, 1500)
+      }
+
+      fetchBlogs()
+    }, [])
+
+    let recentContent;
+
+    if (loading) {
+      const loadingCards = [];
+      for (let i = 0; i < maxVisibleRecentCards; i++) {
+        loadingCards.push(
+          <LoadingCard key={`loading-${i}`} />
+        );
+      }
+      recentContent = loadingCards;
+
+    } else {
+      recentContent = blogs.map((blog, index) => (
+        <RecentCard
+          key={`blog-${index}`}
+          {...blog}
+        />
+      ));
+    }
 
     return(
         <>  <div className='landing-page'>
@@ -63,48 +153,7 @@ const LandingPage: React.FC<NavBarProps> = ({ isLandingPage }) => {
                         <button className='see-more' onClick={() => navigate('/blog')}>Ver Más <strong>+</strong></button>
                     </div>
                     <div className='landing-recent-section'>
-                        <RecentCard
-                            date="Oct 30, 2024"
-                            author="Francis Aguilar"
-                            title="Título Placeholder un poco más largo para pruebas"
-                            imageSrc="https://www.patasencasa.com/sites/default/files/2024-07/meme-del-gato-riendo_0.jpg"
-                            tags={['tags', 'gato', 'jeje', 'gato2', 'gato3', 'gato4']}
-                        />
-                        <RecentCard
-                            date="Jun 3, 2025"
-                            author="Gustavo Gonzales"
-                            title="Título Placeholder un poco más largo para pruebas"
-                            imageSrc="https://www.patasencasa.com/sites/default/files/2024-07/meme-del-gato-riendo_0.jpg"
-                            tags={['Sanitas', 'Teconologia', 'Videojuegos', 'gato2', 'gato3', 'gato4']}
-                        />
-                        <RecentCard
-                            date="Jun 3, 2025"
-                            author="Daniel Rayo"
-                            title="Título Placeholder un poco más largo para pruebas un poco mas por si acaso"
-                            imageSrc="https://www.patasencasa.com/sites/default/files/2024-07/meme-del-gato-riendo_0.jpg"
-                            tags={['tags', 'gato', 'jeje', 'gato2', 'gato3', 'gato4', 'prueba']}
-                        />
-                        <RecentCard
-                            date="Jun 3, 2025"
-                            author="María Martinez"
-                            title="Título Placeholder un poco más largo para pruebas"
-                            imageSrc="https://www.patasencasa.com/sites/default/files/2024-07/meme-del-gato-riendo_0.jpg"
-                            tags={['tags', 'gato', 'jeje', 'gato2', 'gato3', 'gato4']}
-                        />
-                        <RecentCard
-                            date="Feb 17, 2025"
-                            author="Diego Duarte"
-                            title="Título Placeholder un poco más largo para pruebas"
-                            imageSrc="https://www.patasencasa.com/sites/default/files/2024-07/meme-del-gato-riendo_0.jpg"
-                            tags={['tags', 'gato', 'jeje', 'gato2', 'gato3', 'gato4']}
-                        />
-                        <RecentCard
-                            date="Abr 7, 2025"
-                            author="Sebastian Huertas"
-                            title="Título Placeholder un poco más largo para pruebas"
-                            imageSrc="https://www.patasencasa.com/sites/default/files/2024-07/meme-del-gato-riendo_0.jpg"
-                            tags={['tags', 'gato', 'jeje', 'gato2', 'gato3', 'gato4']}
-                        />
+                      {recentContent}
                     </div>
                 </div>
                 <div className='landing-subSection'>
