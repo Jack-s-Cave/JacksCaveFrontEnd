@@ -1,0 +1,141 @@
+/* ============================================================================
+   TARJETA DE POST (POST CARD)
+   ============================================================================ */
+
+/**
+ * Tarjeta individual de post
+ * Contiene imagen, título, metadata y tags
+ */
+.post-card {
+  background-color: var(--primary-color1);
+  border-radius: 0.2rem;
+  /* Bordes coloreados en todos los lados */
+  border-top: 2px solid var(--primary-color5);
+  border-bottom: 2px solid var(--primary-color5);
+  border-left: 2px solid var(--primary-color5);
+  border-right: 2px solid var(--primary-color5);
+  box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.15); /* Sombra sutil */
+  overflow: hidden; /* Evita que el contenido desborde las esquinas */
+  cursor: pointer;
+  transition: all 0.2s; /* Transición suave para efectos hover */
+}
+
+.post-card-loading {
+  background-color: var(--primary-color1);
+  border-radius: 0.2rem;
+  /* Bordes coloreados en todos los lados */
+  border-top: 2px solid var(--primary-color5);
+  border-bottom: 2px solid var(--primary-color5);
+  border-left: 2px solid var(--primary-color5);
+  border-right: 2px solid var(--primary-color5);
+  box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.15); /* Sombra sutil */
+  overflow: hidden; /* Evita que el contenido desborde las esquinas */
+  cursor: pointer;
+  transition: all 0.2s; /* Transición suave para efectos hover */
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+
+  padding: 16px;
+  height: 405px;
+}
+
+/**
+ * Estado hover de la tarjeta
+ * Eleva visualmente la tarjeta para indicar interactividad
+ */
+.post-card:hover {
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2); /* Sombra más pronunciada */
+  transform: translateY(-2px); /* Elevación sutil */
+}
+
+/**
+ * Header de la tarjeta de post
+ * Muestra fecha y autor en los extremos
+ */
+.post-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  padding: 1rem;
+  padding-bottom: 0.5rem; /* Menos espacio abajo para compactar */
+}
+
+/**
+ * Metadata del post (fecha y autor)
+ * Texto pequeño y de menor opacidad
+ */
+.post-date,
+.post-author {
+  font-size: 0.75rem; /* 12px */
+  color: var(--font-color);
+  opacity: 0.7; /* Más sutil que el contenido principal */
+}
+
+/**
+ * Contenedor de la imagen del post
+ * Padding lateral para no tocar los bordes de la tarjeta
+ */
+.post-image-container {
+  padding: 0 1rem;
+  flex-shrink: 0;
+}
+
+/**
+ * Imagen destacada del post
+ * Tamaño fijo con object-fit para mantener proporciones
+ */
+.post-image {
+  width: 100%;
+  height: 160px;
+  object-fit: cover; /* Recorta y ajusta sin distorsionar */
+  border-radius: 0.375rem; /* 6px - esquinas redondeadas */
+}
+
+/**
+ * Contenedor del contenido textual del post
+ * Incluye título y tags
+ */
+.post-content {
+  padding: 1rem;
+  padding-top: 0.10rem; /* Reduce espacio superior */
+}
+
+/**
+ * Título del post
+ * Elemento principal que captura la atención
+ */
+.post-title {
+  text-align: left;
+  font-size: 1.5rem; /* 24px */
+  font-weight: 600;
+  color: var(--font-color);
+  margin-bottom: 0.5rem;
+  line-height: 1.4; /* Espaciado vertical para legibilidad */
+  margin-top: 0.1rem;
+}
+
+/**
+ * Contenedor de tags del post
+ * Layout flexible que permite wrapping
+ */
+.post-tags {
+  display: flex;
+  flex-wrap: wrap; /* Permite múltiples líneas si hay muchos tags */
+  gap: 0.25rem;
+  justify-content: flex-start;
+}
+
+/**
+ * Tag individual del post
+ * Badge pequeño con símbolo # y texto
+ */
+.post-tag {
+  font-size: 0.75rem; /* 12px */
+  padding: 0.25rem 0.5rem;
+  background-color: var(--primary-color1);
+  color: var(--font-color);
+  border-radius: 0.25rem; /* 4px */
+  opacity: 0.8; /* Ligeramente más tenue que el texto principal */
+}
+

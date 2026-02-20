@@ -131,7 +131,7 @@ const LandingPage: React.FC<NavBarProps> = ({ isLandingPage }) => {
       const loadingCards = [];
       for (let i = 0; i < maxVisibleRecentCards; i++) {
         loadingCards.push(
-          <LoadingCard key={`loading-${i}`} />
+          <LoadingCard key={`loading-${i}`} className='recent-card'/>
         );
       }
       recentContent = loadingCards;
