@@ -1,5 +1,5 @@
 .podcasts-page {
-  background-color: var(--primary-color1);
+  background-color: var(--background-color);
   color: var(--font-color);
   min-height: 100vh;
 }
@@ -120,7 +120,7 @@
 }
 
 .tab-btn {
-  background-color: var(--primary-color2);
+  background-color: var(--secondary-color5);
   border: 1px solid var(--primary-color3);
   border-bottom: none;
   color: var(--font-color);
@@ -135,7 +135,7 @@
 
 .tab-btn.active {
   background-color: var(--primary-color4);
-  border-color: var(--primary-color4);
+  border-color: var(--primary-color3);
   color: white;
 }
 
@@ -237,10 +237,10 @@
   width: 100%;
   padding: 0.8rem 1rem 0.8rem 2.5rem;
   border: 1px solid var(--primary-color3);
+  background-color: var(--background-color);
   border-radius: 8px;
   font-family: var(--font-paragraph2);
   font-size: 1rem;
-  background-color: var(--primary-color2);
   color: var(--font-color);
   transition: border-color 0.3s ease;
 }
@@ -399,23 +399,23 @@
 }
 
 .youtube-link {
-  color: var(--primary-color4);
-  border: 1px solid var(--primary-color4);
+  color: white;
+  background-color: var(--primary-color4);
 }
 
 .youtube-link:hover {
-  background-color: var(--primary-color4);
-  color: white;
+  background-color: var(--hover-color1);
+  color: var(--font-color2);
 }
 
 .spotify-link {
-  color: var(--primary-color4);
-  border: 1px solid var(--primary-color4);
+  color: white;
+  background-color: var(--primary-color4);
 }
 
 .spotify-link:hover {
-  background-color: var(--primary-color4);
-  color: white;
+  background-color: var(--hover-color1);
+  color: var(--font-color2);
 }
 
 /* Dark mode specific adjustments */
@@ -426,10 +426,6 @@
 
   .podcast-card:hover {
     box-shadow: 0 4px 12px rgba(255, 255, 255, 0.1);
-  }
-
-  .sidebar {
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
   }
 }
 
