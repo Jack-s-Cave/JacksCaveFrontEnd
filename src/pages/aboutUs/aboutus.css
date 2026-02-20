@@ -1,5 +1,5 @@
 .about-us {
-  background-color: var(--primary-color1);
+  background-color: var(--background-color);
   color: var(--primary-color1);
   min-height: 100vh;
   padding-top: 2rem;
@@ -41,7 +41,7 @@
 .association-subtitle {
   font-family: var(--font-title);
   font-size: clamp(1.5rem, 4vw, 2.5rem);
-  color: var(--font-color);
+  color: var(--secondary-color1);
   margin: 0.2rem 0;
   padding: 0.2rem 0.5rem;
   display: inline-block;
@@ -59,7 +59,7 @@
 .de-text {
   font-family: var(--font-title);
   font-size: clamp(1.5rem, 4vw, 2.5rem);
-  color: var(--font-color);
+  color: var(--secondary-color1);
   padding: 0.2rem 0.5rem;
   line-height: 1;
   font-weight: normal;
@@ -93,20 +93,19 @@
 .logo-placeholder {
   width: 650px;
   height: 350px;
-  border: 3px solid var(--primary-color3);
+  border: 3px solid var(--secondary-color3);
   border-radius: 12px;
   display: flex;
   align-items: center;
   justify-content: center;
-  background-color: #f8f9fa;
-  color: var(--primary-color2);
+  background-color: #f2e9e2;
+  color: #616161;
   font-family: var(--font-subtitle);
   font-size: 1.2rem;
   font-weight: 500;
 }
 
 .hero-description {
-  background-color: var(--primary-color2);
   padding: 2rem;
   border-radius: 8px;
   max-width: 800px;
@@ -124,8 +123,9 @@
 
 /* Years Section */
 .years-section {
-  background-color: var(--primary-color1);
-  padding: 0; 
+  background-color: var(--background-color); /* Fondo página */
+  padding: 0; /* sin padding extra */
+  border-bottom: 1px solid #e0e0e0; /* Línea justo debajo */
 }
 
 .years-nav {
@@ -139,10 +139,10 @@
 }
 
 .year-btn {
-  background-color: var(--primary-color1);
+  background-color: var(--background-color);
   border: 1px solid #e0e0e0;
   border-bottom: none; /* para que la línea de abajo se vea limpia */
-  color: var(--font-color);
+  color: var(--primary-color3);
   padding: 0.7rem 1.5rem;
   border-radius: 10px 10px 0 0; /* solo arriba redondeado */
   font-family: 'Mononoki', monospace; /* tipografía correcta */
@@ -153,19 +153,19 @@
 }
 
 .year-btn.active {
-  background-color: #e74c3c; /* Tab activo en rojo */
-  border-color: #e74c3c;
+  background-color: var(--secondary-color3); /* Tab activo en naranja */
+  border-color: var(--secondary-color3);
   color: white;
 }
 
 .year-btn:hover:not(.active) {
-  background-color: #f0ece9; /* hover sutil */
+  background-color: var(--hover-color1); /* hover sutil */
 }
 
 
 /* Members Section */
 .members-section {
-  background-color: var(--primary-color1);
+  background-color: var(--background-color);
   color: var(--primary-color1);
   padding: 3rem 2rem 4rem;
   max-width: 1200px;
@@ -176,7 +176,7 @@
   text-align: center;
   font-family: var(--font-title);
   font-size: clamp(2rem, 5vw, 3rem);
-  color: var(--font-color);
+  color: var(--secondary-color1);
   margin-bottom: 3rem;
   font-weight: normal;
 }
@@ -210,12 +210,12 @@
   width: 120px;
   height: 120px;
   border-radius: 50%;
-  border: 4px solid var(--primary-color3);
+  border: 4px solid var(--secondary-color2);
   background-color: #f8f9fa;
   display: flex;
   align-items: center;
   justify-content: center;
-  color: var(--primary-color2);
+  color: var(--secondary-color2);
   font-family: var(--font-subtitle);
   font-size: 1rem;
   font-weight: 500;
@@ -226,7 +226,7 @@
   height: 120px;
   border-radius: 50%;
   object-fit: cover;
-  border: 4px solid var(--primary-color3);
+  border: 4px solid var(--secondary-color2);
 }
 
 .member-info {
@@ -237,7 +237,7 @@
   font-family: var(--font-subtitle);
   font-size: 1.4rem;
   font-weight: 700;
-  color: var(--primary-color1);
+  color: var(--secondary-color1);
   margin: 0 0 0.8rem 0;
 }
 
@@ -245,7 +245,7 @@
   font-family: var(--font-paragraph2);
   font-size: 0.95rem;
   line-height: 1.5;
-  color: var(--font-color);
+  color: var(--secondary-color4);
   margin: 0;
 }
 

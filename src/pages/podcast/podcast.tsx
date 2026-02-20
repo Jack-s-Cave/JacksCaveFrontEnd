@@ -76,8 +76,8 @@ const Podcasts: React.FC = () => {
       <section className="hero-section-podcasts">
         <div className="hero-overlay">
           <img 
-            src="https://images.unsplash.com/photo-1590602847861-f357a9332bbc?w=1200&h=600&fit=crop" 
-            alt="Gas Station Illustration"
+            src="https://media.istockphoto.com/id/2242721518/photo/modern-podcast-studio-with-two-armchairs-microphones-and-soft-lighting-setup.jpg?s=2048x2048&w=is&k=20&c=utXkzAsCPRfWqPsPDEq40-HIQsnR3M3_ZdcBOtay8to=" 
+            alt="Podcast Image"
             className="hero-background"
           />
         </div>

@@ -1,9 +1,14 @@
 nav.nav-bar {
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+
     display: flex;
     justify-content: space-between; /* Logo izquierda, links derecha */
     align-items: center;
     background-color: var(--primary-color1);
-    padding: 0.5rem 2%;
+    padding: 0.5rem 2%;    
+    border-bottom: 1px solid color-mix(in srgb, var(--primary-color5) 20%, transparent);
 }
 
 .nav-left {
