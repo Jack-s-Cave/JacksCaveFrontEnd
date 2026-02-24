@@ -65,3 +65,7 @@ footer {
   font-family: "Space Mono", serif;
   color: var(--font-color);
 }
+
+a {
+  text-decoration: none;
+}
