@@ -186,7 +186,7 @@ const mockPosts: BlogPost[] = [
   },
   {
     id: 5,
-    title: 'Guía de devs para terminar las cosas',
+    title: 'Cómo conseguir un trabajo que pague en dólares',
     date: 'Jun 3, 2024',
     author: 'Daniel Rayo',
     image: 'https://images.unsplash.com/photo-1498050108023-c5249f4df085?w=400&h=250&fit=crop',
@@ -194,7 +194,7 @@ const mockPosts: BlogPost[] = [
   },
   {
     id: 6,
-    title: 'Guía de devs para terminar las cosas',
+    title: 'Cómo conseguir trabajo con gente de Europa',
     date: 'Jun 3, 2024',
     author: 'Daniel Rayo',
     image: 'https://images.unsplash.com/photo-1498050108023-c5249f4df085?w=400&h=250&fit=crop',
@@ -228,9 +228,9 @@ const mockPosts: BlogPost[] = [
  */
 const allTags: string[] = [
   'Productividad',
-  'React',
-  'News',
-  'Trabajo Remoto',
+  'Front-End',
+  'Git',
+  'Trabajo-remoto',
   'Tips & Tricks'
 ];
 
@@ -327,11 +327,11 @@ const Blog: React.FC = () => {
    * toggleTag('React'); // Agrega 'React' si no está, lo remueve si ya está
    */
   const toggleTag = (tag: string): void => {
-    setSelectedTags(prev => 
-      prev.includes(tag) 
-        ? prev.filter(t => t !== tag)  // Remueve el tag si existe
-        : [...prev, tag]                // Agrega el tag si no existe
-    );
+    setSelectedTags(prev =>
+      prev.includes(tag)
+        ? prev.filter(t => t !== tag)
+        : [...prev, tag]
+    )
   };
 
   /**
@@ -373,6 +373,17 @@ const Blog: React.FC = () => {
       blog.tags.some(tag => tag.toLowerCase().includes(query))
   )
 
+  const filteredBlogs = mockPosts.filter(blog => {
+    const matchesSearch =
+      blog.title.toLowerCase().includes(query.toLowerCase())
+
+    const matchesTags =
+      selectedTags.length === 0 ||
+      selectedTags.every(tag => blog.tags.includes(tag))
+
+    return matchesSearch && matchesTags
+  })
+
   const maxVisibleCards = 8
 
   let blogContent
@@ -388,7 +399,7 @@ const Blog: React.FC = () => {
 
     blogContent = loadingCards
   } else {
-    blogContent = results.map((post) => (
+    blogContent = filteredBlogs.map((post) => (
       <BlogCard
         key={`post-${post.id}`}
         post={post}
@@ -487,7 +498,6 @@ const Blog: React.FC = () => {
                   type="checkbox"
                   checked={selectedTags.includes(tag)}
                   onChange={() => toggleTag(tag)}
-                  aria-label={`Filtrar por ${tag}`}
                 />
                 <span>{tag}</span>
               </label>
