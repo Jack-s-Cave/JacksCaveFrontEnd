@@ -14,6 +14,8 @@ import './blog.css';
 import { FaMountain } from 'react-icons/fa';
 import BlogCard from '../../components/blog/blogCard';
 import LoadingCard from '../../components/landingpage/loadingCard';
+import SearchBar from '../../components/common/searchbar';
+import { useSearch } from '../../hooks/useSearch';
 
 // ============================================================================
 // ICONOS SVG PERSONALIZADOS
@@ -160,27 +162,27 @@ const mockPosts: BlogPost[] = [
   },
   {
     id: 2,
-    title: 'Guía de devs para terminar las cosas',
+    title: 'Cómo utilizar React de manera sencilla',
     date: 'Jun 3, 2024',
     author: 'Daniel Rayo',
     image: 'https://images.unsplash.com/photo-1498050108023-c5249f4df085?w=400&h=250&fit=crop',
-    tags: ['Productividad', 'Trabajo-remoto', 'Noticias']
+    tags: ['Front-End', 'TypeScript', 'Tutorial', 'Desarrollo']
   },
   {
     id: 3,
-    title: 'Guía de devs para terminar las cosas',
+    title: 'Las bases de Git y GitHub para trabajar en equipo',
     date: 'Jun 3, 2024',
     author: 'Daniel Rayo',
     image: 'https://images.unsplash.com/photo-1498050108023-c5249f4df085?w=400&h=250&fit=crop',
-    tags: ['SQL', 'Visión por Computadora', 'Machine Learning']
+    tags: ['Git', 'Soft skills']
   },
   {
     id: 4,
-    title: 'Guía de devs para terminar las cosas',
+    title: 'Creación de APIs con arquitectura hexagonal',
     date: 'Jun 3, 2024',
     author: 'Daniel Rayo',
     image: 'https://images.unsplash.com/photo-1498050108023-c5249f4df085?w=400&h=250&fit=crop',
-    tags: ['Productividad', 'Trabajo-remoto']
+    tags: ['Back-End', 'Arquitectura', 'Desarrollo']
   },
   {
     id: 5,
@@ -362,6 +364,15 @@ const Blog: React.FC = () => {
     fetchBlogs()
   }, [])
 
+  // Hook del funcionamiento de la serch bar, donde se incluye la lista sobre la que se quiere buscar 
+  // y el filtro que se quiere aplicar a la misma
+  const { query, setQuery, results } = useSearch(
+    mockPosts,
+    (blog, query) =>
+      blog.title.toLowerCase().includes(query) ||
+      blog.tags.some(tag => tag.toLowerCase().includes(query))
+  )
+
   const maxVisibleCards = 8
 
   let blogContent
@@ -377,7 +388,7 @@ const Blog: React.FC = () => {
 
     blogContent = loadingCards
   } else {
-    blogContent = mockPosts.map((post) => (
+    blogContent = results.map((post) => (
       <BlogCard
         key={`post-${post.id}`}
         post={post}
@@ -502,11 +513,13 @@ const Blog: React.FC = () => {
           {/* --------------------------------------------------------------------
               HEADER - TÍTULO Y CONTADOR DE POSTS
               -------------------------------------------------------------------- */}
+          <SearchBar value={query} onChange={setQuery}/>
           <div className="headerTitle">
             <div className="header-left">
               <span><FaMountain /></span>
               <h1 className="blog-header">/</h1>
             </div>
+
             
             {/* Muestra el número total de posts */}
             <div className="post-count" aria-live="polite">
