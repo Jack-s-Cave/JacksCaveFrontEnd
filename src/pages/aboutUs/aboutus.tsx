@@ -19,7 +19,7 @@ const AboutUs: React.FC = () => {
     description: "Descripción del miembro anterior que se cargará desde la base de datos..."
   }));
 
-  const years = [2024, 2023, 2022, 2021, 2020];
+  const years = [2024, 2023, 2022, 2021, 2020, 2019, 2018, 2017, 2016, 2015, 2014, 2013, 2012, 2011];
   const [selectedYear, setSelectedYear] = React.useState(2024);
 
   // Placeholder para información de la asociación - se cargará de Supabase
