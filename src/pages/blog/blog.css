@@ -439,6 +439,7 @@
  * Contiene imagen, título, metadata y tags
  */
 .post-card {
+  min-height: 450px;
   background-color: var(--primary-color1);
   border-radius: 0.2rem;
   /* Bordes coloreados en todos los lados */
