@@ -4,6 +4,7 @@ import './blogpost.css';
 import RecentCard from '../../components/landingpage/recentCard';
 import SeriesCard from '../../components/blog/seriesCard';
 import { IoShareSocial } from "react-icons/io5";
+import NavBar from '../../components/navbar/navbar';
 
 const BlogPost: React.FC = () => {
   // Muy probablemente se tendra que pasar el id del blog por la url /?blogpost=12 
@@ -69,72 +70,75 @@ const BlogPost: React.FC = () => {
   };
 
   return (
-    <div className='blog-post'>
+    <main>
+      <NavBar />
+      <div className='blog-post'>
 
-      {/* Contenido Markdown */}
-      <div className='blogpost-container'>
-        <div className='blog-header'>
-          <h1 className='blog-title'>{blog_name}</h1>
-          <div className='header-info'>
-            <div className='author-info'>
-              <img 
-                src="https://images.icon-icons.com/2643/PNG/512/male_man_people_person_avatar_white_tone_icon_159363.png" 
-                alt={autor}
-                className="author-avatar"
-              />
-              <p><strong>{autor}</strong> • {fecha}</p>
-            </div>
-            <div className='share-section'>
-               <button className="share-btn"> <IoShareSocial /> Share</button>
+        {/* Contenido Markdown */}
+        <div className='blogpost-container'>
+          <div className='blog-header'>
+            <h1 className='blog-title'>{blog_name}</h1>
+            <div className='header-info'>
+              <div className='author-info'>
+                <img 
+                  src="https://images.icon-icons.com/2643/PNG/512/male_man_people_person_avatar_white_tone_icon_159363.png" 
+                  alt={autor}
+                  className="author-avatar"
+                />
+                <p><strong>{autor}</strong> • {fecha}</p>
+              </div>
+              <div className='share-section'>
+                <button className="share-btn"> <IoShareSocial /> Share</button>
+              </div>
             </div>
           </div>
+          <MarkdownRenderer markdownContent={content} />
         </div>
-        <MarkdownRenderer markdownContent={content} />
-      </div>
 
-      {/* Serie */}
-      <div className='blogpost-subsection'>
-        <div className='blogpost-subsection-header'>
-          <h1>De la serie "{name_series}"</h1>
+        {/* Serie */}
+        <div className='blogpost-subsection'>
+          <div className='blogpost-subsection-header'>
+            <h1>De la serie "{name_series}"</h1>
+          </div>
+          <ul className='series-timeline'>
+            {seriesPosts.slice(0, visibleSeriesCount).map((post, i) => (
+              <li key={i}>
+                <SeriesCard {...post} />
+              </li>
+            ))}
+          </ul>
+          <div className="timeline-footer">
+            <button className="see-more-btn" onClick={handleSeeMore}>
+              {visibleSeriesCount >= seriesPosts.length ? "Ver menos" : "Ver más"}
+            </button>
+          </div>
         </div>
-        <ul className='series-timeline'>
-          {seriesPosts.slice(0, visibleSeriesCount).map((post, i) => (
-            <li key={i}>
-              <SeriesCard {...post} />
-            </li>
-          ))}
-        </ul>
-        <div className="timeline-footer">
-          <button className="see-more-btn" onClick={handleSeeMore}>
-            {visibleSeriesCount >= seriesPosts.length ? "Ver menos" : "Ver más"}
-          </button>
-        </div>
-      </div>
 
-      {/* Autor */}
-      <div className='blogpost-subsection'>
-        <div className='blogpost-subsection-header'>
-          <h1>Escrito por {autor}</h1>
+        {/* Autor */}
+        <div className='blogpost-subsection'>
+          <div className='blogpost-subsection-header'>
+            <h1>Escrito por {autor}</h1>
+          </div>
+          <div className='by-author-section'>
+            {authorPosts.map((post, i) => (
+              <RecentCard key={i} {...post} />
+            ))}
+          </div>
         </div>
-        <div className='by-author-section'>
-          {authorPosts.map((post, i) => (
-            <RecentCard key={i} {...post} />
-          ))}
-        </div>
-      </div>
 
-      {/* Otros Posts */}
-      <div className='blogpost-subsection'>
-        <div className='blogpost-subsection-header'>
-          <h1>Otros Posts interesantes</h1>
-        </div>
-        <div className='interesting-section'>
-          {interestingPosts.map((post, i) => (
-            <RecentCard key={i} {...post} />
-          ))}
+        {/* Otros Posts */}
+        <div className='blogpost-subsection'>
+          <div className='blogpost-subsection-header'>
+            <h1>Otros Posts interesantes</h1>
+          </div>
+          <div className='interesting-section'>
+            {interestingPosts.map((post, i) => (
+              <RecentCard key={i} {...post} />
+            ))}
+          </div>
         </div>
       </div>
-    </div>
+    </main>
   );
 };
 

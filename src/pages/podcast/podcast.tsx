@@ -1,3 +1,4 @@
+import NavBar from '../../components/navbar/navbar';
 import React, { useState } from 'react';
 import { FaYoutube, FaInstagram, FaTiktok, FaSpotify } from 'react-icons/fa';
 import { FiFolder, FiSearch } from 'react-icons/fi';
@@ -71,169 +72,172 @@ const Podcasts: React.FC = () => {
   const tabs = ['LISTAS', 'TODAS'];
 
   return (
-    <div className="podcasts-page">
-      {/* Hero Section con imagen de fondo */}
-      <section className="hero-section-podcasts">
-        <div className="hero-overlay">
-          <img 
-            src="https://media.istockphoto.com/id/2242721518/photo/modern-podcast-studio-with-two-armchairs-microphones-and-soft-lighting-setup.jpg?s=2048x2048&w=is&k=20&c=utXkzAsCPRfWqPsPDEq40-HIQsnR3M3_ZdcBOtay8to=" 
-            alt="Podcast Image"
-            className="hero-background"
-          />
-        </div>
-      </section>
-
-      {/* Sección ¿Quiénes Somos? */}
-      <section className="about-section">
-        <div className="about-container">
-          <div className="about-content">
-            <h2 className="about-title">¿QUIÉNES SOMOS?</h2>
-            <p className="about-description">
-              Since My Favorite Murder launched in January of 2016, Karen 
-              Kilgariff and Georgia Hardstark have shared their lifelong 
-              interest in true crime stories and have covered infamous serial 
-              killers, mysterious cold cases, captivating cults, incredible 
-              survivor stories and important events from history.
-            </p>
-            <div className="social-links">
-              {socialLinks.map((social, index) => (
-                <a 
-                  key={index} 
-                  href={social.url} 
-                  target="_blank" 
-                  rel="noopener noreferrer"
-                  className="social-link"
-                >
-                  {social.icon}
-                </a>
-              ))}
-            </div>
+    <main className='podcasts-content'>
+      <NavBar />
+      <div className="podcasts-page">
+        {/* Hero Section con imagen de fondo */}
+        <section className="hero-section-podcasts">
+          <div className="hero-overlay">
+            <img 
+              src="https://media.istockphoto.com/id/2242721518/photo/modern-podcast-studio-with-two-armchairs-microphones-and-soft-lighting-setup.jpg?s=2048x2048&w=is&k=20&c=utXkzAsCPRfWqPsPDEq40-HIQsnR3M3_ZdcBOtay8to=" 
+              alt="Podcast Image"
+              className="hero-background"
+            />
           </div>
-          <div className="about-logo">
-            {/* Placeholder cuadrado para el logo */}
-            <div className="logo-placeholder">
-              <span>Logo</span>
-            </div>
-          </div>
-        </div>
-      </section>
+        </section>
 
-      {/* Tabs Navigation */}
-      <section className="tabs-section">
-        <div className="tabs-nav">
-          {tabs.map((tab) => (
-            <button 
-              key={tab} 
-              className={`tab-btn ${tab === activeTab ? 'active' : ''}`}
-              onClick={() => setActiveTab(tab)}
-            >
-              {tab}
-            </button>
-          ))}
-        </div>
-      </section>
-
-      {/* Publicaciones Section */}
-      <section className="publications-section">
-        <div className="publications-container">
-          <div className="sidebar">
-            <h3 className="sidebar-title">
-        <FiFolder className="folder-icon" />
-        Publicaciones
-      </h3>
-      <div className="year-filters">
-        <label className="year-filter">
-          <input type="checkbox" defaultChecked />
-          <span>2017</span>
-        </label>
-        <label className="year-filter">
-          <input type="checkbox" defaultChecked />
-          <span>2018</span>
-        </label>
-        <label className="year-filter">
-          <input type="checkbox" />
-          <span>2019</span>
-        </label>
-        <label className="year-filter">
-          <input type="checkbox" />
-          <span>2020</span>
-        </label>
-        <label className="year-filter">
-          <input type="checkbox" />
-          <span>2021</span>
-        </label>
-            </div>
-          </div>
-
-          <div className="content-area">
-            <div className="search-bar">
-              <div className="search-input-wrapper">
-                <FiSearch className="search-icon" />
-                <input 
-                  type="text" 
-                  placeholder="Buscar..." 
-                  className="search-input"
-                />
+        {/* Sección ¿Quiénes Somos? */}
+        <section className="about-section">
+          <div className="about-container">
+            <div className="about-content">
+              <h2 className="about-title">¿QUIÉNES SOMOS?</h2>
+              <p className="about-description">
+                Since My Favorite Murder launched in January of 2016, Karen 
+                Kilgariff and Georgia Hardstark have shared their lifelong 
+                interest in true crime stories and have covered infamous serial 
+                killers, mysterious cold cases, captivating cults, incredible 
+                survivor stories and important events from history.
+              </p>
+              <div className="social-links">
+                {socialLinks.map((social, index) => (
+                  <a 
+                    key={index} 
+                    href={social.url} 
+                    target="_blank" 
+                    rel="noopener noreferrer"
+                    className="social-link"
+                  >
+                    {social.icon}
+                  </a>
+                ))}
               </div>
-              <span className="post-count">(3 posts)</span>
+            </div>
+            <div className="about-logo">
+              {/* Placeholder cuadrado para el logo */}
+              <div className="logo-placeholder">
+                <span>Logo</span>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* Tabs Navigation */}
+        <section className="tabs-section">
+          <div className="tabs-nav">
+            {tabs.map((tab) => (
+              <button 
+                key={tab} 
+                className={`tab-btn ${tab === activeTab ? 'active' : ''}`}
+                onClick={() => setActiveTab(tab)}
+              >
+                {tab}
+              </button>
+            ))}
+          </div>
+        </section>
+
+        {/* Publicaciones Section */}
+        <section className="publications-section">
+          <div className="publications-container">
+            <div className="sidebar">
+              <h3 className="sidebar-title">
+                <FiFolder className="folder-icon" />
+                Publicaciones
+              </h3>
+              <div className="year-filters">
+                <label className="year-filter">
+                  <input type="checkbox" defaultChecked />
+                  <span>2017</span>
+                </label>
+                <label className="year-filter">
+                  <input type="checkbox" defaultChecked />
+                  <span>2018</span>
+                </label>
+                <label className="year-filter">
+                  <input type="checkbox" />
+                  <span>2019</span>
+                </label>
+                <label className="year-filter">
+                  <input type="checkbox" />
+                  <span>2020</span>
+                </label>
+                <label className="year-filter">
+                  <input type="checkbox" />
+                  <span>2021</span>
+                </label>
+              </div>
             </div>
 
-            <div className="podcasts-grid">
-              {activeTab === 'LISTAS' ? (
-                // Mostrar listas de reproducción
-                <div className="playlists-grid">
-                  {playlistsData.map((playlist) => (
-                    <div key={playlist.id} className="playlist-card">
-                      <div className="playlist-cover">
-                        <div className="cover-placeholder">
-                          <span>Portada</span>
-                        </div>
-                      </div>
-                      <div className="playlist-info">
-                        <h3 className="playlist-title">{playlist.title}</h3>
-                      </div>
-                    </div>
-                  ))}
+            <div className="content-area">
+              <div className="search-bar">
+                <div className="search-input-wrapper">
+                  <FiSearch className="search-icon" />
+                  <input 
+                    type="text" 
+                    placeholder="Buscar..." 
+                    className="search-input"
+                  />
                 </div>
-              ) : (
-                // Mostrar episodios de podcasts en 2 columnas
-                <div className="episodes-grid">
-                  {podcastEpisodes.map((episode) => (
-                    <div key={episode.id} className="podcast-card">
-                      <div className="podcast-video">
-                        <iframe
-                          width="100%"
-                          height="200"
-                          src={`https://www.youtube.com/embed/${episode.embedId}`}
-                          title={episode.title}
-                          frameBorder="0"
-                          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                          allowFullScreen
-                        ></iframe>
-                      </div>
-                      <div className="podcast-info">
-                        <h3 className="podcast-title">{episode.title}</h3>
-                        <p className="podcast-description">{episode.description}</p>
-                        <div className="podcast-links">
-                          <div className="platform-links">
-                            <a href="#" className="platform-link youtube-link">
-                              <FaYoutube /> Youtube
-                            </a>
-                            <a href="#" className="platform-link spotify-link">
-                              <FaSpotify /> Spotify
-                            </a>
+                <span className="post-count">(3 posts)</span>
+              </div>
+
+              <div className="podcasts-grid">
+                {activeTab === 'LISTAS' ? (
+                  // Mostrar listas de reproducción
+                  <div className="playlists-grid">
+                    {playlistsData.map((playlist) => (
+                      <div key={playlist.id} className="playlist-card">
+                        <div className="playlist-cover">
+                          <div className="cover-placeholder">
+                            <span>Portada</span>
                           </div>
                         </div>
+                        <div className="playlist-info">
+                          <h3 className="playlist-title">{playlist.title}</h3>
+                        </div>
                       </div>
+                    ))}
+                  </div>
+                ) : (
+                    // Mostrar episodios de podcasts en 2 columnas
+                    <div className="episodes-grid">
+                      {podcastEpisodes.map((episode) => (
+                        <div key={episode.id} className="podcast-card">
+                          <div className="podcast-video">
+                            <iframe
+                              width="100%"
+                              height="200"
+                              src={`https://www.youtube.com/embed/${episode.embedId}`}
+                              title={episode.title}
+                              frameBorder="0"
+                              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                              allowFullScreen
+                            ></iframe>
+                          </div>
+                          <div className="podcast-info">
+                            <h3 className="podcast-title">{episode.title}</h3>
+                            <p className="podcast-description">{episode.description}</p>
+                            <div className="podcast-links">
+                              <div className="platform-links">
+                                <a href="#" className="platform-link youtube-link">
+                                  <FaYoutube /> Youtube
+                                </a>
+                                <a href="#" className="platform-link spotify-link">
+                                  <FaSpotify /> Spotify
+                                </a>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      ))}
                     </div>
-                  ))}
-                </div>
-              )}
+                  )}
+              </div>
             </div>
           </div>
-        </div>
-      </section>
-    </div>
+        </section>
+      </div>
+    </main>
   );
 };
 

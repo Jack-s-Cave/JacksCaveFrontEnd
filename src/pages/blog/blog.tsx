@@ -16,6 +16,7 @@ import BlogCard from '../../components/blog/blogCard';
 import LoadingCard from '../../components/landingpage/loadingCard';
 import SearchBar from '../../components/common/searchbar';
 import { useSearch } from '../../hooks/useSearch';
+import NavBar from '../../components/navbar/navbar';
 
 // ============================================================================
 // ICONOS SVG PERSONALIZADOS
@@ -413,160 +414,162 @@ const Blog: React.FC = () => {
 
   return (
     <div className="blog-container">
+      <NavBar centerComponent={<SearchBar value={query} onChange={setQuery} />}/>
       {/* ========================================================================
           SIDEBAR - PANEL LATERAL DE FILTROS
           ======================================================================== */}
-      <aside className="blog-sidebar">
-        
-        {/* --------------------------------------------------------------------
+      <div className='sidebar-and-content'>
+        <aside className="blog-sidebar">
+
+          {/* --------------------------------------------------------------------
             SECCIÓN: SELECTOR DE VISTA
             -------------------------------------------------------------------- */}
-        <div className="sidebar-section">
-          <h3 className="sidebar-title">Vistas</h3>
-          <div className="view-buttons">
-            {/* Botón para vista en cuadrícula */}
-            <button
-              onClick={() => setViewMode('grid')}
-              className={`view-button ${viewMode === 'grid' ? 'active' : ''}`}
-              aria-label="Vista en cuadrícula"
-              title="Vista en cuadrícula"
-            >
-              <GridIcon />
-            </button>
-            
-            {/* Botón para vista en lista */}
-            <button
-              onClick={() => setViewMode('list')}
-              className={`view-button ${viewMode === 'list' ? 'active' : ''}`}
-              aria-label="Vista en lista"
-              title="Vista en lista"
-            >
-              <ListIcon />
-            </button>
-          </div>
-        </div>
+          <div className="sidebar-section">
+            <h3 className="sidebar-title">Vistas</h3>
+            <div className="view-buttons">
+              {/* Botón para vista en cuadrícula */}
+              <button
+                onClick={() => setViewMode('grid')}
+                className={`view-button ${viewMode === 'grid' ? 'active' : ''}`}
+                aria-label="Vista en cuadrícula"
+                title="Vista en cuadrícula"
+              >
+                <GridIcon />
+              </button>
 
-        {/* --------------------------------------------------------------------
+              {/* Botón para vista en lista */}
+              <button
+                onClick={() => setViewMode('list')}
+                className={`view-button ${viewMode === 'list' ? 'active' : ''}`}
+                aria-label="Vista en lista"
+                title="Vista en lista"
+              >
+                <ListIcon />
+              </button>
+            </div>
+          </div>
+
+          {/* --------------------------------------------------------------------
             SECCIÓN: FILTRO POR FECHAS
             -------------------------------------------------------------------- */}
-        <div className="sidebar-section">
-          <h3 className="sidebar-title">
-            <CalendarIcon />
-            <span>Fechas</span>
-          </h3>
-          <div className="date-inputs">
-            {/* Input para fecha inicial */}
-            <div className="date-input-group">
-              <label htmlFor="date-from">Desde</label>
-              <input
-                id="date-from"
-                type="date"
-                value={dateFrom}
-                onChange={(e) => setDateFrom(e.target.value)}
-                aria-label="Fecha desde"
-              />
-            </div>
-            
-            {/* Input para fecha final */}
-            <div className="date-input-group">
-              <label htmlFor="date-to">Hasta</label>
-              <input
-                id="date-to"
-                type="date"
-                value={dateTo}
-                onChange={(e) => setDateTo(e.target.value)}
-                aria-label="Fecha hasta"
-              />
+          <div className="sidebar-section">
+            <h3 className="sidebar-title">
+              <span>Fechas</span>
+              <CalendarIcon />
+            </h3>
+            <div className="date-inputs">
+              {/* Input para fecha inicial */}
+              <div className="date-input-group">
+                <label htmlFor="date-from">Desde</label>
+                <input
+                  id="date-from"
+                  type="date"
+                  value={dateFrom}
+                  onChange={(e) => setDateFrom(e.target.value)}
+                  aria-label="Fecha desde"
+                />
+              </div>
+
+              {/* Input para fecha final */}
+              <div className="date-input-group">
+                <label htmlFor="date-to">Hasta</label>
+                <input
+                  id="date-to"
+                  type="date"
+                  value={dateTo}
+                  onChange={(e) => setDateTo(e.target.value)}
+                  aria-label="Fecha hasta"
+                />
+              </div>
             </div>
           </div>
-        </div>
 
-        {/* --------------------------------------------------------------------
+          {/* --------------------------------------------------------------------
             SECCIÓN: FILTRO POR ETIQUETAS
             -------------------------------------------------------------------- */}
-        <div className="sidebar-section">
-          <h3 className="sidebar-title">
-            <TagIcon />
-            <span>Etiquetas Destacadas</span>
-          </h3>
-          
-          {/* Lista de checkboxes para cada tag */}
-          <div className="tags-list">
-            {allTags.map((tag: string) => (
-              <label key={tag} className="tag-checkbox">
-                <input
-                  type="checkbox"
-                  checked={selectedTags.includes(tag)}
-                  onChange={() => toggleTag(tag)}
-                />
-                <span>{tag}</span>
-              </label>
-            ))}
-          </div>
-          
-          {/* Botón para ver todas las etiquetas (funcionalidad futura) */}
-          <button 
-            className="ver-todas-btn"
-            aria-label="Ver todas las etiquetas"
-          >
-            Ver Todas +
-          </button>
-        </div>
-      </aside>
+          <div className="sidebar-section">
+            <h3 className="sidebar-title">
+              <span>Etiquetas Destacadas</span>
+              <TagIcon />
+            </h3>
 
-      {/* ========================================================================
-          ÁREA PRINCIPAL - CONTENIDO DEL BLOG
-          ======================================================================== */}
-      <main className="blog-main">
-        <div className="blog-content">
-          
-          {/* --------------------------------------------------------------------
-              HEADER - TÍTULO Y CONTADOR DE POSTS
-              -------------------------------------------------------------------- */}
-          <SearchBar value={query} onChange={setQuery}/>
-          <div className="headerTitle">
-            <div className="header-left">
-              <span><FaMountain /></span>
-              <h1 className="blog-header">/</h1>
-            </div>
-
-            
-            {/* Muestra el número total de posts */}
-            <div className="post-count" aria-live="polite">
-              ({mockPosts.length} posts)
-            </div> 
-          </div>
-
-          {/* --------------------------------------------------------------------
-              TAGS SELECCIONADOS - BADGES REMOVIBLES
-              -------------------------------------------------------------------- */}
-          {selectedTags.length > 0 && (
-            <div className="selected-tags" role="list" aria-label="Tags seleccionados">
-              {selectedTags.map((tag: string) => (
-                <div key={tag} className="selected-tag" role="listitem">
+            {/* Lista de checkboxes para cada tag */}
+            <div className="tags-list">
+              {allTags.map((tag: string) => (
+                <label key={tag} className="tag-checkbox">
+                  <input
+                    type="checkbox"
+                    checked={selectedTags.includes(tag)}
+                    onChange={() => toggleTag(tag)}
+                  />
                   <span>{tag}</span>
-                  <button 
-                    onClick={() => removeTag(tag)} 
-                    className="remove-tag-btn"
-                    aria-label={`Remover filtro ${tag}`}
-                    title={`Remover ${tag}`}
-                  >
-                    <XIcon />
-                  </button>
-                </div>
+                </label>
               ))}
             </div>
-          )}
 
-          {/* --------------------------------------------------------------------
+            {/* Botón para ver todas las etiquetas (funcionalidad futura) */}
+            <button 
+              className="ver-todas-btn"
+              aria-label="Ver todas las etiquetas"
+            >
+              Ver Todas +
+            </button>
+          </div>
+        </aside>
+
+        {/* ========================================================================
+          ÁREA PRINCIPAL - CONTENIDO DEL BLOG
+          ======================================================================== */}
+        <main className="blog-main">
+          <div className="blog-content">
+
+            {/* --------------------------------------------------------------------
+              HEADER - TÍTULO Y CONTADOR DE POSTS
+              -------------------------------------------------------------------- */}
+            <div className="headerTitle">
+              <div className="header-left">
+                <span><FaMountain /></span>
+                <h1 className="blog-header">/</h1>
+              </div>
+
+
+              {/* Muestra el número total de posts */}
+              <div className="post-count" aria-live="polite">
+                ({mockPosts.length} posts)
+              </div> 
+            </div>
+
+            {/* --------------------------------------------------------------------
+              TAGS SELECCIONADOS - BADGES REMOVIBLES
+              -------------------------------------------------------------------- */}
+            {selectedTags.length > 0 && (
+              <div className="selected-tags" role="list" aria-label="Tags seleccionados">
+                {selectedTags.map((tag: string) => (
+                  <div key={tag} className="selected-tag" role="listitem">
+                    <span>{tag}</span>
+                    <button 
+                      onClick={() => removeTag(tag)} 
+                      className="remove-tag-btn"
+                      aria-label={`Remover filtro ${tag}`}
+                      title={`Remover ${tag}`}
+                    >
+                      <XIcon />
+                    </button>
+                  </div>
+                ))}
+              </div>
+            )}
+
+            {/* --------------------------------------------------------------------
               GRID/LISTA DE POSTS
               -------------------------------------------------------------------- */}
-          <div className={`posts-grid ${viewMode}`} role="feed" aria-label="Posts del blog">
-            {blogContent}
+            <div className={`posts-grid ${viewMode}`} role="feed" aria-label="Posts del blog">
+              {blogContent}
+            </div>
           </div>
-        </div>
-      </main>
-    </div>
+        </main>
+      </div>
+      </div>
   );
 };
 

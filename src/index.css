@@ -49,9 +49,9 @@ code {
 @media (prefers-color-scheme: dark) {
   :root {
     --primary-color1: #19002a;
-    --primary-color2: #935fb8;
+    --primary-color2: #2D173D;
     --primary-color3: #c5abd6;
-    --primary-color4: #d55c51;
+    --primary-color4: #994F43;
     --primary-color5: #dbaffa;
 
     --background-color: #1a1a1a;

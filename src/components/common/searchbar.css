@@ -1,8 +1,7 @@
 .search-container {
+  width: 400px;
   position: relative;
-  width: 100%;
-  max-width: 500px;
-  margin-bottom: 2rem;
+  max-width: 400px;
 }
 
 .search-container:focus-within {
@@ -10,6 +9,7 @@
 }
 
 .search-input {
+  background-color: var(--primary-color2);
   width: 100%;
   padding: 0.75rem 1rem 0.75rem 2.5rem;
   border-radius: 0.375rem;

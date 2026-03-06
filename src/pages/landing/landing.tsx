@@ -5,6 +5,8 @@ import NewsCard from '../../components/landingpage/newsCard';
 import PodcastCarousel from '../../components/landingpage/podcastCarousel';
 import { useNavigate } from 'react-router-dom';
 import LoadingCard from '../../components/landingpage/loadingCard';
+import NavBar from '../../components/navbar/navbar';
+import Cave from '../../components/cave/cave';
 
 //Place Holder
 const newsData = [
@@ -100,11 +102,7 @@ const blogCards = [
   },
 ]
 
-type NavBarProps = {
-    isLandingPage?: boolean;
-}
-
-const LandingPage: React.FC<NavBarProps> = ({ isLandingPage }) => {
+const LandingPage: React.FC = () => {
     const navigate = useNavigate();
 
     const maxVisibleRecentCards = 6
@@ -146,39 +144,41 @@ const LandingPage: React.FC<NavBarProps> = ({ isLandingPage }) => {
     }
 
     return(
-        <>  <div className='landing-page'>
+            <main className='landing-content'>
+              <NavBar />
+              <Cave />
+              <div className='landing-page'>
                 <div className='landing-subSection'>
-                    <div className='landing-subT-section'>
-                        <h1 className='landing-subT'>RECIENTES</h1>
-                        <button className='see-more' onClick={() => navigate('/blog')}>Ver Más <strong>+</strong></button>
-                    </div>
-                    <div className='landing-recent-section'>
-                      {recentContent}
-                    </div>
+                  <div className='landing-subT-section'>
+                    <h1 className='landing-subT'>RECIENTES</h1>
+                    <button className='see-more' onClick={() => navigate('/blog')}>Ver Más <strong>+</strong></button>
+                  </div>
+                  <div className='landing-recent-section'>
+                    {recentContent}
+                  </div>
                 </div>
                 <div className='landing-subSection'>
-                    <div className='landing-subT-section'>
-                        <h1 className='landing-subT'>AECCTI NEWS</h1>
-                        <button className='see-more'>Ver Más <strong>+</strong></button>
-                    </div>
-                    <div className='landing-news-section'>
-                        <NewsCard newsList={newsData} />
-                    </div>
+                  <div className='landing-subT-section'>
+                    <h1 className='landing-subT'>AECCTI NEWS</h1>
+                    <button className='see-more'>Ver Más <strong>+</strong></button>
+                  </div>
+                  <div className='landing-news-section'>
+                    <NewsCard newsList={newsData} />
+                  </div>
                 </div>
                 <div className='landing-subSection'>
-                    <div className='landing-subT-section'>
-                        <h1 className='landing-subT'>PODCAST ENTERATE!</h1>
-                        <button className='see-more' onClick={() => navigate('/podcast')}>Ver Más <strong>+</strong></button>
-                    </div>
-                    <PodcastCarousel videos={videoList} />
-                    <div className='landing-podcast-section'>
-                        
-                    </div>
+                  <div className='landing-subT-section'>
+                    <h1 className='landing-subT'>PODCAST ENTERATE!</h1>
+                    <button className='see-more' onClick={() => navigate('/podcast')}>Ver Más <strong>+</strong></button>
+                  </div>
+                  <PodcastCarousel videos={videoList} />
+                  <div className='landing-podcast-section'>
+
+                  </div>
                 </div>
                 <footer> Made with<strong> REACT </strong>by actual live dragons</footer>
-            </div>
-            
-        </>
+              </div>
+            </main>
     );
 }
 
