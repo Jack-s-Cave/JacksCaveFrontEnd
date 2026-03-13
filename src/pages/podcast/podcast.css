@@ -163,7 +163,7 @@
   padding: 1.5rem;
   border-radius: 8px;
   height: fit-content;
-  background-color: var(--background-color);
+  background-color: var(--primary-color2);
 }
 
 .sidebar-title {

@@ -1,6 +1,6 @@
 .recent-card.loading-card {
   pointer-events: none;
-  border-color: var(--primary-color2);
+  border-color: var(--primary-color3);
 }
 
 .loading-image {

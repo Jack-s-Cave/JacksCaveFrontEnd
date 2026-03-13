@@ -17,6 +17,8 @@ import LoadingCard from '../../components/landingpage/loadingCard';
 import SearchBar from '../../components/common/searchbar';
 import { useSearch } from '../../hooks/useSearch';
 import NavBar from '../../components/navbar/navbar';
+import { useDateFilter } from '../../hooks/useDateFilter';
+import DateRangePicker from '../../components/common/daterangepicker';
 
 // ============================================================================
 // ICONOS SVG PERSONALIZADOS
@@ -156,7 +158,7 @@ const mockPosts: BlogPost[] = [
   {
     id: 1,
     title: 'Guía de devs para terminar las cosas',
-    date: 'Jun 3, 2024',
+    date: '2025-12-01',
     author: 'Daniel Rayo',
     image: 'https://images.unsplash.com/photo-1498050108023-c5249f4df085?w=400&h=250&fit=crop',
     tags: ['Productividad', 'Trabajo-remoto', 'Noticias']
@@ -164,7 +166,7 @@ const mockPosts: BlogPost[] = [
   {
     id: 2,
     title: 'Cómo utilizar React de manera sencilla',
-    date: 'Jun 3, 2024',
+    date: '2026-01-10',
     author: 'Daniel Rayo',
     image: 'https://images.unsplash.com/photo-1498050108023-c5249f4df085?w=400&h=250&fit=crop',
     tags: ['Front-End', 'TypeScript', 'Tutorial', 'Desarrollo']
@@ -172,7 +174,7 @@ const mockPosts: BlogPost[] = [
   {
     id: 3,
     title: 'Las bases de Git y GitHub para trabajar en equipo',
-    date: 'Jun 3, 2024',
+    date: '2026-02-10',
     author: 'Daniel Rayo',
     image: 'https://images.unsplash.com/photo-1498050108023-c5249f4df085?w=400&h=250&fit=crop',
     tags: ['Git', 'Soft skills']
@@ -180,7 +182,7 @@ const mockPosts: BlogPost[] = [
   {
     id: 4,
     title: 'Creación de APIs con arquitectura hexagonal',
-    date: 'Jun 3, 2024',
+    date: '2026-03-10',
     author: 'Daniel Rayo',
     image: 'https://images.unsplash.com/photo-1498050108023-c5249f4df085?w=400&h=250&fit=crop',
     tags: ['Back-End', 'Arquitectura', 'Desarrollo']
@@ -188,7 +190,7 @@ const mockPosts: BlogPost[] = [
   {
     id: 5,
     title: 'Cómo conseguir un trabajo que pague en dólares',
-    date: 'Jun 3, 2024',
+    date: '2026-04-10',
     author: 'Daniel Rayo',
     image: 'https://images.unsplash.com/photo-1498050108023-c5249f4df085?w=400&h=250&fit=crop',
     tags: ['Productividad', 'Trabajo-remoto']
@@ -196,7 +198,7 @@ const mockPosts: BlogPost[] = [
   {
     id: 6,
     title: 'Cómo conseguir trabajo con gente de Europa',
-    date: 'Jun 3, 2024',
+    date: '2026-05-10',
     author: 'Daniel Rayo',
     image: 'https://images.unsplash.com/photo-1498050108023-c5249f4df085?w=400&h=250&fit=crop',
     tags: ['Productividad', 'Trabajo-remoto']
@@ -204,7 +206,7 @@ const mockPosts: BlogPost[] = [
   {
     id: 7,
     title: 'Guía de devs para terminar las cosas',
-    date: 'Jun 3, 2024',
+    date: '2026-06-10',
     author: 'Daniel Rayo',
     image: 'https://images.unsplash.com/photo-1498050108023-c5249f4df085?w=400&h=250&fit=crop',
     tags: ['Productividad', 'Trabajo-remoto']
@@ -212,7 +214,7 @@ const mockPosts: BlogPost[] = [
   {
     id: 8,
     title: 'Guía de devs para terminar las cosas',
-    date: 'Jun 3, 2024',
+    date: '2026-07-10',
     author: 'Daniel Rayo',
     image: 'https://images.unsplash.com/photo-1498050108023-c5249f4df085?w=400&h=250&fit=crop',
     tags: ['Productividad', 'Trabajo-remoto']
@@ -408,6 +410,8 @@ const Blog: React.FC = () => {
     ))
   }
 
+  const { range, setRange, filtered } = useDateFilter(mockPosts, 'fecha')
+
   // ============================================================================
   // RENDERIZADO DEL COMPONENTE
   // ============================================================================
@@ -453,35 +457,10 @@ const Blog: React.FC = () => {
             SECCIÓN: FILTRO POR FECHAS
             -------------------------------------------------------------------- */}
           <div className="sidebar-section">
-            <h3 className="sidebar-title">
-              <span>Fechas</span>
-              <CalendarIcon />
-            </h3>
-            <div className="date-inputs">
-              {/* Input para fecha inicial */}
-              <div className="date-input-group">
-                <label htmlFor="date-from">Desde</label>
-                <input
-                  id="date-from"
-                  type="date"
-                  value={dateFrom}
-                  onChange={(e) => setDateFrom(e.target.value)}
-                  aria-label="Fecha desde"
-                />
-              </div>
-
-              {/* Input para fecha final */}
-              <div className="date-input-group">
-                <label htmlFor="date-to">Hasta</label>
-                <input
-                  id="date-to"
-                  type="date"
-                  value={dateTo}
-                  onChange={(e) => setDateTo(e.target.value)}
-                  aria-label="Fecha hasta"
-                />
-              </div>
-            </div>
+            <DateRangePicker 
+              value={range}
+              onChange={setRange}
+            />
           </div>
 
           {/* --------------------------------------------------------------------
