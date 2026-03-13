@@ -1,0 +1,22 @@
+.fields {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  border-left: 1.5px solid var(--primary-color3);
+  padding: 15px 0;
+  padding-left: 20px;
+  padding-right: 30px;
+}
+
+.fields label {
+  display: flex;
+  justify-content: space-between;
+  gap: 15px;
+}
+
+.date-picker input[type="date"] {
+  background: transparent;
+  border: none;
+  border-bottom: 1.5px solid #ffff;
+  color: #ffff;
+}

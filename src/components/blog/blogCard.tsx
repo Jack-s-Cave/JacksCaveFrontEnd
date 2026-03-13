@@ -1,6 +1,7 @@
 import { Link } from 'react-router-dom'
 import './blogCard.css'
 import { BlogPost } from "@/pages/blog/blog"
+import formatDate from '../../hooks/useDateFilter'
 
 interface BlogCardProps {
   post: BlogPost
@@ -16,7 +17,7 @@ const BlogCard: React.FC<BlogCardProps> = ({ post }) => {
       >
         <div className="post-header">
           <span className="post-date" aria-label="Fecha de publicación">
-            {post.date}
+            {formatDate(post.date)}
           </span>
           <span className="post-author" aria-label="Autor">
             {post.author}

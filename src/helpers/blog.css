@@ -7,10 +7,12 @@
   line-height: 1.8;
   color: var(--font-color);
   max-width: 1000px;
-  margin: 2rem auto;
-  padding: 3rem 2.5rem;
   background-color: var(--primary-color1);
   border-radius: 12px;
+}
+
+.sidebar-and-content {
+  display: flex;
 }
 
 /* ========================================
@@ -359,7 +361,7 @@
   .blog-content {
     font-size: 1rem;
     padding: 2rem 1.5rem;
-    margin: 1rem;
+      margin: 1rem;
   }
   
   .markdown-renderer h1 {

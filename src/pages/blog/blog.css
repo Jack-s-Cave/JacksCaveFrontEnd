@@ -26,7 +26,9 @@
  * Layout flexible que contiene el sidebar y el área de contenido principal
  */
 .blog-container {
+  width: 100%;
   display: flex;
+  flex-direction: column;
   min-height: 100vh; /* Ocupa toda la altura de la ventana */
   background-color: var(--primary-color1);
 }
@@ -43,7 +45,6 @@
   width: 256px;
   background-color: var(--primary-color2);
   border-right: 1px solid var(--primary-color3);
-  box-shadow: rgba(0, 0, 0, 0.1) 1px 1px 0px; /* Sombra sutil para profundidad */
   padding: 1.5rem;
   position: sticky;
   top: 0;
@@ -103,7 +104,7 @@
   padding: 0.5rem;
   border: none;
   border-radius: 0.375rem; /* 6px - esquinas redondeadas */
-  background-color: var(--primary-color1);
+  background-color: var(--primary-color2);
   cursor: pointer;
   transition: background-color 0.2s; /* Transición suave del fondo */
   display: flex;
@@ -113,12 +114,12 @@
 
 /* Estado hover: retroalimentación visual al pasar el cursor */
 .view-button:hover {
-  background-color: var(--primary-color5);
+  background-color: var(--primary-color1);
 }
 
 /* Estado active: indica la vista actual seleccionada */
 .view-button.active {
-  background-color: var(--primary-color5);
+  background-color: var(--primary-color1);
 }
 
 /* Asegura que los iconos SVG hereden el color del tema */
@@ -162,7 +163,6 @@
  * Estilizado para coincidir con el tema de la aplicación
  */
 .date-input-group input {
-  width: 100%;
   padding: 0.25rem 0.5rem;
   font-size: 0.875rem; /* 14px */
   border: 1px solid var(--primary-color5);
@@ -352,7 +352,7 @@
   align-items: center;
   gap: 0.5rem;
   padding: 0.25rem 0.75rem;
-  background-color: var(--primary-color3);
+  background-color: var(--primary-color4);
   color: var(--font-color);
   border-radius: 0.45rem; /* Esquinas redondeadas */
   font-size: 0.875rem; /* 14px */
@@ -439,6 +439,7 @@
  * Contiene imagen, título, metadata y tags
  */
 .post-card {
+  min-height: 450px;
   background-color: var(--primary-color1);
   border-radius: 0.2rem;
   /* Bordes coloreados en todos los lados */

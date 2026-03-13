@@ -163,7 +163,7 @@
   padding: 1.5rem;
   border-radius: 8px;
   height: fit-content;
-  background-color: var(--background-color);
+  background-color: var(--primary-color2);
 }
 
 .sidebar-title {
@@ -237,7 +237,6 @@
   width: 100%;
   padding: 0.8rem 1rem 0.8rem 2.5rem;
   border: 1px solid var(--primary-color3);
-  background-color: var(--background-color);
   border-radius: 8px;
   font-family: var(--font-paragraph2);
   font-size: 1rem;
