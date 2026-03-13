@@ -395,7 +395,8 @@
  */
 .posts-grid {
   display: grid;
-  gap: 1.5rem; /* Espaciado entre posts */
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 1.5rem;
   margin-bottom: 2rem;
 }
 

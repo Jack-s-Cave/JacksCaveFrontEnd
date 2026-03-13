@@ -9,9 +9,11 @@
  * @version 1.0.0
  */
 
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import './blog.css';
 import { FaMountain } from 'react-icons/fa';
+import BlogCard from '../../components/blog/blogCard';
+import LoadingCard from '../../components/landingpage/loadingCard';
 
 // ============================================================================
 // ICONOS SVG PERSONALIZADOS
@@ -105,7 +107,7 @@ const XIcon = () => (
  * @property {string} image - URL de la imagen destacada del post
  * @property {string[]} tags - Array de etiquetas asociadas al post
  */
-interface BlogPost {
+export interface BlogPost {
   id: number;
   title: string;
   date: string;
@@ -302,6 +304,9 @@ const Blog: React.FC = () => {
    */
   const [dateTo, setDateTo] = useState<string>('');
 
+  const [blogs, setBlogs] = useState([])
+  const [loading, setLoading] = useState(true)
+
   // ============================================================================
   // FUNCIONES DE MANEJO DE EVENTOS
   // ============================================================================
@@ -342,6 +347,43 @@ const Blog: React.FC = () => {
   const removeTag = (tag: string): void => {
     setSelectedTags(prev => prev.filter(t => t !== tag));
   };
+
+  useEffect(() => {
+    // Simular traer datos del back
+    const fetchBlogs = async () => {
+      setLoading(true)
+
+      setTimeout(() => {
+        setBlogs(mockPosts)
+        setLoading(false)
+      }, 1500)
+    }
+
+    fetchBlogs()
+  }, [])
+
+  const maxVisibleCards = 8
+
+  let blogContent
+
+  if (loading) {
+    const loadingCards = []
+
+    for (let i = 0; i < maxVisibleCards; i++) {
+      loadingCards.push(
+        <LoadingCard key={`loading-${i}`} className="post-card-loading" />
+      )
+    }
+
+    blogContent = loadingCards
+  } else {
+    blogContent = mockPosts.map((post) => (
+      <BlogCard
+        key={`post-${post.id}`}
+        post={post}
+      />
+    ))
+  }
 
   // ============================================================================
   // RENDERIZADO DEL COMPONENTE
@@ -497,57 +539,7 @@ const Blog: React.FC = () => {
               GRID/LISTA DE POSTS
               -------------------------------------------------------------------- */}
           <div className={`posts-grid ${viewMode}`} role="feed" aria-label="Posts del blog">
-            {mockPosts.map((post: BlogPost) => (
-              <article 
-                key={post.id} 
-                className="post-card"
-                role="article"
-                aria-labelledby={`post-title-${post.id}`}
-              >
-                {/* Header del post con fecha y autor */}
-                <div className="post-header">
-                  <span className="post-date" aria-label="Fecha de publicación">
-                    {post.date}
-                  </span>
-                  <span className="post-author" aria-label="Autor">
-                    {post.author}
-                  </span>
-                </div>
-
-                {/* Imagen destacada del post */}
-                <div className="post-image-container">
-                  <img
-                    src={post.image}
-                    alt={post.title}
-                    className="post-image"
-                    loading="lazy"
-                  />
-                </div>
-
-                {/* Contenido del post: título y tags */}
-                <div className="post-content">
-                  <h2 
-                    id={`post-title-${post.id}`} 
-                    className="post-title"
-                  >
-                    {post.title}
-                  </h2>
-                  
-                  {/* Tags del post */}
-                  <div className="post-tags" role="list" aria-label="Etiquetas del post">
-                    {post.tags.map((tag: string, index: number) => (
-                      <span 
-                        key={index} 
-                        className="post-tag"
-                        role="listitem"
-                      >
-                        #{tag}
-                      </span>
-                    ))}
-                  </div>
-                </div>
-              </article>
-            ))}
+            {blogContent}
           </div>
         </div>
       </main>
