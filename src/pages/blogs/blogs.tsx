@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import './blog.css';
+import './blogs.css';
 import { FaMountain } from 'react-icons/fa';
 import LoadingCard from '../../components/landingpage/loadingCard';
 import SearchBar from '../../components/common/searchbar';

@@ -40,7 +40,7 @@ const LandingPage = () => {
         <div className='landing-subSection'>
           <div className='landing-subT-section'>
             <h1 className='landing-subT'>RECIENTES</h1>
-            <button className='see-more' onClick={() => navigate('/blog')}>Ver Más <strong>+</strong></button>
+            <button className='see-more' onClick={() => navigate('/blogs')}>Ver Más <strong>+</strong></button>
           </div>
           <div className='landing-recent-section'>
             <RecentBlogs />

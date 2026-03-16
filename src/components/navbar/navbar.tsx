@@ -33,7 +33,7 @@ const NavBar = ({ isLandingPage, centerComponent }: NavBarProps ) => {
     useEffect(() => {
         const handleKeyPress = (e: KeyboardEvent) => {
             const key = e.key.toLowerCase();
-            if (key === 'b') navigate('/blog');
+            if (key === 'b') navigate('/blogs');
             else if (key === 'p') navigate('/podcast');
             else if (key === 'n') navigate('/aboutus');
         };
@@ -57,7 +57,7 @@ const NavBar = ({ isLandingPage, centerComponent }: NavBarProps ) => {
             </div>
             {centerComponent}
             <ul className="nav-right">
-                <li className='nav-bar-item' onClick={() => navigate('/blog')}>[B] Blog</li>
+                <li className='nav-bar-item' onClick={() => navigate('/blogs')}>[B] Blog</li>
                 <li className='nav-bar-item' onClick={() => navigate('/podcast')}>[P] Podcast</li>
                 <li className='nav-bar-item' onClick={() => navigate('/aboutus')}>[N] Nosotros</li>
             </ul>
