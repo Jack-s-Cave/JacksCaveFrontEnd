@@ -1,4 +1,4 @@
-import { React, useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import './navbar.css';
 
@@ -7,10 +7,9 @@ type NavBarProps = {
     centerComponent?: React.ReactNode;
 }
 
-const NavBar: React.FC<NavBarProps> = ({ isLandingPage, centerComponent }: NavBarProps ) => {
+const NavBar = ({ isLandingPage, centerComponent }: NavBarProps ) => {
     const navigate = useNavigate();
     const [logo, setLogo] = useState(''); 
-
 
     //Deteccion de modo claro
     useEffect(() => {

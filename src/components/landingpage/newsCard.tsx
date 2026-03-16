@@ -1,16 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import './newsCard.css';
-
-type NewsItem = {
-  title: string;
-  author: string;
-  date: string;
-  imageSrc: string;
-  imageDescription: string;
-};
+import { News } from 'types/news';
 
 type NewsCardProps = {
-  newsList: NewsItem[];
+  newsList: News[];
 };
 
 const NewsCard: React.FC<NewsCardProps> = ({ newsList }) => {

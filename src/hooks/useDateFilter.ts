@@ -1,4 +1,4 @@
-import { DateRange } from '@/components/common/daterangepicker'
+import { DateRange } from 'components/common/daterangepicker'
 import { useState, useMemo } from 'react'
 
 interface UseDateFilterReturn<T> {

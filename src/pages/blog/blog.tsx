@@ -17,7 +17,6 @@ import LoadingCard from '../../components/landingpage/loadingCard';
 import SearchBar from '../../components/common/searchbar';
 import { useSearch } from '../../hooks/useSearch';
 import NavBar from '../../components/navbar/navbar';
-import { useDateFilter } from '../../hooks/useDateFilter';
 import DateRangePicker from '../../components/common/daterangepicker';
 
 // ============================================================================
@@ -265,70 +264,16 @@ const allTags: string[] = [
  * - Soporte para tema claro/oscuro
  */
 const Blog: React.FC = () => {
-  // ============================================================================
-  // ESTADOS DEL COMPONENTE
-  // ============================================================================
-
-  /**
-   * Estado para controlar el modo de visualización de los posts
-   * 
-   * @state
-   * @type {ViewMode}
-   * @default 'grid'
-   * @description Alterna entre vista de cuadrícula y lista
-   */
   const [viewMode, setViewMode] = useState<ViewMode>('grid');
-
-  /**
-   * Estado para almacenar los tags seleccionados por el usuario
-   * 
-   * @state
-   * @type {string[]}
-   * @default []
-   * @description Array de strings que representa los tags activos para filtrado
-   */
   const [selectedTags, setSelectedTags] = useState<string[]>([]);
 
-  /**
-   * Estado para la fecha inicial del filtro de rango
-   * 
-   * @state
-   * @type {string}
-   * @default ''
-   * @description Fecha en formato ISO (YYYY-MM-DD) para el límite inferior del filtro
-   */
   const [dateFrom, setDateFrom] = useState<string>('');
 
-  /**
-   * Estado para la fecha final del filtro de rango
-   * 
-   * @state
-   * @type {string}
-   * @default ''
-   * @description Fecha en formato ISO (YYYY-MM-DD) para el límite superior del filtro
-   */
   const [dateTo, setDateTo] = useState<string>('');
 
-  const [blogs, setBlogs] = useState([])
+  const [blogs, setBlogs] = useState<BlogPost[]>([])
   const [loading, setLoading] = useState(true)
 
-  // ============================================================================
-  // FUNCIONES DE MANEJO DE EVENTOS
-  // ============================================================================
-
-  /**
-   * Alterna la selección de un tag específico
-   * 
-   * @function toggleTag
-   * @param {string} tag - El tag a agregar o remover de la selección
-   * @description
-   * Si el tag ya está seleccionado, lo remueve del array.
-   * Si no está seleccionado, lo agrega al array.
-   * Utiliza el patrón funcional de setState para evitar problemas de concurrencia.
-   * 
-   * @example
-   * toggleTag('React'); // Agrega 'React' si no está, lo remueve si ya está
-   */
   const toggleTag = (tag: string): void => {
     setSelectedTags(prev =>
       prev.includes(tag)
@@ -337,18 +282,6 @@ const Blog: React.FC = () => {
     )
   };
 
-  /**
-   * Remueve un tag específico de la selección actual
-   * 
-   * @function removeTag
-   * @param {string} tag - El tag a remover de la selección
-   * @description
-   * Utilizado principalmente por el botón de cerrar (X) en los tags seleccionados.
-   * Filtra el array de tags seleccionados excluyendo el tag especificado.
-   * 
-   * @example
-   * removeTag('React'); // Elimina 'React' de los tags seleccionados
-   */
   const removeTag = (tag: string): void => {
     setSelectedTags(prev => prev.filter(t => t !== tag));
   };
@@ -410,8 +343,6 @@ const Blog: React.FC = () => {
     ))
   }
 
-  const { range, setRange, filtered } = useDateFilter(mockPosts, 'fecha')
-
   // ============================================================================
   // RENDERIZADO DEL COMPONENTE
   // ============================================================================
@@ -457,10 +388,6 @@ const Blog: React.FC = () => {
             SECCIÓN: FILTRO POR FECHAS
             -------------------------------------------------------------------- */}
           <div className="sidebar-section">
-            <DateRangePicker 
-              value={range}
-              onChange={setRange}
-            />
           </div>
 
           {/* --------------------------------------------------------------------

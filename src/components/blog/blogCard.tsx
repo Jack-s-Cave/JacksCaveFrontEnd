@@ -1,6 +1,6 @@
 import { Link } from 'react-router-dom'
 import './blogCard.css'
-import { BlogPost } from "@/pages/blog/blog"
+import { BlogPost } from "pages/blog/blog"
 import formatDate from '../../hooks/useDateFilter'
 
 interface BlogCardProps {

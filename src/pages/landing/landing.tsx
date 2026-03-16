@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import './landing.css';
 import RecentCard from '../../components/landingpage/recentCard';
 import NewsCard from '../../components/landingpage/newsCard';
@@ -7,179 +7,99 @@ import { useNavigate } from 'react-router-dom';
 import LoadingCard from '../../components/landingpage/loadingCard';
 import NavBar from '../../components/navbar/navbar';
 import Cave from '../../components/cave/cave';
+import { useNews } from 'hooks/useNews';
+import { mockVideos } from 'mocks/videoMock';
 
-//Place Holder
-const newsData = [
-  {
-    title: 'Primera noticia mas larga para probar la mmda de esto aaa ya puessss solo se esta haciendo mas largo',
-    author: 'Diego Duarte',
-    date: 'Jun 23, 2025',
-    imageSrc: 'https://i.pinimg.com/236x/51/30/77/5130770e4cdec78276415c649837bef0.jpg',
-    imageDescription: 'Fig 2. Gatito feliz al sol porque dio un pencazo, propername placename blah blah blah',
-  },
-  {
-    title: 'Segunda noticia',
-    author: 'Sofía Rayo',
-    date: 'Jun 22, 2025',
-    imageSrc: 'https://i.pinimg.com/736x/a0/f6/d8/a0f6d8722e2ca13e433591c68bc5401f.jpg',
-    imageDescription: 'Fig 2. Gato pensativo alabado sea',
-  },
-  {
-    title: 'Tercera noticia',
-    author: 'Carlos Luna',
-    date: 'Jun 21, 2025',
-    imageSrc: 'https://i.imgflip.com/4/34tt3s.jpg',
-    imageDescription: 'Fig 1. Gato con corbata haciendo una pose siu',
-  },
-];
 
-const videoList = [
-  {
-    thumbnail: 'https://img.youtube.com/vi/zlSbBsJYFGA/maxresdefault.jpg',
-    title: 'Desarrollar videojuegos en Guatemala | EP 1 Dennis Aldana',
-    date: 'Sept 19, 2024'
-  },
-  {
-    thumbnail: 'https://img.youtube.com/vi/6guzh_QQKJA/maxresdefault.jpg',
-    title: '¿Cómo ser estudiante y trabajar al mismo tiempo? | EP 2 Ludwing Cano',
-    date: 'Oct 17, 2024'
-  },
-  {
-    thumbnail: 'https://img.youtube.com/vi/qVDqPct6b_k/maxresdefault.jpg',
-    title: 'Así piensan los contratistas en IT | #ep3 Alberto Suriano nos cuenta su experiencia al conseguir',
-    date: 'Nov 28, 2024'
+const LandingPage = () => {
+  const navigate = useNavigate();
+
+  // const maxVisibleRecentCards = 6
+  // const [blogs, setBlogs] = useState([])
+  // const [loadingBlogs, setLoading] = useState(true)
+
+  // useEffect(() => {
+  //   // Simular traer datos del back
+  //   const fetchBlogs = async () => {
+  //     setLoading(true)
+
+  //     setTimeout(() => {
+  //       setBlogs(blogCards)
+  //       setLoading(false)
+  //     }, 1500)
+  //   }
+
+  //   fetchBlogs()
+  // }, [])
+
+  // let recentContent;
+
+  // if (loadingBlogs) {
+  //   const loadingBlogsCards = [];
+  //   for (let i = 0; i < maxVisibleRecentCards; i++) {
+  //     loadingBlogsCards.push(
+  //       <LoadingCard key={`loadingBlogs-${i}`} className='recent-card'/>
+  //     );
+  //   }
+  //   recentContent = loadingBlogsCards;
+
+  // } else {
+  //   recentContent = blogs.map((blog, index) => (
+  //     <RecentCard
+  //       key={`blog-${index}`}
+  //       {...blog}
+  //     />
+  //   ));
+  // }
+  //
+
+  let newsContent;
+
+  function NewsList() {
+    const { news, loading, error } = useNews()
+
+    if (loading) return <div></div>
+    if (error) return <div>error</div>
+    return <NewsCard newsList={news} />
   }
-];
 
-const blogCards = [
-  {
-    date: "Oct 30, 2024",
-    author: "Francis Aguilar",
-    title: "Título Placeholder un poco más largo para pruebas",
-    imageSrc:
-      "https://www.patasencasa.com/sites/default/files/2024-07/meme-del-gato-riendo_0.jpg",
-    tags: ["tags", "gato", "jeje", "gato2", "gato3", "gato4"]
-  },
-  {
-    date: "Jun 3, 2025",
-    author: "Gustavo Gonzales",
-    title: "Título Placeholder un poco más largo para pruebas",
-    imageSrc:
-      "https://www.patasencasa.com/sites/default/files/2024-07/meme-del-gato-riendo_0.jpg",
-    tags: ["Sanitas", "Tecnología", "Videojuegos", "gato2", "gato3", "gato4"]
-  },
-  {
-    date: "Jun 3, 2025",
-    author: "Daniel Rayo",
-    title: "Título Placeholder un poco más largo para pruebas un poco más por si acaso",
-    imageSrc:
-      "https://www.patasencasa.com/sites/default/files/2024-07/meme-del-gato-riendo_0.jpg",
-    tags: ["tags", "gato", "jeje", "gato2", "gato3", "gato4", "prueba"]
-  },
-  {
-    date: "Jun 3, 2025",
-    author: "María Martinez",
-    title: "Título Placeholder un poco más largo para pruebas",
-    imageSrc:
-      "https://www.patasencasa.com/sites/default/files/2024-07/meme-del-gato-riendo_0.jpg",
-    tags: ["tags", "gato", "jeje", "gato2", "gato3", "gato4"]
-  },
-  {
-    date: "Feb 17, 2025",
-    author: "Diego Duarte",
-    title: "Título Placeholder un poco más largo para pruebas",
-    imageSrc:
-      "https://www.patasencasa.com/sites/default/files/2024-07/meme-del-gato-riendo_0.jpg",
-    tags: ["tags", "gato", "jeje", "gato2", "gato3", "gato4"]
-  },
-  {
-    date: "Abr 7, 2025",
-    author: "Sebastian Huertas",
-    title: "Título Placeholder un poco más largo para pruebas",
-    imageSrc:
-      "https://www.patasencasa.com/sites/default/files/2024-07/meme-del-gato-riendo_0.jpg",
-    tags: ["tags", "gato", "jeje", "gato2", "gato3", "gato4"]
-  },
-]
+  return (
 
-const LandingPage: React.FC = () => {
-    const navigate = useNavigate();
+    <main className='landing-content'>
+      <NavBar />
+      <Cave />
+      <div className='landing-page'>
+        <div className='landing-subSection'>
+          <div className='landing-subT-section'>
+            <h1 className='landing-subT'>RECIENTES</h1>
+            <button className='see-more' onClick={() => navigate('/blog')}>Ver Más <strong>+</strong></button>
+          </div>
+          <div className='landing-recent-section'>
+          </div>
+        </div>
+        <div className='landing-subSection'>
+          <div className='landing-subT-section'>
+            <h1 className='landing-subT'>AECCTI NEWS</h1>
+            <button className='see-more'>Ver Más <strong>+</strong></button>
+          </div>
+          <div className='landing-news-section'>
+            <NewsList />
+          </div>
+        </div>
+        <div className='landing-subSection'>
+          <div className='landing-subT-section'>
+            <h1 className='landing-subT'>PODCAST ENTERATE!</h1>
+            <button className='see-more' onClick={() => navigate('/podcast')}>Ver Más <strong>+</strong></button>
+          </div>
+          <PodcastCarousel videos={mockVideos} />
+          <div className='landing-podcast-section'>
 
-    const maxVisibleRecentCards = 6
-    const [blogs, setBlogs] = useState([])
-    const [loading, setLoading] = useState(true)
-
-    useEffect(() => {
-      // Simular traer datos del back
-      const fetchBlogs = async () => {
-        setLoading(true)
-
-        setTimeout(() => {
-          setBlogs(blogCards)
-          setLoading(false)
-        }, 1500)
-      }
-
-      fetchBlogs()
-    }, [])
-
-    let recentContent;
-
-    if (loading) {
-      const loadingCards = [];
-      for (let i = 0; i < maxVisibleRecentCards; i++) {
-        loadingCards.push(
-          <LoadingCard key={`loading-${i}`} className='recent-card'/>
-        );
-      }
-      recentContent = loadingCards;
-
-    } else {
-      recentContent = blogs.map((blog, index) => (
-        <RecentCard
-          key={`blog-${index}`}
-          {...blog}
-        />
-      ));
-    }
-
-    return(
-            <main className='landing-content'>
-              <NavBar />
-              <Cave />
-              <div className='landing-page'>
-                <div className='landing-subSection'>
-                  <div className='landing-subT-section'>
-                    <h1 className='landing-subT'>RECIENTES</h1>
-                    <button className='see-more' onClick={() => navigate('/blog')}>Ver Más <strong>+</strong></button>
-                  </div>
-                  <div className='landing-recent-section'>
-                    {recentContent}
-                  </div>
-                </div>
-                <div className='landing-subSection'>
-                  <div className='landing-subT-section'>
-                    <h1 className='landing-subT'>AECCTI NEWS</h1>
-                    <button className='see-more'>Ver Más <strong>+</strong></button>
-                  </div>
-                  <div className='landing-news-section'>
-                    <NewsCard newsList={newsData} />
-                  </div>
-                </div>
-                <div className='landing-subSection'>
-                  <div className='landing-subT-section'>
-                    <h1 className='landing-subT'>PODCAST ENTERATE!</h1>
-                    <button className='see-more' onClick={() => navigate('/podcast')}>Ver Más <strong>+</strong></button>
-                  </div>
-                  <PodcastCarousel videos={videoList} />
-                  <div className='landing-podcast-section'>
-
-                  </div>
-                </div>
-                <footer> Made with<strong> REACT </strong>by actual live dragons</footer>
-              </div>
-            </main>
-    );
+          </div>
+        </div>
+        <footer> Made with<strong> REACT </strong>by actual live dragons</footer>
+      </div>
+    </main>
+  );
 }
 
 export default LandingPage;
