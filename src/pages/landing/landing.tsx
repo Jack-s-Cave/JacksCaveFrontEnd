@@ -9,28 +9,11 @@ import NavBar from '../../components/navbar/navbar';
 import Cave from '../../components/cave/cave';
 import { useNews } from 'hooks/useNews';
 import { mockVideos } from 'mocks/videoMock';
+import { useBlogs } from 'hooks/useBlogs';
 
 
 const LandingPage = () => {
   const navigate = useNavigate();
-
-  // const maxVisibleRecentCards = 6
-  // const [blogs, setBlogs] = useState([])
-  // const [loadingBlogs, setLoading] = useState(true)
-
-  // useEffect(() => {
-  //   // Simular traer datos del back
-  //   const fetchBlogs = async () => {
-  //     setLoading(true)
-
-  //     setTimeout(() => {
-  //       setBlogs(blogCards)
-  //       setLoading(false)
-  //     }, 1500)
-  //   }
-
-  //   fetchBlogs()
-  // }, [])
 
   // let recentContent;
 
@@ -52,8 +35,17 @@ const LandingPage = () => {
   //   ));
   // }
   //
+  //
 
-  let newsContent;
+  function RecentBlogs() {
+    const maxVisibleRecentCards = 6
+    const { blogs, loading, error } = useBlogs()
+
+    if (loading) return <div></div>
+    if (error) return <div>error</div>
+    return blogs.map(blog => <RecentCard key={blog.id} blog={blog} />)
+
+  }
 
   function NewsList() {
     const { news, loading, error } = useNews()
@@ -75,6 +67,7 @@ const LandingPage = () => {
             <button className='see-more' onClick={() => navigate('/blog')}>Ver Más <strong>+</strong></button>
           </div>
           <div className='landing-recent-section'>
+            <RecentBlogs />
           </div>
         </div>
         <div className='landing-subSection'>

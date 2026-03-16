@@ -120,9 +120,6 @@ const BlogPost: React.FC = () => {
             <h1>Escrito por {autor}</h1>
           </div>
           <div className='by-author-section'>
-            {authorPosts.map((post, i) => (
-              <RecentCard key={i} {...post} />
-            ))}
           </div>
         </div>
 
@@ -132,9 +129,6 @@ const BlogPost: React.FC = () => {
             <h1>Otros Posts interesantes</h1>
           </div>
           <div className='interesting-section'>
-            {interestingPosts.map((post, i) => (
-              <RecentCard key={i} {...post} />
-            ))}
           </div>
         </div>
       </div>
