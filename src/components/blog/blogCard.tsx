@@ -1,65 +1,35 @@
-import { Link } from 'react-router-dom'
-import './blogCard.css'
-import { BlogPost } from "pages/blog/blog"
-import formatDate from '../../hooks/useDateFilter'
+import './blogCard.css';
+import { Link } from 'react-router-dom';
+import { Blog } from 'types/blog';
 
-interface BlogCardProps {
-  post: BlogPost
-}
+type BlogCardProps = {
+  blog: Blog
+};
 
-const BlogCard: React.FC<BlogCardProps> = ({ post }) => {
+const BlogCard = ({ blog }: BlogCardProps) => {
   return (
-    <Link to='/blogpost'>
-      <article
-        className="post-card"
-        role="article"
-        aria-labelledby={`post-title-${post.id}`}
-      >
-        <div className="post-header">
-          <span className="post-date" aria-label="Fecha de publicación">
-            {formatDate(post.date)}
-          </span>
-          <span className="post-author" aria-label="Autor">
-            {post.author}
-          </span>
+    <Link to={`/blogpost/`}> 
+      <div className='blog-card'>
+        <div className='blogC-header'>
+          <p>{blog.date}</p>
+          <p>{blog.author}</p>
         </div>
-
-        <div className="post-image-container">
-          <img
-            src={post.image}
-            alt={post.title}
-            className="post-image"
-            loading="lazy"
-          />
+        <img
+          className='blog-image'
+          src={blog.image}
+          alt={blog.title}
+        />
+        <h3 className='blogC-title'>{blog.title}</h3>
+        <div className='blogC-tags'>
+          {blog.tags.slice(0, 3).map((tag, index) => (
+            <p key={index}>#{tag}</p>
+          ))}
+          {blog.tags.length > 3 && <p>+{blog.tags.length - 3}</p>}
         </div>
-
-        <div className="post-content">
-          <h2
-            id={`post-title-${post.id}`}
-            className="post-title"
-          >
-            {post.title}
-          </h2>
-
-          <div
-            className="post-tags"
-            role="list"
-            aria-label="Etiquetas del post"
-          >
-            {post.tags.map((tag: string, index: number) => (
-              <span
-                key={index}
-                className="post-tag"
-                role="listitem"
-              >
-                #{tag}
-              </span>
-            ))}
-          </div>
-        </div>
-      </article>
+      </div>
     </Link>
-  )
-}
+  );
+};
 
-export default BlogCard
+export default BlogCard;
+

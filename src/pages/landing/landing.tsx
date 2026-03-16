@@ -1,5 +1,4 @@
 import './landing.css';
-import RecentCard from '../../components/landingpage/recentCard';
 import NewsCard from '../../components/landingpage/newsCard';
 import PodcastCarousel from '../../components/landingpage/podcastCarousel';
 import { useNavigate } from 'react-router-dom';
@@ -9,17 +8,18 @@ import Cave from '../../components/cave/cave';
 import { useNews } from 'hooks/useNews';
 import { mockVideos } from 'mocks/videoMock';
 import { useBlogs } from 'hooks/useBlogs';
+import BlogCard from 'components/blog/blogCard';
 
 function RecentBlogs() {
   const max_visible_blogs = 6
   const { blogs, loading, error } = useBlogs()
   if (loading) return (
     <>
-      {[...Array(max_visible_blogs)].map((_, i) => <LoadingCard key={i} className='recent-card' />)}
+      {[...Array(max_visible_blogs)].map((_, i) => <LoadingCard key={i} className='blog-card' />)}
     </>
   )
   if (error) return <div>error</div>
-  return blogs.map(blog => <RecentCard key={blog.id} blog={blog} />)
+  return blogs.map(blog => <BlogCard key={blog.id} blog={blog} />)
 }
 
 function NewsList() {

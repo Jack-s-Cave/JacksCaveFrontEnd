@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import MarkdownRenderer from '../../helpers/markdownRenderer';
 import './blogpost.css';
-import RecentCard from '../../components/landingpage/recentCard';
 import SeriesCard from '../../components/blog/seriesCard';
 import { IoShareSocial } from "react-icons/io5";
 import NavBar from '../../components/navbar/navbar';
