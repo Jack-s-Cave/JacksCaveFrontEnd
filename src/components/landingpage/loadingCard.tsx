@@ -4,7 +4,7 @@ interface LoadingCardProps {
   className?: string
 }
 
-const LoadingCard: React.FC<LoadingCardProps> = ({ className = '' }) => {
+const LoadingCard = ({ className = '' }: LoadingCardProps) => {
   return (
     <div className={`loading-card ${className}`}>
       <div className="loading-image" />

@@ -8,10 +8,12 @@ export function useBlogs() {
   const [error, setError] = useState<string | null>(null)
 
   useEffect(() => {
-    blogsService.getAll()
-      .then(setBlogs)
-      .catch(e => setError(e.message))
-      .finally(() => setLoading(false))
+    setTimeout(() => {
+      blogsService.getAll()
+        .then(setBlogs)
+        .catch(e => setError(e.message))
+        .finally(() => setLoading(false))
+    }, 1500)
   }, [])
 
   return { blogs, loading, error }
