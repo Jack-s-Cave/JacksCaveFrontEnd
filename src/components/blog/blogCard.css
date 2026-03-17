@@ -1,5 +1,7 @@
 .blog-card {
-  width: clamp(180px, 25vw, 270px);
+  width: 100%;
+  height: 100%;
+  padding: 0.5rem 1.5rem;
   display: flex;
   flex-direction: column;
   align-items: flex-start;
@@ -7,12 +9,15 @@
   border-color: var(--primary-color5);
   border-width: 0.1rem;
   border-style: solid;
-  padding: 0.5rem 2rem;
   height: auto;
   min-height: 23rem;
-  max-width: 240px;
+  max-width: 100%;
   color: var(--font-color);
   transition: transform 0.3s ease; 
+}
+
+p {
+  font-size: 0.8rem;
 }
 
 .blog-card:hover {
@@ -23,11 +28,11 @@
 }
 
 .blogC-header{
-    width: 100%;
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    font-family: var(--font-subtitle);
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  font-family: var(--font-subtitle);
 }
 
 .blogC-title {
@@ -39,10 +44,9 @@
   text-overflow: ellipsis;
 }
 
-
 .blog-card img{
-    width: 100%;
-    max-height: 10rem;
+  width: 100%;
+  max-height: 10rem;
 }
 
 .blogC-tags {
@@ -53,12 +57,10 @@
   gap: 0.5rem;               
   max-height: calc(2 * 2em); 
   justify-content: flex-start; 
-  margin-bottom: 0.5rem;
 }
 
 .blogC-tags p {
   margin: 0;
-  padding: 0.25rem 0.5rem;
   color: var(--font-color1);
   white-space: nowrap;   
   font-size: 0.85rem;    
