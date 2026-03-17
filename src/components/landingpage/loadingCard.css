@@ -1,3 +1,15 @@
+.loading-card {
+  width: 100%;
+  min-width: 0;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  padding: 0.5rem 2rem;
+  border-radius: 0.2rem;
+  border: 0.1rem solid var(--primary-color5);
+  height: 100%;
+}
+
 .recent-card.loading-card {
   pointer-events: none;
   border-color: var(--primary-color3);
