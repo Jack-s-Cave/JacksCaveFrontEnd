@@ -1,38 +1,21 @@
 import NavBar from '../../components/navbar/navbar';
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { FaYoutube, FaInstagram, FaTiktok, FaSpotify } from 'react-icons/fa';
 import { FiFolder, FiSearch } from 'react-icons/fi';
 import './podcast.css';
+import { usePodcast } from 'hooks/usePodcast';
+import PodcastCard from 'components/podcast/podcastCard';
 
-const Podcasts: React.FC = () => {
+function PodcastEpisodesList() {
+  const { podcastEpisodes, loading, error } = usePodcast()
+  if (loading) return <div></div>
+  if (error) return <div>error</div>
+  return podcastEpisodes.map(episode => <PodcastCard key={episode.id} podcastEpisode={episode} />)
+}
+
+const Podcasts = () => {
   const [activeTab, setActiveTab] = useState('TODAS');
 
-  // URLs de YouTube embeds
-  const podcastEpisodes = [
-    {
-      id: 1,
-      title: "¿Como ser estudiante y trabajar al mismo tiempo? | EP 2 Ludwing Cano",
-      description: "Un podcast de tecnología por estudiantes para estudiantes",
-      embedId: "zlSbBsJYFGA",
-      category: "TODAS"
-    },
-    {
-      id: 2,
-      title: "Desarrollar videojuegos en Guatemala | EP 1 Dennis Aldana",
-      description: "Un podcast de tecnología por estudiantes para estudiantes",
-      embedId: "qVDqPct6b_k",
-      category: "TODAS"
-    },
-    {
-      id: 3,
-      title: "Desarrollar videojuegos en Guatemala | EP 1 Dennis Aldana",
-      description: "Un podcast de tecnología por estudiantes para estudiantes",
-      embedId: "6guzh_QQKJA",
-      category: "TODAS"
-    }
-  ];
-
-  // Listas de reproducción para la sección "LISTAS"
   const playlistsData = [
     {
       id: 1,
@@ -75,7 +58,6 @@ const Podcasts: React.FC = () => {
     <main className='podcasts-content'>
       <NavBar />
       <div className="podcasts-page">
-        {/* Hero Section con imagen de fondo */}
         <section className="hero-section-podcasts">
           <div className="hero-overlay">
             <img 
@@ -86,7 +68,6 @@ const Podcasts: React.FC = () => {
           </div>
         </section>
 
-        {/* Sección ¿Quiénes Somos? */}
         <section className="about-section">
           <div className="about-container">
             <div className="about-content">
@@ -113,7 +94,6 @@ const Podcasts: React.FC = () => {
               </div>
             </div>
             <div className="about-logo">
-              {/* Placeholder cuadrado para el logo */}
               <div className="logo-placeholder">
                 <span>Logo</span>
               </div>
@@ -121,7 +101,6 @@ const Podcasts: React.FC = () => {
           </div>
         </section>
 
-        {/* Tabs Navigation */}
         <section className="tabs-section">
           <div className="tabs-nav">
             {tabs.map((tab) => (
@@ -136,7 +115,6 @@ const Podcasts: React.FC = () => {
           </div>
         </section>
 
-        {/* Publicaciones Section */}
         <section className="publications-section">
           <div className="publications-container">
             <div className="sidebar">
@@ -183,7 +161,6 @@ const Podcasts: React.FC = () => {
 
               <div className="podcasts-grid">
                 {activeTab === 'LISTAS' ? (
-                  // Mostrar listas de reproducción
                   <div className="playlists-grid">
                     {playlistsData.map((playlist) => (
                       <div key={playlist.id} className="playlist-card">
@@ -199,37 +176,8 @@ const Podcasts: React.FC = () => {
                     ))}
                   </div>
                 ) : (
-                    // Mostrar episodios de podcasts en 2 columnas
                     <div className="episodes-grid">
-                      {podcastEpisodes.map((episode) => (
-                        <div key={episode.id} className="podcast-card">
-                          <div className="podcast-video">
-                            <iframe
-                              width="100%"
-                              height="200"
-                              src={`https://www.youtube.com/embed/${episode.embedId}`}
-                              title={episode.title}
-                              frameBorder="0"
-                              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                              allowFullScreen
-                            ></iframe>
-                          </div>
-                          <div className="podcast-info">
-                            <h3 className="podcast-title">{episode.title}</h3>
-                            <p className="podcast-description">{episode.description}</p>
-                            <div className="podcast-links">
-                              <div className="platform-links">
-                                <a href="#" className="platform-link youtube-link">
-                                  <FaYoutube /> Youtube
-                                </a>
-                                <a href="#" className="platform-link spotify-link">
-                                  <FaSpotify /> Spotify
-                                </a>
-                              </div>
-                            </div>
-                          </div>
-                        </div>
-                      ))}
+                      <PodcastEpisodesList />
                     </div>
                   )}
               </div>
