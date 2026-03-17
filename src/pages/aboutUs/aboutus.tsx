@@ -1,28 +1,14 @@
 import NavBar from '../../components/navbar/navbar';
-import React from 'react';
+import { useState } from 'react';
 import './aboutus.css';
+import { useMembers } from 'hooks/useMembers';
 
-const AboutUs: React.FC = () => {
-  // Placeholder para miembros actuales - se cargará de Supabase
-  const currentMembers = Array.from({ length: 10 }, (_, index) => ({
-    id: index + 1,
-    name: `Miembro ${index + 1}`,
-    image: null, // Se cargará de la DB
-    description: "Descripción del miembro que se cargará desde la base de datos..."
-  }));
-
-  // Placeholder para miembros de años anteriores - se cargará de Supabase
-  const previousMembers = Array.from({ length: 10 }, (_, index) => ({
-    id: index + 1,
-    name: `Miembro Anterior ${index + 1}`,
-    image: null,
-    description: "Descripción del miembro anterior que se cargará desde la base de datos..."
-  }));
+const AboutUs = () => {
+  const { currentMembers, previousMembers, loading, error } = useMembers()
 
   const years = [2024, 2023, 2022, 2021, 2020, 2019, 2018, 2017, 2016, 2015, 2014, 2013, 2012, 2011];
-  const [selectedYear, setSelectedYear] = React.useState(2024);
+  const [selectedYear, setSelectedYear] = useState(2024)
 
-  // Placeholder para información de la asociación - se cargará de Supabase
   const associationInfo = {
     name: "AECCTI",
     subtitle1: "UNA ASOCIACIÓN",

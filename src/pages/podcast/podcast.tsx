@@ -1,6 +1,6 @@
 import NavBar from '../../components/navbar/navbar';
 import { useState } from 'react';
-import { FaYoutube, FaInstagram, FaTiktok, FaSpotify } from 'react-icons/fa';
+import { FaYoutube, FaInstagram, FaTiktok } from 'react-icons/fa';
 import { FiFolder, FiSearch } from 'react-icons/fi';
 import './podcast.css';
 import { usePodcast } from 'hooks/usePodcast';
