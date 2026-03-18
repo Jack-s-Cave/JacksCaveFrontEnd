@@ -1,4 +1,3 @@
-import { mockBlogs } from "mocks/blogMock"
 import { Blog } from "types/blog"
 import { api } from "./api"
 
@@ -19,6 +18,7 @@ export const blogsService = {
     return data.data.map(mapBlog)
   },
   getAll: async (): Promise<Blog[]> => {
-    return mockBlogs
+    const data = await api.get('article-mds?populate=*')
+    return data.data.map(mapBlog)
   }
 }

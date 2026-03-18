@@ -7,6 +7,7 @@ type BlogCardProps = {
 };
 
 const BlogCard = ({ blog }: BlogCardProps) => {
+  console.log(blog.image)
   return (
     <Link to={`/blogpost/`}> 
       <div className='blog-card'>
