@@ -4,17 +4,22 @@ import { Blog } from "types/blog"
 
 export function useBlogs() {
   const [blogs, setBlogs] = useState<Blog[]>([])
+  const [recentBlogs, setRecentBlogs] = useState<Blog[]>([])
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState<string | null>(null)
 
   useEffect(() => {
-    setTimeout(() => {
-      blogsService.getAll()
-        .then(setBlogs)
-        .catch(e => setError(e.message))
-        .finally(() => setLoading(false))
-    }, 1500)
+    Promise.all([
+      blogsService.getAll(),
+      blogsService.getRecentBlogs()
+    ])
+      .then(([blogs, recent]) => {
+        setBlogs(blogs)
+        setRecentBlogs(recent)
+      })
+      .catch(e => setError(e.message))
+      .finally(() => setLoading(false))
   }, [])
 
-  return { blogs, loading, error }
+  return { blogs, recentBlogs, loading, error }
 }
