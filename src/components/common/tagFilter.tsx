@@ -3,7 +3,7 @@ import { Tag } from "types/filters"
 interface TagFilterProps {
   tags:         Tag[]
   selectedSlugs: string[]
-  onToggle:     (slug: string) => void
+  onToggle:     (label: string) => void
 }
 
 export function TagFilter({ tags, selectedSlugs, onToggle }: TagFilterProps) {

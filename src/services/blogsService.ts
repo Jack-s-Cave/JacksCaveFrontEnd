@@ -1,6 +1,7 @@
 import { Blog } from "types/blog"
 import { api } from "./api"
 import { mapTag } from "./tagsService"
+import { BlogFilters } from "types/filters"
 
 const mapBlog = (item: any): Blog => ({
   id: item.id,
@@ -13,6 +14,36 @@ const mapBlog = (item: any): Blog => ({
   tags: item.tags ? [mapTag(item.tags, 0)] : []
 })
 
+function buildQuery(filters: BlogFilters): string {
+  const params = new URLSearchParams()
+  params.set('populate', '*')
+
+  const { from, to, tagLabels } = filters
+  const hasDates = from || to
+  const hasTags  = tagLabels && tagLabels.length > 0
+
+  if (hasDates && !hasTags) {
+    if (from) params.set('filters[fecha_de_publicacion][$gte]', from)
+    if (to)   params.set('filters[fecha_de_publicacion][$lte]', to)
+  }
+
+  if (hasTags && !hasDates) {
+    tagLabels.forEach((label, i) =>
+      params.set(`filters[$or][${i}][tags][$eq]`, label)
+    )
+  }
+
+  if (hasDates && hasTags) {
+    tagLabels.forEach((label, i) =>
+      params.set(`filters[$and][0][$or][${i}][tags][$eq]`, label)
+    )
+    if (from) params.set('filters[$and][1][fecha_de_publicacion][$gte]', from)
+    if (to)   params.set('filters[$and][1][fecha_de_publicacion][$lte]', to)
+  }
+
+  return params.toString()
+}
+
 export const blogsService = {
   getRecentBlogs: async (): Promise<Blog[]> => {
     const data = await api.get('article-mds?sort[0]=fecha_de_publicacion:desc&pagination[page]=1&pagination[pageSize]=6&populate=*')
@@ -20,6 +51,11 @@ export const blogsService = {
   },
   getAll: async (): Promise<Blog[]> => {
     const data = await api.get('article-mds?populate=*')
+    return data.data.map(mapBlog)
+  },
+  getFiltered: async (filters: BlogFilters): Promise<Blog[]> => {
+    const qs   = buildQuery(filters)
+    const data = await api.get(`article-mds?${qs}`)
     return data.data.map(mapBlog)
   }
 }

@@ -8,3 +8,9 @@ export interface Tag {
   label: string
   featured: boolean
 }
+
+export interface BlogFilters {
+  from?: string
+  to?: string
+  tagLabels?: string[]
+}

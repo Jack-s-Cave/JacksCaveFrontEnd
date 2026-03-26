@@ -13,6 +13,7 @@ import DateRangePicker from 'components/common/daterangepicker';
 import { useDateFilter } from 'hooks/useDateFilter';
 import { useTags } from 'hooks/useTags';
 import { TagFilter } from 'components/common/tagFilter';
+import { DateRange } from 'types/filters';
 
 type ViewMode = 'grid' | 'list';
 
@@ -35,13 +36,10 @@ function BlogList({ blogs, loading, error }: {
 
 const Blogs = () => {
   const [viewMode, setViewMode] = useState<ViewMode>('grid')
-  const [selectedTags, setSelectedTags] = useState<string[]>([])
-  const { blogs, loading, error } = useBlogs()
+  const [range, setRange] = useState<DateRange>({ from: '', to: '' })
   const [selectedSlugs, setSelectedSlugs] = useState<string[]>([])
+  const { blogs, loading, error } = useBlogs({ from: range.from, to: range.to, tagLabels: selectedSlugs })
   const { tags } = useTags()
-
-  const { range, setRange, filtered } = useDateFilter(blogs, 'date')
-
   const { query, setQuery, results } = useSearch(
     blogs,
     (blog, query) =>
@@ -49,21 +47,13 @@ const Blogs = () => {
       blog.tags.some(tag => tag.label.toLowerCase().includes(query))
   )
 
-  const filteredBlogs = results.filter(blog => {
-    const matchesSearch =
-      blog.title.toLowerCase().includes(query.toLowerCase()) ||
-      blog.tags.some(tag => tag.label.toLowerCase().includes(query.toLowerCase()))
-    return matchesSearch
-  })
-
-  const toggleTag = (tag: string) => {
-    setSelectedTags(prev =>
-      prev.includes(tag) ? prev.filter(t => t !== tag) : [...prev, tag]
+  const toggleTag = (slug: string) =>
+    setSelectedSlugs(prev =>
+      prev.includes(slug) ? prev.filter(s => s !== slug) : [...prev, slug]
     )
-  }
 
   const removeTag = (tag: string) => {
-    setSelectedTags(prev => prev.filter(t => t !== tag))
+    setSelectedSlugs(prev => prev.filter(t => t !== tag))
   }
 
   return (
@@ -117,12 +107,12 @@ const Blogs = () => {
                 <h1 className="blog-header">/</h1>
               </div>
               <div className="post-count" aria-live="polite">
-                ({filteredBlogs.length} posts)
+                ({blogs.length} posts)
               </div> 
             </div>
-            {selectedTags.length > 0 && (
+            {selectedSlugs.length > 0 && (
               <div className="selected-tags" role="list" aria-label="Tags seleccionados">
-                {selectedTags.map((tag: string) => (
+                {selectedSlugs.map((tag: string) => (
                   <div key={tag} className="selected-tag" role="listitem">
                     <span>{tag}</span>
                     <button 
@@ -138,7 +128,7 @@ const Blogs = () => {
               </div>
             )}
             <div className='posts-grid' role="feed" aria-label="Posts del blog">
-              <BlogList blogs={filteredBlogs} loading={loading} error={error}/>
+              <BlogList blogs={blogs} loading={loading} error={error}/>
             </div>
           </div>
         </main>
