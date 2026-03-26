@@ -18,9 +18,15 @@ function buildQuery(filters: BlogFilters): string {
   const params = new URLSearchParams()
   params.set('populate', '*')
 
-  const { from, to, tagLabels } = filters
+  const { from, to, tagLabels, query } = filters
   const hasDates = from || to
   const hasTags  = tagLabels && tagLabels.length > 0
+  const hasSearch = query && query.length > 0
+
+  if (hasSearch) {
+    params.set('filters[$or][0][Titulo][$containsi]', query)
+    params.set('filters[$or][1][author_profile][nombre][$containsi]', query)
+  }
 
   if (hasDates && !hasTags) {
     if (from) params.set('filters[fecha_de_publicacion][$gte]', from)
@@ -36,6 +42,33 @@ function buildQuery(filters: BlogFilters): string {
   if (hasDates && hasTags) {
     tagLabels.forEach((label, i) =>
       params.set(`filters[$and][0][$or][${i}][tags][$eq]`, label)
+    )
+    if (from) params.set('filters[$and][1][fecha_de_publicacion][$gte]', from)
+    if (to)   params.set('filters[$and][1][fecha_de_publicacion][$lte]', to)
+  }
+
+  if ((hasDates || hasTags) && hasSearch) {
+    params.set('filters[$and][0][$or][0][Titulo][$containsi]', query)
+    params.set('filters[$and][0][$or][1][author_profile][nombre][$containsi]', query)
+
+    let andIndex = 1
+
+    if (hasTags) {
+      tagLabels.forEach((tag, i) =>
+        params.set(`filters[$and][${andIndex}][$or][${i}][tagLabels][$eq]`, tag)
+      )
+      andIndex++
+    }
+
+    if (hasDates) {
+      if (from) params.set(`filters[$and][${andIndex}][fecha_de_publicacion][$gte]`, from)
+      if (to)   params.set(`filters[$and][${andIndex}][fecha_de_publicacion][$lte]`, to)
+    }
+  }
+
+  if (hasDates && hasTags && !hasSearch) {
+    tagLabels.forEach((tag, i) =>
+      params.set(`filters[$and][0][$or][${i}][tagLabels][$eq]`, tag)
     )
     if (from) params.set('filters[$and][1][fecha_de_publicacion][$gte]', from)
     if (to)   params.set('filters[$and][1][fecha_de_publicacion][$lte]', to)

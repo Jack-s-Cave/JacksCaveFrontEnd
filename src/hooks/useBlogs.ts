@@ -11,8 +11,9 @@ export function useBlogs(filters?: BlogFilters) {
 
   const hasFilters = filters && (
     filters.tagLabels?.length ||
-    filters?.from  ||
-    filters?.to
+    filters?.from ||
+    filters?.to ||
+    filters?.query
   )
 
   useEffect(() => {
@@ -32,13 +33,14 @@ export function useBlogs(filters?: BlogFilters) {
       .getFiltered({
         from: filters.from || undefined,
         to:   filters.to   || undefined,
-        tagLabels: filters.tagLabels?.length ? filters.tagLabels : undefined
+        tagLabels: filters.tagLabels?.length ? filters.tagLabels : undefined,
+        query: filters.query || undefined
       })
       .then(setBlogs)
       .catch(e => setError(e.message))
       .finally(() => setLoading(false))
 
-  }, [filters?.from, filters?.to, filters?.tagLabels?.join(',')])
+  }, [filters?.from, filters?.to, filters?.tagLabels?.join(','), filters?.query])
 
   return { blogs, recentBlogs, loading, error }
 }

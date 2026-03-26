@@ -10,7 +10,6 @@ import { Blog } from 'types/blog';
 import { useSearch } from 'hooks/useSearch';
 import BlogCard from 'components/blog/blogCard';
 import DateRangePicker from 'components/common/daterangepicker';
-import { useDateFilter } from 'hooks/useDateFilter';
 import { useTags } from 'hooks/useTags';
 import { TagFilter } from 'components/common/tagFilter';
 import { DateRange } from 'types/filters';
@@ -38,23 +37,23 @@ const Blogs = () => {
   const [viewMode, setViewMode] = useState<ViewMode>('grid')
   const [range, setRange] = useState<DateRange>({ from: '', to: '' })
   const [selectedSlugs, setSelectedSlugs] = useState<string[]>([])
-  const { blogs, loading, error } = useBlogs({ from: range.from, to: range.to, tagLabels: selectedSlugs })
   const { tags } = useTags()
-  const { query, setQuery, results } = useSearch(
-    blogs,
-    (blog, query) =>
-      blog.title.toLowerCase().includes(query) ||
-      blog.tags.some(tag => tag.label.toLowerCase().includes(query))
-  )
+  const { query, setQuery, debouncedQuery } = useSearch()
+
+  const { blogs, loading, error } = useBlogs({
+    from:       range.from,
+    to:         range.to,
+    tagLabels:  selectedSlugs,
+    query: debouncedQuery
+  })
 
   const toggleTag = (slug: string) =>
     setSelectedSlugs(prev =>
       prev.includes(slug) ? prev.filter(s => s !== slug) : [...prev, slug]
     )
 
-  const removeTag = (tag: string) => {
-    setSelectedSlugs(prev => prev.filter(t => t !== tag))
-  }
+  const removeTag = (slug: string) =>
+    setSelectedSlugs(prev => prev.filter(s => s !== slug))
 
   return (
     <div className="blog-container">
