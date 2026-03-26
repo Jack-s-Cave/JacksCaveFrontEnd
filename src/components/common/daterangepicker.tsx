@@ -1,9 +1,6 @@
+import { Calendar } from 'lucide-react'
 import './daterangepicker.css'
-
-export interface DateRange {
-  from: string
-  to:   string
-}
+import { DateRange } from 'types/filters'
 
 interface DateRangePickerProps {
   value: DateRange
@@ -23,7 +20,7 @@ export default function DateRangePicker({value, onChange, label = 'Fechas'}: Dat
 
   return (
     <div className="date-picker">
-      <h3>{label}</h3>
+      <h3>{label}<Calendar /></h3>
       <div className="fields">
         <label>
           <span>Desde</span>

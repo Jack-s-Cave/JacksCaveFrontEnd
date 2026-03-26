@@ -1,5 +1,6 @@
 import { Blog } from "types/blog"
 import { api } from "./api"
+import { mapTag } from "./tagsService"
 
 const mapBlog = (item: any): Blog => ({
   id: item.id,
@@ -9,7 +10,7 @@ const mapBlog = (item: any): Blog => ({
   image: item.imagenes?.[0]?.url 
     ? `${process.env.REACT_APP_STRAPI_URL}${item.imagenes[0].url}` 
     : 'https://www.patasencasa.com/sites/default/files/2024-07/meme-del-gato-riendo_0.jpg',
-  tags: item.tags ? [item.tags] : [],
+  tags: item.tags ? [mapTag(item.tags, 0)] : []
 })
 
 export const blogsService = {

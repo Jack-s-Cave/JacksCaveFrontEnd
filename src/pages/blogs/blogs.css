@@ -52,23 +52,26 @@
   overflow-y: auto; /* Scroll interno si el contenido excede la altura */
 }
 
+.sidebar-section {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
 /**
  * Sección individual dentro del sidebar
  * Agrupa controles relacionados (vistas, fechas, tags)
  */
-.sidebar-section {
-  margin-bottom: 2rem; /* Espaciado entre secciones */
-}
 
 /**
  * Título de cada sección del sidebar
  * Usa flexbox para alinear iconos y texto
  */
 .sidebar-title {
+  margin: 0;
   font-size: 0.875rem; /* 14px */
   font-weight: 600;
   color: var(--font-color) !important;
-  margin-bottom: 0.75rem;
   display: flex;
   align-items: center;
   gap: 0.5rem; /* Espacio entre icono y texto */
@@ -223,7 +226,6 @@
  * Permite expandir la lista de tags (funcionalidad futura)
  */
 .ver-todas-btn {
-  margin-top: 1rem;
   font-size: 0.875rem; /* 14px */
   color: var(--font-color);
   background: none;

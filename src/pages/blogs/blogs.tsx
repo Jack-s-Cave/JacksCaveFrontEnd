@@ -9,16 +9,12 @@ import { useBlogs } from 'hooks/useBlogs';
 import { Blog } from 'types/blog';
 import { useSearch } from 'hooks/useSearch';
 import BlogCard from 'components/blog/blogCard';
+import DateRangePicker from 'components/common/daterangepicker';
+import { useDateFilter } from 'hooks/useDateFilter';
+import { useTags } from 'hooks/useTags';
+import { TagFilter } from 'components/common/tagFilter';
 
 type ViewMode = 'grid' | 'list';
-
-const allTags: string[] = [
-  'tags',
-  'Sanitas',
-  'jeje',
-  'Trabajo-remoto',
-  'Tips & Tricks'
-];
 
 function BlogList({ blogs, loading, error }: {
   blogs: Blog[]
@@ -41,24 +37,23 @@ const Blogs = () => {
   const [viewMode, setViewMode] = useState<ViewMode>('grid')
   const [selectedTags, setSelectedTags] = useState<string[]>([])
   const { blogs, loading, error } = useBlogs()
+  const [selectedSlugs, setSelectedSlugs] = useState<string[]>([])
+  const { tags } = useTags()
+
+  const { range, setRange, filtered } = useDateFilter(blogs, 'date')
 
   const { query, setQuery, results } = useSearch(
     blogs,
     (blog, query) =>
       blog.title.toLowerCase().includes(query) ||
-      blog.tags.some(tag => tag.toLowerCase().includes(query))
+      blog.tags.some(tag => tag.label.toLowerCase().includes(query))
   )
 
   const filteredBlogs = results.filter(blog => {
     const matchesSearch =
       blog.title.toLowerCase().includes(query.toLowerCase()) ||
-      blog.tags.some(tag => tag.toLowerCase().includes(query.toLowerCase()))
-
-    const matchesTags =
-      selectedTags.length === 0 ||
-      selectedTags.every(tag => blog.tags.includes(tag))
-
-    return matchesSearch && matchesTags
+      blog.tags.some(tag => tag.label.toLowerCase().includes(query.toLowerCase()))
+    return matchesSearch
   })
 
   const toggleTag = (tag: string) => {
@@ -100,22 +95,12 @@ const Blogs = () => {
           <div className="sidebar-section">
           </div>
           <div className="sidebar-section">
+            <DateRangePicker label="Fechas" value={range} onChange={setRange} />
             <h3 className="sidebar-title">
               <span>Etiquetas Destacadas</span>
               <TagIcon />
             </h3>
-            <div className="tags-list">
-              {allTags.map((tag: string) => (
-                <label key={tag} className="tag-checkbox">
-                  <input
-                    type="checkbox"
-                    checked={selectedTags.includes(tag)}
-                    onChange={() => toggleTag(tag)}
-                  />
-                  <span>{tag}</span>
-                </label>
-              ))}
-            </div>
+            <TagFilter tags={tags} selectedSlugs={selectedSlugs} onToggle={toggleTag}/>
             <button 
               className="ver-todas-btn"
               aria-label="Ver todas las etiquetas"

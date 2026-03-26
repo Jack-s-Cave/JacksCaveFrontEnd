@@ -23,7 +23,7 @@ const BlogCard = ({ blog }: BlogCardProps) => {
         <h3 className='blogC-title'>{blog.title}</h3>
         <div className='blogC-tags'>
           {blog.tags.slice(0, 3).map((tag, index) => (
-            <p key={index}>#{tag}</p>
+            <p key={index}>#{tag.label}</p>
           ))}
           {blog.tags.length > 3 && <p>+{blog.tags.length - 3}</p>}
         </div>
