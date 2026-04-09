@@ -2,10 +2,13 @@ import { FaGithub, FaLink, FaTwitter } from 'react-icons/fa';
 import './author.css'
 import NavBar from "components/navbar/navbar";
 import { useState } from 'react';
+import { useBlogs } from 'hooks/useBlogs';
+import { BlogList } from 'pages/blogs/blogs';
 
 const AuthorPage = () => {
   const tabs = ['TODOS', 'SERIES']
   const [activeTab, setActiveTab] = useState('TODOS');
+  const { blogs, loading, error } = useBlogs()
 
   return (
     <main>
@@ -39,7 +42,8 @@ const AuthorPage = () => {
           </div>
           <div className="blogs">
             {activeTab === 'TODOS' ? (
-              <div className="">
+              <div className="posts-list">
+                <BlogList blogs={blogs} loading={loading} error={error}/>
               </div>
             ) : (
               <div className="">

@@ -416,6 +416,12 @@
   grid-template-columns: 1fr;
 }
 
+.posts-list {
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+}
+
 /* Breakpoint para tablets (768px+): 2 columnas en grid */
 @media (min-width: 768px) {
   .posts-grid.grid {

@@ -39,12 +39,22 @@ li {
   font-weight: 500;
 }
 
+.tabs-nav {
+  margin-left: 50px;
+}
+
 .authors-blogs {
   width: 100%;
   padding: 60px;
 }
 
 .blogs {
-  width: 750px;
+  width: 900px;
   border: 1px solid black;
+  border-right: none;
+  border-bottom: none;
+}
+
+.posts-list {
+  padding: 30px;
 }

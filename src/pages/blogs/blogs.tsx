@@ -13,10 +13,11 @@ import DateRangePicker from 'components/common/daterangepicker';
 import { useTags } from 'hooks/useTags';
 import { TagFilter } from 'components/common/tagFilter';
 import { DateRange } from 'types/filters';
+import BlogListElement from 'components/blog/blogListElement';
 
 type ViewMode = 'grid' | 'list';
 
-function BlogList({ blogs, loading, error }: {
+function BlogGrid({ blogs, loading, error }: {
   blogs: Blog[]
   loading: boolean
   error: string | null
@@ -33,6 +34,23 @@ function BlogList({ blogs, loading, error }: {
   return blogs.map(blog => <BlogCard key={blog.id} blog={blog} />)
 }
 
+export function BlogList({ blogs, loading, error }: {
+  blogs: Blog[]
+  loading: boolean
+  error: string | null
+}) {
+  const max_visible_blogs = 6
+  if (error) return <div>error</div>
+  if (loading) return (
+    <>
+      {[...Array(max_visible_blogs)].map((_, i) => (
+        <LoadingCard key={i} className='blog-card' />
+      ))}
+    </>
+  )
+  return blogs.map(blog => <BlogListElement key={blog.id} blog={blog} />)
+}
+
 const Blogs = () => {
   const [viewMode, setViewMode] = useState<ViewMode>('grid')
   const [range, setRange] = useState<DateRange>({ from: '', to: '' })
@@ -41,9 +59,9 @@ const Blogs = () => {
   const { query, setQuery, debouncedQuery } = useSearch()
 
   const { blogs, loading, error } = useBlogs({
-    from:       range.from,
-    to:         range.to,
-    tagLabels:  selectedSlugs,
+    from: range.from,
+    to: range.to,
+    tagLabels: selectedSlugs,
     query: debouncedQuery
   })
 
@@ -126,9 +144,15 @@ const Blogs = () => {
                 ))}
               </div>
             )}
-            <div className='posts-grid' role="feed" aria-label="Posts del blog">
-              <BlogList blogs={blogs} loading={loading} error={error}/>
-            </div>
+            {viewMode === 'grid' ? (
+              <div className='posts-grid' role="feed" aria-label="Posts del blog">
+                <BlogGrid blogs={blogs} loading={loading} error={error}/>
+              </div>
+            ) : (
+              <div className="posts-list">
+                <BlogList blogs={blogs} loading={loading} error={error}/>
+              </div>
+              )}
           </div>
         </main>
       </div>

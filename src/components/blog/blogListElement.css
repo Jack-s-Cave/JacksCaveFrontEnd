@@ -1,0 +1,18 @@
+.blog-list-element {
+  display: flex;
+  min-height: fit-content;
+  border-color: var(--primary-color5);
+  border-width: 0.1rem;
+  border-style: solid;
+}
+
+.blog-image {
+  width: 300px;
+  height: 200px;
+}
+
+.blog-details {
+  height: 100%;
+  width: 100%;
+  padding: 0 20px;
+}
