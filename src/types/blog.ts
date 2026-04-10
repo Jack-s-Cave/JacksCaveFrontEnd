@@ -8,3 +8,5 @@ export interface Blog {
   image: string;
   tags: Tag[];
 }
+
+export type ViewMode = 'grid' | 'list';

@@ -3,7 +3,7 @@ import './author.css'
 import NavBar from "components/navbar/navbar";
 import { useState } from 'react';
 import { useBlogs } from 'hooks/useBlogs';
-import { BlogList } from 'pages/blogs/blogs';
+import BlogList from 'components/blog/blogList';
 
 const AuthorPage = () => {
   const tabs = ['TODOS', 'SERIES']

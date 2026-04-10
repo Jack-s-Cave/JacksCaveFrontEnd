@@ -6,6 +6,7 @@ import AboutUs from 'pages/aboutUs/aboutus';
 import BlogPost from 'pages/blogpost/blogpost';
 import Blogs from 'pages/blogs/blogs';
 import AuthorPage from 'pages/author/author';
+import TagsPage from 'pages/tags/tags';
 
 const AppRoutes = () => {
   return (
@@ -16,6 +17,7 @@ const AppRoutes = () => {
       <Route path="/aboutus" element={<AboutUs/>}/>
       <Route path="/blogpost" element={<BlogPost/>}/>
       <Route path="/author" element={<AuthorPage/>}/>
+      <Route path="/tags" element={<TagsPage/>}/>
     </Routes>
   );
 };

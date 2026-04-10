@@ -1,121 +1,52 @@
 import { useState } from 'react';
 import './blogs.css';
 import { FaMountain } from 'react-icons/fa';
-import LoadingCard from '../../components/landingpage/loadingCard';
 import SearchBar from '../../components/common/searchbar';
 import NavBar from '../../components/navbar/navbar';
-import { GridIcon, ListIcon, TagIcon, XIcon } from 'lucide-react';
 import { useBlogs } from 'hooks/useBlogs';
-import { Blog } from 'types/blog';
+import { ViewMode } from 'types/blog';
 import { useSearch } from 'hooks/useSearch';
-import BlogCard from 'components/blog/blogCard';
-import DateRangePicker from 'components/common/daterangepicker';
 import { useTags } from 'hooks/useTags';
-import { TagFilter } from 'components/common/tagFilter';
 import { DateRange } from 'types/filters';
-import BlogListElement from 'components/blog/blogListElement';
-
-type ViewMode = 'grid' | 'list';
-
-function BlogGrid({ blogs, loading, error }: {
-  blogs: Blog[]
-  loading: boolean
-  error: string | null
-}) {
-  const max_visible_blogs = 6
-  if (error) return <div>error</div>
-  if (loading) return (
-    <>
-      {[...Array(max_visible_blogs)].map((_, i) => (
-        <LoadingCard key={i} className='blog-card' />
-      ))}
-    </>
-  )
-  return blogs.map(blog => <BlogCard key={blog.id} blog={blog} />)
-}
-
-export function BlogList({ blogs, loading, error }: {
-  blogs: Blog[]
-  loading: boolean
-  error: string | null
-}) {
-  const max_visible_blogs = 6
-  if (error) return <div>error</div>
-  if (loading) return (
-    <>
-      {[...Array(max_visible_blogs)].map((_, i) => (
-        <LoadingCard key={i} className='blog-card' />
-      ))}
-    </>
-  )
-  return blogs.map(blog => <BlogListElement key={blog.id} blog={blog} />)
-}
+import BlogSidebar from 'components/blog/sidebar';
+import SelectedTagsBar from 'components/blog/selectedTagBar';
+import BlogGrid from 'components/blog/blogGrid';
+import BlogList from 'components/blog/blogList';
 
 const Blogs = () => {
-  const [viewMode, setViewMode] = useState<ViewMode>('grid')
-  const [range, setRange] = useState<DateRange>({ from: '', to: '' })
-  const [selectedSlugs, setSelectedSlugs] = useState<string[]>([])
-  const { tags } = useTags()
-  const { query, setQuery, debouncedQuery } = useSearch()
-
+  const [viewMode, setViewMode] = useState<ViewMode>('grid');
+  const [range, setRange] = useState<DateRange>({ from: '', to: '' });
+  const [selectedSlugs, setSelectedSlugs] = useState<string[]>([]);
+  const { tags } = useTags();
+  const { query, setQuery, debouncedQuery } = useSearch();
   const { blogs, loading, error } = useBlogs({
     from: range.from,
     to: range.to,
     tagLabels: selectedSlugs,
     query: debouncedQuery
-  })
+  });
 
   const toggleTag = (slug: string) =>
     setSelectedSlugs(prev =>
       prev.includes(slug) ? prev.filter(s => s !== slug) : [...prev, slug]
-    )
+  );
 
   const removeTag = (slug: string) =>
-    setSelectedSlugs(prev => prev.filter(s => s !== slug))
+    setSelectedSlugs(prev => prev.filter(s => s !== slug));
 
   return (
     <div className="blog-container">
-      <NavBar centerComponent={<SearchBar value={query} onChange={setQuery} />}/>
+      <NavBar centerComponent={<SearchBar value={query} onChange={setQuery} />} />
       <div className='sidebar-and-content'>
-        <aside className="blog-sidebar">
-          <div className="sidebar-section">
-            <h3 className="sidebar-title">Vistas</h3>
-            <div className="view-buttons">
-              <button
-                onClick={() => setViewMode('grid')}
-                className={`view-button ${viewMode === 'grid' ? 'active' : ''}`}
-                aria-label="Vista en cuadrícula"
-                title="Vista en cuadrícula"
-              >
-                <GridIcon />
-              </button>
-              <button
-                onClick={() => setViewMode('list')}
-                className={`view-button ${viewMode === 'list' ? 'active' : ''}`}
-                aria-label="Vista en lista"
-                title="Vista en lista"
-              >
-                <ListIcon />
-              </button>
-            </div>
-          </div>
-          <div className="sidebar-section">
-          </div>
-          <div className="sidebar-section">
-            <DateRangePicker label="Fechas" value={range} onChange={setRange} />
-            <h3 className="sidebar-title">
-              <span>Etiquetas Destacadas</span>
-              <TagIcon />
-            </h3>
-            <TagFilter tags={tags} selectedSlugs={selectedSlugs} onToggle={toggleTag}/>
-            <button 
-              className="ver-todas-btn"
-              aria-label="Ver todas las etiquetas"
-            >
-              Ver Todas +
-            </button>
-          </div>
-        </aside>
+        <BlogSidebar
+          viewMode={viewMode}
+          onViewModeChange={setViewMode}
+          range={range}
+          onRangeChange={setRange}
+          selectedSlugs={selectedSlugs}
+          onToggleTag={toggleTag}
+          tags={tags}
+        />
         <main className="blog-main">
           <div className="blog-content">
             <div className="headerTitle">
@@ -123,40 +54,22 @@ const Blogs = () => {
                 <span><FaMountain /></span>
                 <h1 className="blog-header">/</h1>
               </div>
-              <div className="post-count" aria-live="polite">
-                ({blogs.length} posts)
-              </div> 
+              <div className="post-count" aria-live="polite"> ({blogs.length} posts) </div>
             </div>
-            {selectedSlugs.length > 0 && (
-              <div className="selected-tags" role="list" aria-label="Tags seleccionados">
-                {selectedSlugs.map((tag: string) => (
-                  <div key={tag} className="selected-tag" role="listitem">
-                    <span>{tag}</span>
-                    <button 
-                      onClick={() => removeTag(tag)} 
-                      className="remove-tag-btn"
-                      aria-label={`Remover filtro ${tag}`}
-                      title={`Remover ${tag}`}
-                    >
-                      <XIcon />
-                    </button>
-                  </div>
-                ))}
-              </div>
-            )}
+            <SelectedTagsBar selectedSlugs={selectedSlugs} onRemove={removeTag} />
             {viewMode === 'grid' ? (
-              <div className='posts-grid' role="feed" aria-label="Posts del blog">
-                <BlogGrid blogs={blogs} loading={loading} error={error}/>
+              <div className='posts-grid' role="feed">
+                <BlogGrid blogs={blogs} loading={loading} error={error} />
               </div>
             ) : (
               <div className="posts-list">
-                <BlogList blogs={blogs} loading={loading} error={error}/>
+                <BlogList blogs={blogs} loading={loading} error={error} />
               </div>
-              )}
+            )}
           </div>
         </main>
       </div>
-      </div>
+    </div>
   );
 };
 
