@@ -2,6 +2,7 @@ import './sidebar.css'
 import DateRangePicker from "components/common/daterangepicker";
 import { TagFilter } from "components/common/tagFilter";
 import { GridIcon, ListIcon, TagIcon } from "lucide-react";
+import { useNavigate } from 'react-router-dom';
 import { ViewMode } from "types/blog";
 import { DateRange, Tag } from "types/filters";
 
@@ -21,6 +22,8 @@ const BlogSidebar = ({
   selectedSlugs, onToggleTag,
   tags
 }: BlogSidebarProps) => {
+  const navigate = useNavigate()
+
   return (
     <aside className="blog-sidebar">
       {viewMode && onViewModeChange && (
@@ -58,6 +61,7 @@ const BlogSidebar = ({
         <button 
           className="ver-todas-btn"
           aria-label="Ver todas las etiquetas"
+          onClick={() => {navigate('/tags')}}
         >
           Ver Todas +
         </button>

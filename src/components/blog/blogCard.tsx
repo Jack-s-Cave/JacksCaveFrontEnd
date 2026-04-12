@@ -1,5 +1,5 @@
 import './blogCard.css';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { Blog } from 'types/blog';
 
 type BlogCardProps = {
@@ -7,13 +7,19 @@ type BlogCardProps = {
 };
 
 const BlogCard = ({ blog }: BlogCardProps) => {
-  console.log(blog.image)
+  const navigate = useNavigate()
+
   return (
     <Link to={`/blogpost/`}> 
       <div className='blog-card'>
         <div className='blogC-header'>
           <p>{blog.date}</p>
-          <p>{blog.author}</p>
+          <p onClick={(e) => {
+            e.preventDefault();
+            navigate(`/author/${blog.author}`);
+          }}>
+            {blog.author}
+          </p>
         </div>
         <img
           className='blog-image'
