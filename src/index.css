@@ -45,7 +45,6 @@ code {
   --mobile-width: 768px;
 }
 
-/* --- Tema Oscuro --- */
 html.dark {
   --primary-color1: #19002a;
   --primary-color2: #2D173D;

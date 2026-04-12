@@ -18,10 +18,15 @@ function buildQuery(filters: BlogFilters): string {
   const params = new URLSearchParams()
   params.set('populate', '*')
 
-  const { from, to, tagLabels, query } = filters
+  const { from, to, tagLabels, query, authorName } = filters
   const hasDates = from || to
   const hasTags  = tagLabels && tagLabels.length > 0
   const hasSearch = query && query.length > 0
+  const hasAuthor = !!authorName
+
+  if (hasAuthor) {
+    params.set('filters[author_profile][nombre][$eq]', authorName!)
+  }
 
   if (hasSearch) {
     params.set('filters[$or][0][Titulo][$containsi]', query)

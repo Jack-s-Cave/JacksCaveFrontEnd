@@ -14,4 +14,5 @@ export interface BlogFilters {
   to?: string
   tagLabels?: string[]
   query?: string
+  authorName?: string
 }

@@ -1,14 +1,30 @@
-import { FaGithub, FaLink, FaTwitter } from 'react-icons/fa';
+import { FaGithub, FaLink, FaTwitter, FaInstagram } from 'react-icons/fa';
 import './author.css'
 import NavBar from "components/navbar/navbar";
 import { useState } from 'react';
 import { useBlogs } from 'hooks/useBlogs';
 import BlogList from 'components/blog/blogList';
+import { useLocation, useParams } from 'react-router-dom';
+import { useAuthor } from 'hooks/useAuthor';
 
 const AuthorPage = () => {
   const tabs = ['TODOS', 'SERIES']
   const [activeTab, setActiveTab] = useState('TODOS');
-  const { blogs, loading, error } = useBlogs()
+  const { name } = useParams<{ name: string }>();
+  const { state } = useLocation();
+  const decodedName = decodeURIComponent(name ?? '');
+
+  const { author, loading: authorLoading, error: authorError } = useAuthor(
+    state?.author ? '' : decodedName
+  );
+  const resolvedAuthor = state?.author ?? author;
+
+  const { blogs, loading: blogsLoading, error: blogsError } = useBlogs({
+    authorName: resolvedAuthor?.name ?? decodedName
+  });
+
+  if (authorLoading) return <p>Cargando autor...</p>;
+  if (authorError || !resolvedAuthor) return <p>Autor no encontrado</p>;
 
   return (
     <main>
@@ -17,16 +33,39 @@ const AuthorPage = () => {
         <section className="author-sidebar">
           <img 
             className="author-pfp" 
-            src="https://www.patasencasa.com/sites/default/files/2024-07/meme-del-gato-riendo_0.jpg" 
-            alt="foto de perfil del autor" 
+            src={resolvedAuthor.avatar} 
+            alt={`foto de perfil de ${resolvedAuthor.name}`} 
           />
-          <h2 className="author-name">Daniel Rayo</h2>
-          <p>Programador en el día 🌞 Dibujante en las noches 🌚</p>
-          <ul className='author-socials'>
-            <li className='author-social'><FaGithub/> <span>DanielRasho</span></li>
-            <li className='author-social'><FaTwitter/> Smaugthur</li>
-            <li className='author-social'><FaLink/> danielrasho.github.io/DanielRasho/</li>
-          </ul>
+          <h2 className="author-name">{resolvedAuthor.name}</h2>
+          <p>{resolvedAuthor.bio}</p>
+          {resolvedAuthor.socialMedia && (
+            <ul className='author-socials'>
+              {resolvedAuthor.socialMedia.github && (
+                <li className='author-social'>
+                  <FaGithub />
+                  <span>{resolvedAuthor.socialMedia.github}</span>
+                </li>
+              )}
+              {resolvedAuthor.socialMedia.twitter && (
+                <li className='author-social'>
+                  <FaTwitter />
+                  <span>{resolvedAuthor.socialMedia.twitter}</span>
+                </li>
+              )}
+              {resolvedAuthor.socialMedia.website && (
+                <li className='author-social'>
+                  <FaLink />
+                  <span>{resolvedAuthor.socialMedia.website}</span>
+                </li>
+              )}
+              {resolvedAuthor.socialMedia.instagram && (
+                <li className='author-social'>
+                  <FaInstagram />
+                  <span>{resolvedAuthor.socialMedia.instagram}</span>
+                </li>
+              )}
+            </ul>
+          )}
         </section>
         <section className="authors-blogs">
           <div className="tabs-nav">
@@ -43,7 +82,7 @@ const AuthorPage = () => {
           <div className="blogs">
             {activeTab === 'TODOS' ? (
               <div className="posts-list">
-                <BlogList blogs={blogs} loading={loading} error={error}/>
+                <BlogList blogs={blogs} loading={blogsLoading} error={blogsError} />
               </div>
             ) : (
               <div className="">
@@ -53,7 +92,7 @@ const AuthorPage = () => {
         </section>
       </section>
     </main>
-  )
-}
+  );
+};
 
 export default AuthorPage;

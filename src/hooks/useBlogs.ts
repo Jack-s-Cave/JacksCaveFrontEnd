@@ -13,7 +13,8 @@ export function useBlogs(filters?: BlogFilters) {
     filters.tagLabels?.length ||
     filters?.from ||
     filters?.to ||
-    filters?.query
+    filters?.query ||
+    filters?.authorName
   )
 
   useEffect(() => {
@@ -34,13 +35,14 @@ export function useBlogs(filters?: BlogFilters) {
         from: filters.from || undefined,
         to:   filters.to   || undefined,
         tagLabels: filters.tagLabels?.length ? filters.tagLabels : undefined,
-        query: filters.query || undefined
+        query: filters.query || undefined,
+        authorName: filters.authorName || undefined
       })
       .then(setBlogs)
       .catch(e => setError(e.message))
       .finally(() => setLoading(false))
 
-  }, [filters?.from, filters?.to, filters?.tagLabels?.join(','), filters?.query])
+  }, [filters?.from, filters?.to, filters?.tagLabels?.join(','), filters?.query, filters?.authorName])
 
   return { blogs, recentBlogs, loading, error }
 }

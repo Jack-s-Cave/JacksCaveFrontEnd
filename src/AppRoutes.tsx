@@ -16,7 +16,7 @@ const AppRoutes = () => {
       <Route path="/podcast" element={<Podcast/>}/>
       <Route path="/aboutus" element={<AboutUs/>}/>
       <Route path="/blogpost" element={<BlogPost/>}/>
-      <Route path="/author" element={<AuthorPage/>}/>
+      <Route path="/author/:name" element={<AuthorPage/>}/>
       <Route path="/tags" element={<TagsPage/>}/>
     </Routes>
   );
