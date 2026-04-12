@@ -11,4 +11,9 @@ export const mockTags: Tag[] = [
     label: 'Backend',
     featured: false
   },
+  {
+    id: 2,
+    label: 'Frontend',
+    featured: false
+  },
 ];

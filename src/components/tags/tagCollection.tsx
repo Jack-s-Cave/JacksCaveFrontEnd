@@ -15,7 +15,16 @@ const TagCollection = ({name, tags}: TagCollectionProps) => {
         <FaFolder />
         <h3 className='collection-name'>{name}</h3>
       </div>
-      {tags.map(tag => <span>{tag.label}</span>)}
+      <div className='collection'>
+        <div className='tag-list'>
+          {tags.map(tag => (
+            <div key={tag.label} className="tag-item">
+              <input type="checkbox" id={tag.label} />
+              <span>{tag.label}</span>
+            </div>
+          ))}
+        </div>
+      </div>
     </div>
   )
 }
