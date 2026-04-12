@@ -1,0 +1,50 @@
+.tags-content {
+  width: 100%;
+}
+
+header {
+  display: flex;
+  flex-direction: column;
+  border-bottom: 1px solid var(--primary-color3);
+  padding: 0 30px;
+}
+
+h2 {
+  margin: 20px 0;
+}
+
+.header-title {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.all-tags {
+  padding: 20px 30px;
+}
+
+.search-tags {
+  display: flex;
+  gap: 80px;
+}
+
+.confirm-btn {
+  font-size: 1rem;
+  color: var(--font-color);
+  background: none;
+  border: var(--font-color) 1px solid;
+  cursor: pointer;
+  padding: 0 20px;
+  border-radius: 4px;
+  transition: all 0.2s;
+}
+
+.confirm-btn:hover {
+  background-color: var(--font-color);
+  color: var(--primary-color1);
+}
+
+.tag-grid {
+  margin: 20px 0;
+}
+

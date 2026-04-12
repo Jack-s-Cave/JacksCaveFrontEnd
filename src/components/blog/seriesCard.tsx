@@ -9,7 +9,6 @@ type SeriesCardProps = {
   tags: string[];
 };
 
-
 const SeriesCard: React.FC<SeriesCardProps> = ({ date, author, title, imageSrc, tags }) => {
     return (
         <div className='series-card'>
