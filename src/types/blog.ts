@@ -5,7 +5,7 @@ export interface Blog {
   title: string;
   date: string;
   author: string;
-  image: string;
+  image?: string;
   tags: Tag[];
 }
 

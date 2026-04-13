@@ -6,6 +6,21 @@ type BlogCardProps = {
   blog: Blog
 };
 
+export const BlogImage = ({ src, alt, className }: { src?: string, alt: string, className: string }) => {
+  const isDark = document.documentElement.classList.contains('dark');
+
+  if (src) return <img className={className} src={src} alt={alt} />;
+
+  return (
+    <div className={`${className} blog-image--placeholder`}>
+      <img 
+        src={isDark ? '/logos/jacks-icon-dark.svg' : '/logos/jacks-icon-light.svg'} 
+        alt="Jack's Cave"
+      />
+    </div>
+  );
+}
+
 const BlogCard = ({ blog }: BlogCardProps) => {
   const navigate = useNavigate()
 
@@ -21,11 +36,7 @@ const BlogCard = ({ blog }: BlogCardProps) => {
             {blog.author}
           </p>
         </div>
-        <img
-          className='blog-image'
-          src={blog.image}
-          alt={blog.title}
-        />
+        <BlogImage className="blog-image" src={blog.image} alt={blog.title} />
         <h3 className='blogC-title'>{blog.title}</h3>
         <div className='blogC-tags'>
           {blog.tags.slice(0, 3).map((tag, index) => (

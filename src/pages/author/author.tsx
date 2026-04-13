@@ -7,6 +7,16 @@ import BlogList from 'components/blog/blogList';
 import { useLocation, useParams } from 'react-router-dom';
 import { useAuthor } from 'hooks/useAuthor';
 
+const AuthorAvatar = ({ name, avatar }: { name: string, avatar?: string }) => {
+  if (avatar) return <img className="author-pfp" src={avatar} alt={name} />;
+  const initials = name.split(' ').map(n => n[0]).join('').slice(0, 2).toUpperCase();
+  return (
+    <div className="author-pfp author-pfp--placeholder">
+      {initials}
+    </div>
+  );
+}
+
 const AuthorPage = () => {
   const tabs = ['TODOS', 'SERIES']
   const [activeTab, setActiveTab] = useState('TODOS');
@@ -26,16 +36,21 @@ const AuthorPage = () => {
   if (authorLoading) return <p>Cargando autor...</p>;
   if (authorError || !resolvedAuthor) return <p>Autor no encontrado</p>;
 
+  const getSocialHandle = (url: string): string => {
+    try {
+      const path = new URL(url).pathname;
+      return path.replace(/\//g, '');
+    } catch {
+      return url;
+    }
+  }
+
   return (
     <main>
       <NavBar />
       <section className="author-content">
         <section className="author-sidebar">
-          <img 
-            className="author-pfp" 
-            src={resolvedAuthor.avatar} 
-            alt={`foto de perfil de ${resolvedAuthor.name}`} 
-          />
+          <AuthorAvatar name={resolvedAuthor.name} avatar={resolvedAuthor.avatar} />
           <h2 className="author-name">{resolvedAuthor.name}</h2>
           <p>{resolvedAuthor.bio}</p>
           {resolvedAuthor.socialMedia && (
@@ -61,7 +76,7 @@ const AuthorPage = () => {
               {resolvedAuthor.socialMedia.instagram && (
                 <li className='author-social'>
                   <FaInstagram />
-                  <span>{resolvedAuthor.socialMedia.instagram}</span>
+                  <span>{getSocialHandle(resolvedAuthor.socialMedia.instagram)}</span>
                 </li>
               )}
             </ul>

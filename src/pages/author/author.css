@@ -58,3 +58,16 @@ li {
 .posts-list {
   padding: 30px;
 }
+
+.author-pfp--placeholder {
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--primary-color4);
+  color: var(--primary-color1);
+  font-family: var(--font-title);
+  font-size: 1.5rem;
+}

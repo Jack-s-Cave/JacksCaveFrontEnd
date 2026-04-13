@@ -3,17 +3,20 @@ import { api } from "./api"
 import { mapTag } from "./tagsService"
 import { BlogFilters } from "types/filters"
 
-const mapBlog = (item: any): Blog => ({
-  id: item.id,
-  title: item.Titulo,
-  date: item.fecha_de_publicacion,
-  author: item.author_profile?.nombre ?? 'Anónimo',
-  image: item.imagenes?.[0]?.url 
-    ? `${process.env.REACT_APP_STRAPI_URL}${item.imagenes[0].url}` 
-    : 'https://www.patasencasa.com/sites/default/files/2024-07/meme-del-gato-riendo_0.jpg',
-  tags: item.tags ? [mapTag(item.tags, 0)] : []
-})
+const mapBlog = (item: any): Blog => {
+  const imagenUrl = item.imagenes?.[0]?.url;
 
+  return {
+    id: item.id,
+    title: item.Titulo,
+    date: item.fecha_de_publicacion,
+    author: item.author_profile?.nombre ?? 'Anónimo',
+    image: imagenUrl
+      ? `${process.env.REACT_APP_STRAPI_URL}${imagenUrl}`
+      : undefined,
+    tags: item.tags ? [mapTag(item.tags, 0)] : []
+  }
+}
 function buildQuery(filters: BlogFilters): string {
   const params = new URLSearchParams()
   params.set('populate', '*')
