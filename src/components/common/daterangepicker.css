@@ -1,4 +1,10 @@
-h3 {
+.date-picker {
+  margin-top: 1.5rem;
+}
+
+.date-range-title {
+  font-family: var(--font-subtitle);
+  font-size: 1.2rem;
   display: flex;
   gap: 10px;
 }

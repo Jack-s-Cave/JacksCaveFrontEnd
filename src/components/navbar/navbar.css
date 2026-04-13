@@ -26,6 +26,17 @@ nav.nav-bar {
     padding: 0;
 }
 
+.light-bulb-logo {
+  height: 3vh;
+  cursor: pointer;
+}
+
+.light-bulb-logo-dark {
+  height: 3vh;
+  cursor: pointer;
+  filter: invert(1)
+}
+
 .nav-bar-item {
     color: var(--font-color);
     padding: 0.3rem 1rem;

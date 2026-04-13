@@ -53,10 +53,7 @@ const BlogSidebar = ({
       </div>
       <div className="sidebar-section">
         <DateRangePicker label="Fechas" value={range} onChange={onRangeChange} />
-        <h3 className="sidebar-title">
-          <span>Etiquetas Destacadas</span>
-          <TagIcon />
-        </h3>
+        <h3 className="sidebar-title">Etiquetas Destacadas<TagIcon /></h3>
         <TagFilter tags={tags} selectedSlugs={selectedSlugs} onToggle={onToggleTag}/>
         <button 
           className="ver-todas-btn"

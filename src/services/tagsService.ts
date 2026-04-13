@@ -1,5 +1,5 @@
-import { mockTags } from "mocks/tagMock"
 import { Tag } from "types/filters"
+import { api } from "./api";
 
 export const mapTag = (raw: string, index: number): Tag => ({
   id:       index,
@@ -9,6 +9,7 @@ export const mapTag = (raw: string, index: number): Tag => ({
 
 export const tagsService = {
   getAllTags: async (): Promise<Tag[]> => {
-    return mockTags
+    const data = await api.get('article-mds/unique-tags');
+    return data.data.map((label: string, index: number) => mapTag(label, index));
   }
 }
