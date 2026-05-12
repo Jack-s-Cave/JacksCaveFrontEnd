@@ -9,6 +9,7 @@ const mapBlog = (item: any): Blog => {
   return {
     id: item.id,
     title: item.Titulo,
+    content: item.Article_core,
     date: item.fecha_de_publicacion,
     author: item.author_profile?.nombre ?? 'Anónimo',
     image: imagenUrl
@@ -87,17 +88,23 @@ function buildQuery(filters: BlogFilters): string {
 }
 
 export const blogsService = {
-  getRecentBlogs: async (): Promise<Blog[]> => {
-    const data = await api.get('article-mds?sort[0]=fecha_de_publicacion:desc&pagination[page]=1&pagination[pageSize]=6&populate=*')
-    return data.data.map(mapBlog)
-  },
   getAll: async (): Promise<Blog[]> => {
     const data = await api.get('article-mds?populate=*')
     return data.data.map(mapBlog)
   },
+  getRecentBlogs: async (): Promise<Blog[]> => {
+    const data = await api.get('article-mds?sort[0]=fecha_de_publicacion:desc&pagination[page]=1&pagination[pageSize]=6&populate=*')
+    return data.data.map(mapBlog)
+  },
   getFiltered: async (filters: BlogFilters): Promise<Blog[]> => {
-    const qs   = buildQuery(filters)
+    const qs = buildQuery(filters)
     const data = await api.get(`article-mds?${qs}`)
     return data.data.map(mapBlog)
+  },
+  getBlogByID: async (id: number): Promise<Blog> => {
+    const blogs = await blogsService.getAll()
+    const blog = blogs.find(b => b.id === id)
+    if (!blog) throw new Error(`Blog con id ${id} no encontrado`)
+    return blog
   }
 }

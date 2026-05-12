@@ -1,4 +1,5 @@
-import React, { useState, useEffect } from "react";
+import { CodeBlock } from "components/blog/codeBlock";
+import { useState, useEffect } from "react";
 import ReactMarkdown from "react-markdown";
 import remarkGfm from "remark-gfm";
 import "./blog.css";
@@ -13,80 +14,39 @@ interface TocItem {
   level: number;
 }
 
-const CodeBlock = ({ children, className }: { children: React.ReactNode; className?: string }) => {
-  const [copied, setCopied] = useState(false);
-  const language = className?.replace("language-", "") || "code";
-  const codeString = String(children).replace(/\n$/, "");
-
-  const handleCopy = async () => {
-    try {
-      await navigator.clipboard.writeText(codeString);
-      setCopied(true);
-      setTimeout(() => setCopied(false), 2000);
-    } catch (err) {
-      console.error("Error al copiar: ", err);
-    }
-  };
-
-  return (
-    <div className="code-block-wrapper">
-      <div className="code-header">
-        <span className="code-language">{language}</span>
-        <button className="copy-btn" onClick={handleCopy}>
-          {copied ? "✓ Copiado" : "Copiar"}
-        </button>
-      </div>
-      <pre><code className={className}>{children}</code></pre>
-    </div>
-  );
-};
-
-const MarkdownRenderer: React.FC<MarkdownRendererProps> = ({ markdownContent }) => {
-  const [toc, setToc] = useState<TocItem[]>([]);
+const MarkdownRenderer = ({ markdownContent }: MarkdownRendererProps) => {
+  const [toc, setToc] = useState<TocItem[]>([])
 
   useEffect(() => {
-    // Extraer encabezados del markdown usando Regex
-    const headingRegex = /^(#{1,3})\s+(.+)$/gm;
-    const items: TocItem[] = [];
-    let match;
-
+    const headingRegex = /^(#{1,3})\s+(.+)$/gm
+    const items: TocItem[] = []
+    let match
     while ((match = headingRegex.exec(markdownContent)) !== null) {
-      const level = match[1].length;
-      const text = match[2];
-      // Crear un ID amigable para URL: "Hola Mundo" -> "hola-mundo"
-      const id = text.toLowerCase().replace(/[^\w\s-]/g, "").replace(/\s+/g, "-");
-      items.push({ id, text, level });
+      const level = match[1].length
+      const text = match[2]
+      const id = text.toLowerCase().replace(/[^\w\s-]/g, '').replace(/\s+/g, '-')
+      items.push({ id, text, level })
     }
-    setToc(items);
-  }, [markdownContent]);
+    setToc(items)
+  }, [markdownContent])
+
+  const headingId = (children: React.ReactNode) =>
+    String(children).toLowerCase().replace(/\s+/g, '-').replace(/[^\w-]/g, '')
 
   return (
     <div className="blog-container">
-      {/* Contenido principal */}
       <div className="markdown-renderer blog-content">
         <ReactMarkdown
           remarkPlugins={[remarkGfm]}
           components={{
-            code({ node, inline, className, children, ...props }: any) {
-              return !inline ? (
-                <CodeBlock className={className}>{children}</CodeBlock>
-              ) : (
-                <code className="inline-code" {...props}>{children}</code>
-              );
+            code({ inline, className, children }: any) {
+              return !inline
+                ? <CodeBlock className={className}>{children}</CodeBlock>
+                : <code className="inline-code">{children}</code>
             },
-            // Generar IDs para los headers para que el TOC funcione
-            h1: ({ children }) => {
-              const id = String(children).toLowerCase().replace(/\s+/g, "-").replace(/[^\w-]/g, "");
-              return <h1 id={id}>{children}</h1>;
-            },
-            h2: ({ children }) => {
-              const id = String(children).toLowerCase().replace(/\s+/g, "-").replace(/[^\w-]/g, "");
-              return <h2 id={id}>{children}</h2>;
-            },
-            h3: ({ children }) => {
-              const id = String(children).toLowerCase().replace(/\s+/g, "-").replace(/[^\w-]/g, "");
-              return <h3 id={id}>{children}</h3>;
-            },
+            h1: ({ children }) => <h1 id={headingId(children)}>{children}</h1>,
+            h2: ({ children }) => <h2 id={headingId(children)}>{children}</h2>,
+            h3: ({ children }) => <h3 id={headingId(children)}>{children}</h3>,
           }}
         >
           {markdownContent}
@@ -106,7 +66,7 @@ const MarkdownRenderer: React.FC<MarkdownRendererProps> = ({ markdownContent }) 
         </aside>
       )}
     </div>
-  );
-};
+  )
+}
 
-export default MarkdownRenderer;
+export default MarkdownRenderer

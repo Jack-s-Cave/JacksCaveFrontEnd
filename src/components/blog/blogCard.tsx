@@ -25,7 +25,7 @@ const BlogCard = ({ blog }: BlogCardProps) => {
   const navigate = useNavigate()
 
   return (
-    <Link to={`/blogpost/`}> 
+    <Link to={`/blogpost/${blog.id}`}> 
       <div className='blog-card'>
         <div className='blogC-header'>
           <p>{blog.date}</p>

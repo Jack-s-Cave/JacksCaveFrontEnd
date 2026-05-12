@@ -46,3 +46,19 @@ export function useBlogs(filters?: BlogFilters) {
 
   return { blogs, recentBlogs, loading, error }
 }
+
+export function useBlogById(id: number) {
+  const [blog, setBlog] = useState<Blog | null>(null)
+  const [loading, setLoading] = useState(true)
+  const [error, setError] = useState<string | null>(null)
+
+  useEffect(() => {
+    if (!id) return
+    blogsService.getBlogByID(id)
+      .then(setBlog)
+      .catch(e => setError(e.message))
+      .finally(() => setLoading(false))
+  }, [id])
+
+  return { blog, loading, error }
+}
