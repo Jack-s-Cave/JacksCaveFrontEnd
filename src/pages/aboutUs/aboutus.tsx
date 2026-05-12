@@ -1,13 +1,13 @@
 import NavBar from '../../components/navbar/navbar';
 import { useState } from 'react';
 import './aboutus.css';
-import { useMembers } from 'hooks/useMembers';
+import { useMembersByYear } from 'hooks/useMembers';
+import { MemberCard } from 'components/members/memberCard';
 
 const AboutUs = () => {
-  const { currentMembers, previousMembers, loading, error } = useMembers()
-
-  const years = [2024, 2023, 2022, 2021, 2020, 2019, 2018, 2017, 2016, 2015, 2014, 2013, 2012, 2011];
-  const [selectedYear, setSelectedYear] = useState(2024)
+  const years = [2025, 2024, 2023, 2022, 2021, 2020, 2019, 2018, 2017, 2016, 2015, 2014, 2013, 2012];
+  const [selectedYear, setSelectedYear] = useState(2025)
+  const { members, loading, error } = useMembersByYear(String(selectedYear))
 
   const associationInfo = {
     name: "AECCTI",
@@ -67,19 +67,10 @@ const AboutUs = () => {
           </h2>
 
           <div className="members-grid">
-            {(selectedYear === 2024 ? currentMembers : previousMembers).map((member) => (
-              <div key={member.id} className="member-card">
-                <div className="member-image">
-                  {/* Placeholder para imagen del miembro */}
-                  <div className="image-placeholder">
-                    <span>Foto</span>
-                  </div>
-                </div>
-                <div className="member-info">
-                  <h3 className="member-name">{member.name}</h3>
-                  <p className="member-description">{member.description}</p>
-                </div>
-              </div>
+            {loading && <p>Cargando...</p>}
+            {error && <p>Error: {error}</p>}
+            {members?.map((member) => (
+              <MemberCard key={member.id} member={member} />
             ))}
           </div>
         </section>

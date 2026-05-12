@@ -2,8 +2,8 @@ import { Tag } from "types/filters"
 import { api } from "./api";
 
 export const mapTag = (raw: string, index: number): Tag => ({
-  id:       index,
-  label:     raw,
+  id: index,
+  label: raw,
   featured: false
 })
 

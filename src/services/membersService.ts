@@ -1,11 +1,18 @@
-import { currentMembersMock, previousMembersMock } from "mocks/membersMock";
 import { Member } from "types/members";
+import { api } from "./api";
+
+const mapMember = (item: any): Member => {
+  return {
+    id: item.id,
+    name: item.nombre,
+    image: item.foto?.url,
+    description: item.curriculum
+  }
+}
 
 export const membersService = {
-  getCurrentMembers: async (): Promise<Member[]> => {
-    return currentMembersMock
-  },
-  getPreviousMembers: async (): Promise<Member[]> => {
-    return previousMembersMock
+  getMembersByYear: async(year: string): Promise<Member[]> => {
+    const data = await api.get(`asociaciones?filters[year][$eq]=${year}&populate[Miembro][populate][foto][fields][0]=url`);
+    return data.data[0].Miembro.map((item: any) => mapMember(item))
   }
 }

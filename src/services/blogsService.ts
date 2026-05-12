@@ -17,6 +17,7 @@ const mapBlog = (item: any): Blog => {
     tags: item.tags ? [mapTag(item.tags, 0)] : []
   }
 }
+
 function buildQuery(filters: BlogFilters): string {
   const params = new URLSearchParams()
   params.set('populate', '*')

@@ -1,27 +1,20 @@
-import { useEffect, useState } from "react"
-import { membersService } from "services/membersService"
-import { Member } from "types/members"
+import { useEffect, useState } from "react";
+import { membersService } from "services/membersService";
+import { Member } from "types/members";
 
-export function useMembers() {
-  const [currentMembers, setCurrentMembers] = useState<Member[]>([])
-  const [previousMembers, setPreviousMembers] = useState<Member[]>([])
+export function useMembersByYear(year: string) {
+  const [members, setMembers] = useState<Member[]>([])
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState<string | null>(null)
 
   useEffect(() => {
-    setTimeout(() => {
-      Promise.all([
-        membersService.getCurrentMembers(),
-        membersService.getPreviousMembers()
-      ])
-        .then(([current, previous]) => {
-          setCurrentMembers(current)
-          setPreviousMembers(previous)
-        })
-        .catch(e => setError(e.message))
-        .finally(() => setLoading(false))
-    }, 1500)
-  }, [])
-
-  return { currentMembers, previousMembers, loading, error }
+    setLoading(true)
+    setMembers([])
+    membersService.getMembersByYear(year)
+      .then(setMembers)
+      .catch(e => setError(e.message))
+      .finally(() => setLoading(false))
+  }, [year])
+  
+  return { members, loading, error }
 }
