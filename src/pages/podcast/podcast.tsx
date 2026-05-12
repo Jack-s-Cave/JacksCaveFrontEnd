@@ -3,15 +3,7 @@ import { useState } from 'react';
 import { FaYoutube, FaInstagram, FaTiktok } from 'react-icons/fa';
 import { FiFolder, FiSearch } from 'react-icons/fi';
 import './podcast.css';
-import { usePodcast } from 'hooks/usePodcast';
-import PodcastCard from 'components/podcast/podcastCard';
-
-function PodcastEpisodesList() {
-  const { podcastEpisodes, loading, error } = usePodcast()
-  if (loading) return <div></div>
-  if (error) return <div>error</div>
-  return podcastEpisodes.map(episode => <PodcastCard key={episode.id} podcastEpisode={episode} />)
-}
+import PodcastEpisodesList from 'components/podcast/podcastEpisodeList';
 
 const Podcasts = () => {
   const [activeTab, setActiveTab] = useState('TODAS');
@@ -176,9 +168,7 @@ const Podcasts = () => {
                     ))}
                   </div>
                 ) : (
-                    <div className="episodes-grid">
-                      <PodcastEpisodesList />
-                    </div>
+                    <PodcastEpisodesList />
                   )}
               </div>
             </div>

@@ -1,20 +1,18 @@
 import { useEffect, useState } from "react"
-import { podcastService } from "services/pocastSerive"
-import { PodcastEpisode } from "types/podcastEpisode"
+import { podcastService } from "services/podcastService"
+import { PodcastEpisode } from "types/podcast"
 
-export function usePodcast() {
-  const [podcastEpisodes, setPodcastEpisodes] = useState<PodcastEpisode[]>([])
+export function useAllPodcastEpisodes() {
+  const [episodes, setEpisodes] = useState<PodcastEpisode[]>([])
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState<string | null>(null)
 
   useEffect(() => {
-    setTimeout(() => {
-      podcastService.getAllEpisodes()
-        .then(setPodcastEpisodes)
-        .catch(e => setError(e.message))
-        .finally(() => setLoading(false))
-    }, 1500)
+    podcastService.getAllEpisodes()
+      .then(setEpisodes)
+      .catch(e => setError(e.message))
+      .finally(() => setLoading(false))
   }, [])
 
-  return { podcastEpisodes, loading, error }
+  return { episodes, loading, error }
 }

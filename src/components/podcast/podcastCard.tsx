@@ -1,5 +1,5 @@
 import { FaSpotify, FaYoutube } from "react-icons/fa";
-import { PodcastEpisode } from "types/podcastEpisode";
+import { PodcastEpisode } from "types/podcast";
 
 type PodcastCardProps = {
   podcastEpisode: PodcastEpisode
