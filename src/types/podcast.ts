@@ -4,4 +4,6 @@ export interface PodcastEpisode {
   description: string
   embedId: string
   category: string
+  date: string
+  thumbnail: string
 }

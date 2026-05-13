@@ -7,12 +7,15 @@ const getYoutubeEmbedId = (url: string): string => {
 }
 
 const mapPodcastEpisode = (item: any): PodcastEpisode => {
+  const embedId = getYoutubeEmbedId(item.link)
   return {
     id: item.id,
     title: item.title,
     description: item.description ?? '',
-    embedId: getYoutubeEmbedId(item.link),
-    category: item.category ?? ''
+    embedId,
+    category: item.category ?? '',
+    date: item.date_publication,
+    thumbnail: `https://img.youtube.com/vi/${embedId}/hqdefault.jpg`
   }
 }
 

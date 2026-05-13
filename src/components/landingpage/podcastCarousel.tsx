@@ -1,9 +1,9 @@
 import { useEffect, useRef, useState } from 'react';
+import { PodcastEpisode } from 'types/podcast';
 import './podcastCarousel.css';
-import { Video } from 'types/video';
 
 type PodcastCarouselProps = {
-  videos: Video[];
+  videos: PodcastEpisode[];
 };
 
 const PodcastCarousel = ({ videos }: PodcastCarouselProps) => {

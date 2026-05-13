@@ -6,9 +6,9 @@ import LoadingCard from '../../components/landingpage/loadingCard';
 import NavBar from '../../components/navbar/navbar';
 import Cave from '../../components/cave/cave';
 import { useNews } from 'hooks/useNews';
-import { mockVideos } from 'mocks/videoMock';
 import { useBlogs } from 'hooks/useBlogs';
 import BlogCard from 'components/blog/blogCard';
+import { useAllPodcastEpisodes } from 'hooks/usePodcast';
 
 function RecentBlogs() {
   const max_visible_blogs = 6
@@ -31,7 +31,7 @@ function NewsList() {
 
 const LandingPage = () => {
   const navigate = useNavigate();
-
+  const { episodes, loading, error } = useAllPodcastEpisodes()
   return (
     <main className='landing-content'>
       <NavBar />
@@ -60,7 +60,9 @@ const LandingPage = () => {
             <h1 className='landing-subT'>PODCAST ENTERATE!</h1>
             <button className='see-more' onClick={() => navigate('/podcast')}>Ver Más <strong>+</strong></button>
           </div>
-          <PodcastCarousel videos={mockVideos} />
+          {!loading && episodes.length > 0 && (
+            <PodcastCarousel videos={episodes} />
+          )}
         </div>
         <footer> Made with<strong> REACT </strong>by actual live dragons</footer>
       </div>
