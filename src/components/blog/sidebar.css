@@ -8,6 +8,7 @@
  */
 .blog-sidebar {
   width: 256px;
+  min-width: 256px;
   background-color: var(--primary-color2);
   border-right: 1px solid var(--primary-color3);
   padding: 1.5rem;

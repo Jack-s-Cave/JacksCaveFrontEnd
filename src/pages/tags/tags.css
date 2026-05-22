@@ -1,8 +1,13 @@
+.sidebar-and-content {
+  width: 100%;
+}
+
 .tags-content {
   width: 100%;
 }
 
 header {
+  width: 100%;
   display: flex;
   flex-direction: column;
   border-bottom: 1px solid var(--primary-color3);

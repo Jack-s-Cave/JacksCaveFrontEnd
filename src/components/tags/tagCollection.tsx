@@ -1,6 +1,7 @@
 import './tagCollection.css'
 import { FaFolder } from "react-icons/fa"
 import { Tag } from "types/filters"
+import { IoFolderOutline } from 'react-icons/io5'
 
 interface TagCollectionProps {
   name: string
@@ -25,24 +26,26 @@ const TagCollection = ({ name, tags, selectedSlugs, onToggle }: TagCollectionPro
     <div className="tag-collection">
       <div className='tag-collection-header'>
         <input 
+          className='tag-label-checkbox'
           type="checkbox"
           checked={allSelected}
           onChange={handleToggleAll}
         /> 
-        <FaFolder />
-        <h3 className='collection-name'>{name}</h3>
+        <IoFolderOutline className='folder-icon'/>
+        <label className='tag-label'>{name}</label>
       </div>
       <div className='collection'>
         <div className='tag-list'>
           {tags.map(tag => (
             <div key={tag.label} className="tag-item">
               <input 
+                className='tag-label-checkbox'
                 type="checkbox"
                 id={tag.label}
                 checked={selectedSlugs.includes(tag.label)}
                 onChange={() => onToggle(tag.label)}
               />
-              <span>{tag.label}</span>
+              <label className='tag-label'>{tag.label}</label>
             </div>
           ))}
         </div>
