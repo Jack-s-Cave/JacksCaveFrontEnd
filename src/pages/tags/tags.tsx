@@ -1,7 +1,7 @@
 import './tags.css'
 import { useState } from 'react';
 import NavBar from 'components/navbar/navbar';
-import { useTags } from 'hooks/useTags';
+import { useSelectedTags, useTags } from 'hooks/useTags';
 import { DateRange } from 'types/filters';
 import BlogSidebar from 'components/blog/sidebar';
 import SelectedTagsBar from 'components/blog/selectedTagBar';
@@ -9,20 +9,14 @@ import { FaMountain } from 'react-icons/fa';
 import { useSearch } from 'hooks/useSearch';
 import SearchBar from 'components/common/searchbar';
 import TagCollection from 'components/tags/tagCollection';
+import { useNavigate } from 'react-router-dom';
 
 const TagsPage = () => {
   const [range, setRange] = useState<DateRange>({ from: '', to: '' });
-  const [selectedSlugs, setSelectedSlugs] = useState<string[]>([]);
-  const { query, setQuery, debouncedQuery } = useSearch();
   const { tags } = useTags();
-
-  const toggleTag = (slug: string) =>
-    setSelectedSlugs(prev =>
-      prev.includes(slug) ? prev.filter(s => s !== slug) : [...prev, slug]
-    );
-
-  const removeTag = (slug: string) =>
-    setSelectedSlugs(prev => prev.filter(s => s !== slug));
+  const { selectedSlugs, toggleTag, removeTag } = useSelectedTags(tags)
+  const { query, setQuery } = useSearch();
+  const navigate = useNavigate()
 
   return (
     <main>
@@ -46,10 +40,10 @@ const TagsPage = () => {
           <div className="all-tags">
             <section className="search-tags">
               <SearchBar value={query} onChange={setQuery} />
-              <button className='confirm-btn'>Confirmar etiquetas</button>
+              <button className='confirm-btn' onClick={() => {navigate('/blogs')}}>Confirmar etiquetas</button>
             </section>
             <section className='tag-grid'>
-              <TagCollection name='Todas' tags={tags}/>
+              <TagCollection name='Todas' tags={tags} selectedSlugs={selectedSlugs} onToggle={toggleTag}/>
             </section>
           </div>
         </div>

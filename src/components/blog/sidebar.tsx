@@ -53,14 +53,14 @@ const BlogSidebar = ({
       </div>
       <div className="sidebar-section">
         <DateRangePicker label="Fechas" value={range} onChange={onRangeChange} />
-        <h3 className="sidebar-title">Etiquetas Destacadas<TagIcon /></h3>
-        <TagFilter tags={tags} selectedSlugs={selectedSlugs} onToggle={onToggleTag}/>
+        <h3 className="sidebar-title">Etiquetas seleccionadas<TagIcon /></h3>
+          <TagFilter tags={tags.filter(tag => selectedSlugs.includes(tag.label))} selectedSlugs={selectedSlugs} onToggle={onToggleTag}/>
         <button 
           className="ver-todas-btn"
           aria-label="Ver todas las etiquetas"
           onClick={() => {navigate('/tags')}}
         >
-          Ver Todas +
+          Seleccionar etiquetas
         </button>
       </div>
     </aside>

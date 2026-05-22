@@ -6,7 +6,7 @@ import NavBar from '../../components/navbar/navbar';
 import { useBlogs } from 'hooks/useBlogs';
 import { ViewMode } from 'types/blog';
 import { useSearch } from 'hooks/useSearch';
-import { useTags } from 'hooks/useTags';
+import { useSelectedTags, useTags } from 'hooks/useTags';
 import { DateRange } from 'types/filters';
 import BlogSidebar from 'components/blog/sidebar';
 import SelectedTagsBar from 'components/blog/selectedTagBar';
@@ -16,8 +16,9 @@ import BlogList from 'components/blog/blogList';
 const Blogs = () => {
   const [viewMode, setViewMode] = useState<ViewMode>('grid');
   const [range, setRange] = useState<DateRange>({ from: '', to: '' });
-  const [selectedSlugs, setSelectedSlugs] = useState<string[]>([]);
   const { tags } = useTags();
+  const { selectedSlugs, toggleTag, removeTag } = useSelectedTags(tags)
+
   const { query, setQuery, debouncedQuery } = useSearch();
   const { blogs, loading, error } = useBlogs({
     from: range.from,
@@ -25,14 +26,6 @@ const Blogs = () => {
     tagLabels: selectedSlugs,
     query: debouncedQuery
   });
-
-  const toggleTag = (slug: string) =>
-    setSelectedSlugs(prev =>
-      prev.includes(slug) ? prev.filter(s => s !== slug) : [...prev, slug]
-  );
-
-  const removeTag = (slug: string) =>
-    setSelectedSlugs(prev => prev.filter(s => s !== slug));
 
   return (
     <div className="blog-container">
