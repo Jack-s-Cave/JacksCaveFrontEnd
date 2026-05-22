@@ -87,8 +87,9 @@
    Párrafos y texto
    ======================================== */
 .markdown-renderer p {
+  font-size: 1.25rem;
   color: var(--font-color);
-  margin: 1.25rem 0;
+  margin: 1.25rem 2rem;
   line-height: 1.8;
 }
 

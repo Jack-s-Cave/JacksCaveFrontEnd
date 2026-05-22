@@ -128,9 +128,9 @@
 }
 
 .share-btn {
-  background-color: var(--primary-color3);
+  background-color: var(--primary-color2);
   border: none;
-  color: white;
+  color: var(--font-color);
   font-size: 0.85rem;
   padding: 0.3rem 0.7rem;
   border-radius: 0.3rem;
@@ -140,7 +140,7 @@
 }
 
 .share-btn:hover {
-  background-color: var(--primary-color2);
+  background-color: var(--primary-color3);
 }
 
 .author-info {

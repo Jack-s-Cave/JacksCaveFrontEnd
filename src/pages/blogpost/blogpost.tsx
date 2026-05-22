@@ -10,13 +10,8 @@ import { useBlogById } from 'hooks/useBlogs';
 const BlogPost = () => {
   const { id } = useParams<{ id: string }>()
   const { blog, loading, error } = useBlogById(Number(id))
-  const [content, setContent] = useState('');
 
   const [visibleSeriesCount, setVisibleSeriesCount] = useState(3); 
-  const name_series = "Serie de Prueba";
-  const autor = "Daniel Rayo";
-  const blog_name = "Como utilizar REACT";
-  const fecha = "Jun 3, 2024";
 
   const seriesPosts = [
     {
@@ -55,9 +50,6 @@ const BlogPost = () => {
       tags: ["ultimo", "test"]
     }
   ];
-
-  const authorPosts = seriesPosts.slice(0, 3); 
-  const interestingPosts = seriesPosts.slice(0, 3);
 
   const handleSeeMore = () => {
     setVisibleSeriesCount(prev =>
