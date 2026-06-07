@@ -10,9 +10,11 @@ import { useSearch } from 'hooks/useSearch';
 import SearchBar from 'components/common/searchbar';
 import TagCollection from 'components/tags/tagCollection';
 import { useNavigate } from 'react-router-dom';
+import { ViewMode } from 'types/blog';
 
 const TagsPage = () => {
   const [range, setRange] = useState<DateRange>({ from: '', to: '' });
+  const [viewMode, setViewMode] = useState<ViewMode>('grid');
   const { tags } = useTags();
   const { selectedSlugs, toggleTag, removeTag } = useSelectedTags(tags)
   const { query, setQuery } = useSearch();
@@ -23,6 +25,8 @@ const TagsPage = () => {
       <NavBar />
       <div className="sidebar-and-content">
         <BlogSidebar
+          viewMode={viewMode}
+          onViewModeChange={setViewMode}
           range={range}
           onRangeChange={setRange}
           selectedSlugs={selectedSlugs}

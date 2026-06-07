@@ -35,9 +35,10 @@
  */
 .sidebar-title {
   margin: 0;
-  font-size: 0.875rem; /* 14px */
+  font-size: 1.25rem;
   font-weight: 600;
-  color: var(--font-color) !important;
+  font-family: var(--font-subtitle);
+  color: var(--font-color);
   display: flex;
   align-items: center;
   gap: 0.5rem; /* Espacio entre icono y texto */

@@ -63,7 +63,7 @@ const AboutUs = () => {
         {/* Members Section */}
         <section className="members-section">        
           <h2 className="members-title">
-            {selectedYear === 2024 ? 'MIEMBROS ACTUALES' : `MIEMBROS ${selectedYear}`}
+            {selectedYear === 2025 ? 'MIEMBROS ACTUALES' : `MIEMBROS ${selectedYear}`}
           </h2>
 
           <div className="members-grid">
