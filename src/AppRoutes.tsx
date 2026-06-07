@@ -7,6 +7,7 @@ import BlogPost from 'pages/blogpost/blogpost';
 import Blogs from 'pages/blogs/blogs';
 import AuthorPage from 'pages/author/author';
 import TagsPage from 'pages/tags/tags';
+import NotFound from 'pages/notFound/notFound';
 
 const AppRoutes = () => {
   return (
@@ -18,6 +19,7 @@ const AppRoutes = () => {
       <Route path="/blogpost/:id" element={<BlogPost/>}/>
       <Route path="/author/:name" element={<AuthorPage/>}/>
       <Route path="/tags" element={<TagsPage/>}/>
+      <Route path="*" element={<NotFound/>}/>
     </Routes>
   );
 };

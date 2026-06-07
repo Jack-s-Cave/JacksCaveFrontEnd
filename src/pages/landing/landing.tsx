@@ -9,6 +9,7 @@ import { useNews } from 'hooks/useNews';
 import { useBlogs } from 'hooks/useBlogs';
 import BlogCard from 'components/blog/blogCard';
 import { useAllPodcastEpisodes } from 'hooks/usePodcast';
+import ErrorMessage from 'components/common/errorMessage';
 
 function RecentBlogs() {
   const max_visible_blogs = 6
@@ -18,14 +19,14 @@ function RecentBlogs() {
       {[...Array(max_visible_blogs)].map((_, i) => <LoadingCard key={i} className='blog-card' />)}
     </>
   )
-  if (error) return <div>{error}</div>
+  if (error) return <ErrorMessage />
   return recentBlogs.map(blog => <BlogCard key={blog.id} blog={blog} />)
 }
 
 function NewsList() {
   const { news, loading, error } = useNews()
   if (loading) return <div></div>
-  if (error) return <div>error</div>
+  if (error) return <ErrorMessage />
   return <NewsCard newsList={news} />
 }
 

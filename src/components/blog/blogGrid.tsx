@@ -1,6 +1,7 @@
 import LoadingCard from "components/landingpage/loadingCard";
 import { Blog } from "types/blog";
 import BlogCard from "./blogCard";
+import ErrorMessage from "components/common/errorMessage";
 
 type BlogGridProps = {
   blogs: Blog[];
@@ -10,7 +11,7 @@ type BlogGridProps = {
 
 const BlogGrid = ({ blogs, loading, error }: BlogGridProps) => {
   const max_visible_blogs = 6
-  if (error) return <div>error</div>
+  if (error) return <ErrorMessage />
   if (loading) return (
     <>
       {[...Array(max_visible_blogs)].map((_, i) => (

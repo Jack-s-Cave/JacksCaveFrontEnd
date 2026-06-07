@@ -1,6 +1,7 @@
 import LoadingCard from "components/landingpage/loadingCard"
 import { Blog } from "types/blog"
 import BlogListElement from "./blogListElement"
+import ErrorMessage from "components/common/errorMessage"
 
 type BlogListProps = {
   blogs: Blog[]
@@ -10,7 +11,7 @@ type BlogListProps = {
 
 const BlogList = ({ blogs, loading, error }: BlogListProps) => {
   const max_visible_blogs = 6
-  if (error) return <div>error</div>
+  if (error) return <ErrorMessage />
   if (loading) return (
     <>
       {[...Array(max_visible_blogs)].map((_, i) => (

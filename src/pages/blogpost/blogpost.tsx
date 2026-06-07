@@ -6,6 +6,7 @@ import { IoShareSocial } from "react-icons/io5";
 import NavBar from '../../components/navbar/navbar';
 import { useParams } from 'react-router-dom'
 import { useBlogById } from 'hooks/useBlogs';
+import ErrorMessage from 'components/common/errorMessage';
 
 const BlogPost = () => {
   const { id } = useParams<{ id: string }>()
@@ -57,8 +58,8 @@ const BlogPost = () => {
     );
   };
 
-  if (loading) return <p>Cargando...</p>
-  if (error) return <p>Error: {error}</p>
+  if (loading) return <main><NavBar /></main>
+  if (error) return <main><NavBar /><ErrorMessage /></main>
   if (!blog) return null
 
   return (
