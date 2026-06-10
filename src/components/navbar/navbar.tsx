@@ -10,6 +10,7 @@ type NavBarProps = {
 const NavBar = ({ isLandingPage, centerComponent }: NavBarProps) => {
   const navigate = useNavigate();
   const [isDark, setIsDark] = useState(false);
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   // Inicializar tema desde localStorage o preferencia del sistema
   useEffect(() => {
@@ -43,6 +44,11 @@ const NavBar = ({ isLandingPage, centerComponent }: NavBarProps) => {
     return () => window.removeEventListener('keydown', handleKeyPress);
   }, [navigate]);
 
+  const navTo = (path: string) => {
+    navigate(path);
+    setIsMenuOpen(false);
+  };
+
   return (
     <nav className='nav-bar'>
       <div className="nav-left">
@@ -50,18 +56,28 @@ const NavBar = ({ isLandingPage, centerComponent }: NavBarProps) => {
             className="header-logo"
             src={logo}
             alt="Logo"
-            onClick={() => navigate('/')}
+            onClick={() => navTo('/')}
         />
       </div>
-      {centerComponent}
-      <ul className="nav-right">
+      {centerComponent && <div className="nav-center">{centerComponent}</div>}
+      <ul className={`nav-right ${isMenuOpen ? 'open' : ''}`}>
         <li className='nav-bar-item theme-toggle' onClick={toggleTheme}>
           {isDark ? <img className="light-bulb-logo-dark" src="/logos/light-bulb.svg" alt="Cambiar tema"/> : <img className="light-bulb-logo" src="/logos/light-bulb.svg" alt="Cambiar tema"/>}
         </li>
-        <li className='nav-bar-item' onClick={() => navigate('/blogs')}>[B] Blog</li>
-        <li className='nav-bar-item' onClick={() => navigate('/podcast')}>[P] Podcast</li>
-        <li className='nav-bar-item' onClick={() => navigate('/aboutus')}>[N] Nosotros</li>
+        <li className='nav-bar-item' onClick={() => navTo('/blogs')}>[B] Blog</li>
+        <li className='nav-bar-item' onClick={() => navTo('/podcast')}>[P] Podcast</li>
+        <li className='nav-bar-item' onClick={() => navTo('/aboutus')}>[N] Nosotros</li>
       </ul>
+      <button
+        className={`nav-hamburger ${isMenuOpen ? 'open' : ''}`}
+        onClick={() => setIsMenuOpen(!isMenuOpen)}
+        aria-label="Abrir menú"
+        aria-expanded={isMenuOpen}
+      >
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
     </nav>
   );
 }

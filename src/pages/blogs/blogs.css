@@ -220,8 +220,7 @@
  */
 .posts-grid {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  grid-template-rows: repeat(2, 1fr);
+  grid-template-columns: 1fr;
   grid-column-gap: 2rem;
   grid-row-gap: 2rem;
 }
@@ -245,15 +244,19 @@
   gap: 30px;
 }
 
-/* Breakpoint para tablets (768px+): 2 columnas en grid */
-@media (min-width: 768px) {
+@media (min-width: 600px) {
   .posts-grid.grid {
     grid-template-columns: repeat(2, 1fr);
   }
 }
 
-/* Breakpoint para desktop (1024px+): 4 columnas en grid */
 @media (min-width: 1024px) {
+  .posts-grid.grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+@media (min-width: 1440px) {
   .posts-grid.grid {
     grid-template-columns: repeat(4, 1fr);
   }

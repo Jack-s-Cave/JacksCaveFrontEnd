@@ -4,6 +4,7 @@ import './aboutus.css';
 import { useMembersByYear } from 'hooks/useMembers';
 import { MemberCard } from 'components/members/memberCard';
 import ErrorMessage from 'components/common/errorMessage';
+import Spinner from 'components/common/spinner';
 
 const AboutUs = () => {
   const years = [2025, 2024, 2023, 2022, 2021, 2020, 2019, 2018, 2017, 2016, 2015, 2014, 2013, 2012];
@@ -68,11 +69,14 @@ const AboutUs = () => {
           </h2>
 
           <div className="members-grid">
-            {loading && <p>Cargando...</p>}
-            {error && <ErrorMessage />}
-            {members?.map((member) => (
-              <MemberCard key={member.id} member={member} />
-            ))}
+            {loading
+              ? <Spinner />
+              : error
+                ? <ErrorMessage />
+                : members?.map((member) => (
+                    <MemberCard key={member.id} member={member} />
+                  ))
+            }
           </div>
         </section>
       </div>

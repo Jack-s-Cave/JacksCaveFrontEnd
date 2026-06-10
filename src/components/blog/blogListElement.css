@@ -8,12 +8,31 @@
 }
 
 .blog-image {
-  width: 300px;
-  height: 200px;
+  width: clamp(8rem, 28vw, 300px);
+  height: auto;
+  aspect-ratio: 3 / 2;
+  object-fit: cover;
+  flex-shrink: 0;
 }
 
 .blog-details {
   height: 100%;
   width: 100%;
   padding: 0 20px;
+  min-width: 0;
+}
+
+@media (max-width: 480px) {
+  .blog-list-element {
+    flex-direction: column;
+  }
+
+  .blog-image {
+    width: 100%;
+    aspect-ratio: 16 / 9;
+  }
+
+  .blog-details {
+    padding: 0.75rem;
+  }
 }

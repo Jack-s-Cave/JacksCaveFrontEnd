@@ -6,6 +6,7 @@ import { useBlogs } from 'hooks/useBlogs';
 import BlogList from 'components/blog/blogList';
 import { useLocation, useParams } from 'react-router-dom';
 import { useAuthor } from 'hooks/useAuthor';
+import ErrorMessage from 'components/common/errorMessage';
 
 const AuthorAvatar = ({ name, avatar }: { name: string, avatar?: string }) => {
   if (avatar) return <img className="author-pfp" src={avatar} alt={name} />;
@@ -33,8 +34,8 @@ const AuthorPage = () => {
     authorName: resolvedAuthor?.name ?? decodedName
   });
 
-  if (authorLoading) return <p>Cargando autor...</p>;
-  if (authorError || !resolvedAuthor) return <p>Autor no encontrado</p>;
+  if (authorLoading) return <main><NavBar /></main>;
+  if (authorError || !resolvedAuthor) return <main><NavBar /><ErrorMessage message="Autor no encontrado" /></main>;
 
   const getSocialHandle = (url: string): string => {
     try {

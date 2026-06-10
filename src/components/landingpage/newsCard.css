@@ -193,12 +193,18 @@
   .news-image-section {
     min-width: 90vw;
     width: 90vw;
+    min-height: auto;
     margin-top: 1rem;
+  }
+
+  .image-container {
+    height: auto;
   }
 
   .image-container img {
     width: 100%;
     max-width: 90vw;
+    height: auto;
     max-height: 20rem;
   }
 

@@ -75,8 +75,8 @@
   background: transparent;
   border: none;
   color: var(--font-color);
-  font-size: 4rem;
-  padding: 0.5rem 1rem;
+  font-size: clamp(1.5rem, 4vw, 4rem);
+  padding: 0.5rem clamp(0.25rem, 1vw, 1rem);
   cursor: pointer;
   border-radius: 8px;
   z-index: 10;

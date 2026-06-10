@@ -9,6 +9,7 @@ export function useMembersByYear(year: string) {
 
   useEffect(() => {
     setLoading(true)
+    setError(null)
     setMembers([])
     membersService.getMembersByYear(year)
       .then(setMembers)

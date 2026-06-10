@@ -7,6 +7,7 @@ import NavBar from '../../components/navbar/navbar';
 import { useParams } from 'react-router-dom'
 import { useBlogById } from 'hooks/useBlogs';
 import ErrorMessage from 'components/common/errorMessage';
+import Spinner from 'components/common/spinner';
 
 const BlogPost = () => {
   const { id } = useParams<{ id: string }>()
@@ -58,7 +59,7 @@ const BlogPost = () => {
     );
   };
 
-  if (loading) return <main><NavBar /></main>
+  if (loading) return <main><NavBar /><Spinner size="large" /></main>
   if (error) return <main><NavBar /><ErrorMessage /></main>
   if (!blog) return null
 
