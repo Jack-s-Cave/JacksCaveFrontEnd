@@ -7,7 +7,7 @@
   border-style: solid;
 }
 
-.blog-image {
+.blog-list-element .blog-image {
   width: clamp(8rem, 28vw, 300px);
   height: auto;
   aspect-ratio: 3 / 2;
@@ -27,7 +27,7 @@
     flex-direction: column;
   }
 
-  .blog-image {
+  .blog-list-element .blog-image {
     width: 100%;
     aspect-ratio: 16 / 9;
   }

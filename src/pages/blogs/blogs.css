@@ -135,9 +135,10 @@
  * Ocupa el espacio restante después del sidebar
  */
 .blog-main {
-  flex: 1; /* Crece para llenar el espacio disponible */
+  flex: 1;
+  min-width: 0;
   padding: 2rem;
-  overflow-y: auto; /* Scroll interno si el contenido excede la altura */
+  overflow-y: auto;
 }
 
 /**
@@ -220,22 +221,16 @@
  */
 .posts-grid {
   display: grid;
-  grid-template-columns: 1fr;
-  grid-column-gap: 2rem;
-  grid-row-gap: 2rem;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.5rem;
+  width: 100%;
+  box-sizing: border-box;
 }
 
 .posts-grid a {
   display: flex;
-  height: 100%;
-}
-
-/**
- * Modo List
- * Una sola columna para vista vertical
- */
-.posts-grid.list {
-  grid-template-columns: 1fr;
+  min-width: 0;
+  width: 100%;
 }
 
 .posts-list {
@@ -244,21 +239,15 @@
   gap: 30px;
 }
 
-@media (min-width: 600px) {
-  .posts-grid.grid {
+@media (max-width: 768px) {
+  .posts-grid {
     grid-template-columns: repeat(2, 1fr);
   }
 }
 
-@media (min-width: 1024px) {
-  .posts-grid.grid {
-    grid-template-columns: repeat(3, 1fr);
-  }
-}
-
-@media (min-width: 1440px) {
-  .posts-grid.grid {
-    grid-template-columns: repeat(4, 1fr);
+@media (max-width: 480px) {
+  .posts-grid {
+    grid-template-columns: 1fr;
   }
 }
 
