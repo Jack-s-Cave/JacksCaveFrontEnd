@@ -88,10 +88,7 @@ nav.nav-bar {
   }
 
   .nav-center {
-    order: 3;
-    width: 100%;
-    padding: 0.5rem 0 0.25rem;
-    justify-content: flex-start;
+    display: none;
   }
 
   .nav-right {

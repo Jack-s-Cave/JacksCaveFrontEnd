@@ -87,13 +87,18 @@ li {
 
   .authors-blogs {
     padding: 1rem 1.5rem;
+    box-sizing: border-box;
   }
 
   .blogs {
     border: 1px solid var(--primary-color3);
+    box-sizing: border-box;
+    width: 100%;
+    max-width: 100%;
   }
 
   .posts-list {
     padding: 1rem;
+    box-sizing: border-box;
   }
 }

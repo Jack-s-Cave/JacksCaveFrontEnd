@@ -4,18 +4,21 @@
 
 .blogpost-subsection {
   width: 100%;
-  max-width: 900px;      /* ancho máximo del contenido */
-  margin: 0 auto;        /* centra horizontalmente */
-  padding: 2rem 2rem 5rem 2rem; /* espacio interno */
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 2rem 2rem 5rem 2rem;
+  box-sizing: border-box;
 }
 
 
 .blogpost-container{
-  padding: 2rem; 
-  max-width: 1200px; 
+  padding: 2rem;
+  max-width: 1200px;
   margin: auto;
   display: flex;
   flex-direction: column;
+  box-sizing: border-box;
+  width: 100%;
 }
 
 .by-author-section{
@@ -152,15 +155,24 @@
 }
 
 .author-info img.author-avatar {
-  width: 35px;         
+  width: 35px;
   height: 35px;
-  border-radius: 50%;  
-  object-fit: cover;   
-  border: 1px solid var(--primary-color3); 
+  border-radius: 50%;
+  object-fit: cover;
+  border: 1px solid var(--primary-color3);
   background-color: #fff;
   box-shadow: 0 2px 6px rgba(0,0,0,0.1);
   cursor: pointer;
-  
+}
+
+@media (max-width: 768px) {
+  .blogpost-subsection {
+    padding: 1.5rem 1rem 3rem;
+  }
+
+  .blogpost-container {
+    padding: 1rem;
+  }
 }
 
 

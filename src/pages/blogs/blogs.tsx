@@ -30,6 +30,9 @@ const Blogs = () => {
   return (
     <div className="blog-container">
       <NavBar centerComponent={<SearchBar value={query} onChange={setQuery} />} />
+      <div className="blogs-search-below">
+        <SearchBar value={query} onChange={setQuery} />
+      </div>
       <div className='sidebar-and-content'>
         <BlogSidebar
           viewMode={viewMode}

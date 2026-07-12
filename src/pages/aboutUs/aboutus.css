@@ -288,9 +288,26 @@
   .hero-section {
     padding: 2rem 1rem 2rem;
   }
-  
+
   .hero-top {
     gap: 1.5rem;
+  }
+
+  .logo-section {
+    text-align: center;
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .aeccti-title {
+    font-size: clamp(4.5rem, 12vw, 6rem);
+  }
+
+  .association-subtitle,
+  .de-text,
+  .estudiantes-text {
+    font-size: clamp(2rem, 6vw, 2.5rem);
   }
   
   .logo-placeholder {

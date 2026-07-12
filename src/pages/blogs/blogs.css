@@ -21,6 +21,23 @@
    CONTENEDOR PRINCIPAL
    ============================================================================ */
 
+.blogs-search-below {
+  display: none;
+}
+
+@media (max-width: 768px) {
+  .blogs-search-below {
+    display: block;
+    padding: 1.25rem 1rem 0.5rem;
+    width: 100%;
+    box-sizing: border-box;
+  }
+
+  .blogs-search-below .search-container {
+    max-width: 100%;
+  }
+}
+
 /**
  * Contenedor principal del blog
  * Layout flexible que contiene el sidebar y el área de contenido principal

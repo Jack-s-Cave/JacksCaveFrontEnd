@@ -13,7 +13,7 @@ const mapBlog = (item: any): Blog => {
     date: item.fecha_de_publicacion,
     author: item.author_profile?.nombre ?? 'Anónimo',
     image: imagenUrl
-      ? `${process.env.REACT_APP_STRAPI_URL}${imagenUrl}`
+      ? `${imagenUrl}`
       : undefined,
     tags: item.tags ? [mapTag(item.tags, 0)] : []
   }

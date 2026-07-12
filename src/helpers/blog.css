@@ -50,7 +50,7 @@
   font-size: 1.6rem;
   color: var(--font-color);
   position: relative;
-  padding-left: 0.5rem;
+  padding-left: 1rem;
 }
 
 .markdown-renderer h3::before {
@@ -176,7 +176,6 @@
 }
 
 .copy-btn {
-  position: absolute;   /* ahora se posiciona relativo al wrapper */
   top: 15px;
   right: 8px;
   background: var(--primary-color4);
@@ -207,7 +206,7 @@
   margin: 0;
   padding: 1.5rem 1.25rem;
   overflow-x: auto;
-  background-color: var( --primary-color3);
+  background-color: var( --primary-color1);
 }
 
 .code-block-wrapper code {
