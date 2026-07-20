@@ -1,9 +1,10 @@
 import React, { useEffect, useState } from 'react';
 import './newsCard.css';
-import { News } from 'types/news';
+import { Blog } from 'types/blog';
+import { RiNewspaperLine } from 'react-icons/ri';
 
 type NewsCardProps = {
-  newsList: News[];
+  newsList: Blog[];
 };
 
 const NewsCard: React.FC<NewsCardProps> = ({ newsList }) => {
@@ -28,7 +29,7 @@ const NewsCard: React.FC<NewsCardProps> = ({ newsList }) => {
       setTimeout(() => {
         setSelectedIndex((prev) => (prev + 1) % newsList.length);
         setFade(true);
-      }, 400); 
+      }, 400);
     }, 5000);
 
     return () => clearInterval(interval);
@@ -41,7 +42,7 @@ const NewsCard: React.FC<NewsCardProps> = ({ newsList }) => {
       <div className='news-info-section'>
         {newsList.map((news, index) => (
           <div
-            key={index}
+            key={news.id}
             className={`new ${index === selectedIndex && !isHovered ? 'active-news' : ''}`}
             onMouseEnter={() => handleMouseEnter(index)}
             onMouseLeave={handleMouseLeave}
@@ -61,8 +62,10 @@ const NewsCard: React.FC<NewsCardProps> = ({ newsList }) => {
           <i className="ri-square-line"></i>
         </div>
         <div className={`image-container ${fade ? 'fade-in' : 'fade-out'}`}>
-          <img src={selectedNews.imageSrc} alt={selectedNews.imageDescription} />
-          <p>{selectedNews.imageDescription}</p>
+          {selectedNews.image
+            ? <img src={selectedNews.image} alt={selectedNews.title} />
+            : <div className='news-image-placeholder'><RiNewspaperLine /></div>
+          }
         </div>
       </div>
     </div>

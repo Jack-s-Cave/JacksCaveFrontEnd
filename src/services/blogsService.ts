@@ -92,6 +92,10 @@ export const blogsService = {
     const data = await api.get('article-mds?populate=*')
     return data.data.map(mapBlog)
   },
+  getNews: async (): Promise<Blog[]> => {
+    const data = await api.get('article-mds/news?populate=*')
+    return data.data.map(mapBlog)
+  },
   getRecentBlogs: async (): Promise<Blog[]> => {
     const data = await api.get('article-mds?sort[0]=fecha_de_publicacion:desc&pagination[page]=1&pagination[pageSize]=6&populate=*')
     return data.data.map(mapBlog)
