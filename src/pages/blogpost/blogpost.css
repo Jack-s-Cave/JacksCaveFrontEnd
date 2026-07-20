@@ -42,61 +42,6 @@
     place-items: center;
 }
 
-.series-timeline {
-  list-style: none;
-  margin: 0;
-  padding: 0;
-  position: relative;
-}
-
-/* Línea vertical a la izquierda */
-.series-timeline::before {
-  content: '';
-  position: absolute;
-  left: 20px;   /* posición de la línea principal */
-  top: 0;
-  bottom: 0;
-  width: 3px;
-  background: var(--primary-color3);
-}
-
-/* Cada item del timeline */
-.series-timeline li {
-  position: relative;
-  margin: 2rem 0;
-  padding-left: 3rem; /* espacio para la línea */
-}
-
-/* Ramal de conexión */
-.series-timeline li::before {
-  content: '';
-  position: absolute;
-  left: 20px;   /* donde está la línea principal */
-  top: 50%;     /* a la mitad del card */
-  width: 30px;  /* largo de la línea horizontal */
-  height: 2px;
-  background: var(--primary-color3);
-  transform: translateY(-50%); /* centra verticalmente */
-}
-
-
-.see-more-btn {
-  background: var(--primary-color4);
-  color: white;
-  border: none;
-  padding: 0.6rem 1.2rem;
-  font-size: 1rem;
-  font-weight: 600;
-  border-radius: 6px;
-  cursor: pointer;
-  transition: background 0.3s ease;
-  font-family: var(--font-paragraph);
-}
-
-.see-more-btn:hover {
-  background: var(--primary-color3);
-}
-
 
 .blog-header {
   margin-bottom: 2rem;
