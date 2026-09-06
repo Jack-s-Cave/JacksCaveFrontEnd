@@ -1,0 +1,200 @@
+/* Mononoki Normal */
+
+@font-face {
+  font-family: 'Mononoki';
+  src: url('https://cdn.jsdelivr.net/gh/Jack-s-Cave/Assets@main/Fonts/Mononoki/MononokiNerdFont-Bold.ttf') format('truetype');
+  font-weight: 700;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Mononoki';
+  src: url('https://cdn.jsdelivr.net/gh/Jack-s-Cave/Assets@main/Fonts/Mononoki/MononokiNerdFont-Boldltalic.ttf') format('truetype');
+  font-weight: 700;
+  font-style: italic;
+}
+
+@font-face {
+  font-family: 'Mononoki';
+  src: url('https://cdn.jsdelivr.net/gh/Jack-s-Cave/Assets@main/Fonts/Mononoki/MononokiNerdFont-Italic.ttf') format('truetype');
+  font-weight: 400;
+  font-style: italic;
+}
+
+/* Mononoki Mono */
+
+@font-face {
+  font-family: 'Mononoki Mono';
+  src: url('https://cdn.jsdelivr.net/gh/Jack-s-Cave/Assets@main/Fonts/Mononoki/MononokiNerdFontMono-Bold.ttf') format('truetype');
+  font-weight: 700;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Mononoki Mono';
+  src: url('https://cdn.jsdelivr.net/gh/Jack-s-Cave/Assets@main/Fonts/Mononoki/MononokiNerdFontMono-Boldltalic.ttf') format('truetype');
+  font-weight: 700;
+  font-style: italic;
+}
+
+@font-face {
+  font-family: 'Mononoki Mono';
+  src: url('https://cdn.jsdelivr.net/gh/Jack-s-Cave/Assets@main/Fonts/Mononoki/MononokiNerdFontMono-Italic.ttf') format('truetype');
+  font-weight: 400;
+  font-style: italic;
+}
+
+@font-face {
+  font-family: 'Mononoki Mono';
+  src: url('https://cdn.jsdelivr.net/gh/Jack-s-Cave/Assets@main/Fonts/Mononoki/MononokiNerdFontMono-Regular.ttf') format('truetype');
+  font-weight: 400;
+  font-style: normal;
+}
+
+/* Mononoki Propo */
+
+@font-face {
+  font-family: 'Mononoki Propo';
+  src: url('https://cdn.jsdelivr.net/gh/Jack-s-Cave/Assets@main/Fonts/Mononoki/MononokiNerdFontPropo-Bold.ttf') format('truetype');
+  font-weight: 700;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Mononoki Propo';
+  src: url('https://cdn.jsdelivr.net/gh/Jack-s-Cave/Assets@main/Fonts/Mononoki/MononokiNerdFontPropo-Boldltalic.ttf') format('truetype');
+  font-weight: 700;
+  font-style: italic;
+}
+
+@font-face {
+  font-family: 'Mononoki Propo';
+  src: url('https://cdn.jsdelivr.net/gh/Jack-s-Cave/Assets@main/Fonts/Mononoki/MononokiNerdFontPropo-Italic.ttf') format('truetype');
+  font-weight: 400;
+  font-style: italic;
+}
+
+@font-face {
+  font-family: 'Mononoki Propo';
+  src: url('https://cdn.jsdelivr.net/gh/Jack-s-Cave/Assets@main/Fonts/Mononoki/MononokiNerdFontPropo-Regular.ttf') format('truetype');
+  font-weight: 400;
+  font-style: normal;
+}
+
+/* The Bold Font */
+
+@font-face {
+  font-family: 'TheBoldFont';
+  src: url('https://cdn.jsdelivr.net/gh/Jack-s-Cave/Assets@main/Fonts/the_bold_font/THE%20BOLD%20FONT%20-%20FREE%20VERSION%20-%202023.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+/* Satoshi Black */
+@font-face {
+  font-family: 'Satoshi';
+  src: url('https://cdn.jsdelivr.net/gh/Jack-s-Cave/Assets@main/Fonts/Satoshi_Complete/Satoshi_Complete/Fonts/WEB/fonts/Satoshi-Black.woff2') format('woff2'),
+       url('https://cdn.jsdelivr.net/gh/Jack-s-Cave/Assets@main/Fonts/Satoshi_Complete/Satoshi_Complete/Fonts/WEB/fonts/Satoshi-Black.woff') format('woff');
+  font-weight: 900;
+  font-style: normal;
+}
+
+/* Satoshi Black Italic */
+@font-face {
+  font-family: 'Satoshi';
+  src: url('https://cdn.jsdelivr.net/gh/Jack-s-Cave/Assets@main/Fonts/Satoshi_Complete/Satoshi_Complete/Fonts/WEB/fonts/Satoshi-Blackltalic.woff2') format('woff2'),
+       url('https://cdn.jsdelivr.net/gh/Jack-s-Cave/Assets@main/Fonts/Satoshi_Complete/Satoshi_Complete/Fonts/WEB/fonts/Satoshi-Blackltalic.woff') format('woff');
+  font-weight: 900;
+  font-style: italic;
+}
+
+/* Satoshi Bold */
+@font-face {
+  font-family: 'Satoshi';
+  src: url('https://cdn.jsdelivr.net/gh/Jack-s-Cave/Assets@main/Fonts/Satoshi_Complete/Satoshi_Complete/Fonts/WEB/fonts/Satoshi-Bold.woff2') format('woff2'),
+       url('https://cdn.jsdelivr.net/gh/Jack-s-Cave/Assets@main/Fonts/Satoshi_Complete/Satoshi_Complete/Fonts/WEB/fonts/Satoshi-Bold.woff') format('woff');
+  font-weight: 700;
+  font-style: normal;
+}
+
+/* Satoshi Bold Italic */
+@font-face {
+  font-family: 'Satoshi';
+  src: url('https://cdn.jsdelivr.net/gh/Jack-s-Cave/Assets@main/Fonts/Satoshi_Complete/Satoshi_Complete/Fonts/WEB/fonts/Satoshi-Boldltalic.woff2') format('woff2'),
+       url('https://cdn.jsdelivr.net/gh/Jack-s-Cave/Assets@main/Fonts/Satoshi_Complete/Satoshi_Complete/Fonts/WEB/fonts/Satoshi-Boldltalic.woff') format('woff');
+  font-weight: 700;
+  font-style: italic;
+}
+
+/* Satoshi Italic */
+@font-face {
+  font-family: 'Satoshi';
+  src: url('https://cdn.jsdelivr.net/gh/Jack-s-Cave/Assets@main/Fonts/Satoshi_Complete/Satoshi_Complete/Fonts/WEB/fonts/Satoshi-Italic.woff2') format('woff2'),
+       url('https://cdn.jsdelivr.net/gh/Jack-s-Cave/Assets@main/Fonts/Satoshi_Complete/Satoshi_Complete/Fonts/WEB/fonts/Satoshi-Italic.woff') format('woff');
+  font-weight: 400;
+  font-style: italic;
+}
+
+/* Satoshi Light */
+@font-face {
+  font-family: 'Satoshi';
+  src: url('https://cdn.jsdelivr.net/gh/Jack-s-Cave/Assets@main/Fonts/Satoshi_Complete/Satoshi_Complete/Fonts/WEB/fonts/Satoshi-Light.woff2') format('woff2'),
+       url('https://cdn.jsdelivr.net/gh/Jack-s-Cave/Assets@main/Fonts/Satoshi_Complete/Satoshi_Complete/Fonts/WEB/fonts/Satoshi-Light.woff') format('woff');
+  font-weight: 300;
+  font-style: normal;
+}
+
+/* Satoshi Light Italic */
+@font-face {
+  font-family: 'Satoshi';
+  src: url('https://cdn.jsdelivr.net/gh/Jack-s-Cave/Assets@main/Fonts/Satoshi_Complete/Satoshi_Complete/Fonts/WEB/fonts/Satoshi-Lightltalic.woff2') format('woff2'),
+       url('https://cdn.jsdelivr.net/gh/Jack-s-Cave/Assets@main/Fonts/Satoshi_Complete/Satoshi_Complete/Fonts/WEB/fonts/Satoshi-Lightltalic.woff') format('woff');
+  font-weight: 300;
+  font-style: italic;
+}
+
+/* Satoshi Medium */
+@font-face {
+  font-family: 'Satoshi';
+  src: url('https://cdn.jsdelivr.net/gh/Jack-s-Cave/Assets@main/Fonts/Satoshi_Complete/Satoshi_Complete/Fonts/WEB/fonts/Satoshi-Medium.woff2') format('woff2'),
+       url('https://cdn.jsdelivr.net/gh/Jack-s-Cave/Assets@main/Fonts/Satoshi_Complete/Satoshi_Complete/Fonts/WEB/fonts/Satoshi-Medium.woff') format('woff');
+  font-weight: 500;
+  font-style: normal;
+}
+
+/* Satoshi Medium Italic */
+@font-face {
+  font-family: 'Satoshi';
+  src: url('https://cdn.jsdelivr.net/gh/Jack-s-Cave/Assets@main/Fonts/Satoshi_Complete/Satoshi_Complete/Fonts/WEB/fonts/Satoshi-Mediumltalic.woff2') format('woff2'),
+       url('https://cdn.jsdelivr.net/gh/Jack-s-Cave/Assets@main/Fonts/Satoshi_Complete/Satoshi_Complete/Fonts/WEB/fonts/Satoshi-Mediumltalic.woff') format('woff');
+  font-weight: 500;
+  font-style: italic;
+}
+
+/* Satoshi Regular */
+@font-face {
+  font-family: 'Satoshi';
+  src: url('https://cdn.jsdelivr.net/gh/Jack-s-Cave/Assets@main/Fonts/Satoshi_Complete/Satoshi_Complete/Fonts/WEB/fonts/Satoshi-Regular.woff2') format('woff2'),
+       url('https://cdn.jsdelivr.net/gh/Jack-s-Cave/Assets@main/Fonts/Satoshi_Complete/Satoshi_Complete/Fonts/WEB/fonts/Satoshi-Regular.woff') format('woff');
+  font-weight: 400;
+  font-style: normal;
+}
+
+/* Satoshi Variable */
+@font-face {
+  font-family: 'Satoshi';
+  src: url('https://cdn.jsdelivr.net/gh/Jack-s-Cave/Assets@main/Fonts/Satoshi_Complete/Satoshi_Complete/Fonts/WEB/fonts/Satoshi-Variable.woff2') format('woff2'),
+       url('https://cdn.jsdelivr.net/gh/Jack-s-Cave/Assets@main/Fonts/Satoshi_Complete/Satoshi_Complete/Fonts/WEB/fonts/Satoshi-Variable.woff') format('woff');
+  font-weight: 400;
+  font-style: normal;
+}
+
+/* Satoshi Variable Italic */
+@font-face {
+  font-family: 'Satoshi';
+  src: url('https://cdn.jsdelivr.net/gh/Jack-s-Cave/Assets@main/Fonts/Satoshi_Complete/Satoshi_Complete/Fonts/WEB/fonts/Satoshi-Variableltalic.woff2') format('woff2'),
+       url('https://cdn.jsdelivr.net/gh/Jack-s-Cave/Assets@main/Fonts/Satoshi_Complete/Satoshi_Complete/Fonts/WEB/fonts/Satoshi-Variableltalic.woff') format('woff');
+  font-weight: 400;
+  font-style: italic;
+}
+

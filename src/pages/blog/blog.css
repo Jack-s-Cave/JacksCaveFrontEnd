@@ -1,0 +1,644 @@
+/**
+ * Blog Component Styles
+ * 
+ * Estilos para el componente de blog con diseño responsive y soporte para tema claro/oscuro.
+ * Utiliza variables CSS personalizadas definidas en el tema global.
+ * 
+ * @file blog.css
+ * @author Daniel Rayo
+ * @version 1.0.0
+ * 
+ * Variables CSS utilizadas:
+ * - --primary-color1: Color de fondo principal
+ * - --primary-color2: Color de fondo secundario (sidebar)
+ * - --primary-color3: Color de bordes y divisores
+ * - --primary-color4: Color de acento para interacciones
+ * - --primary-color5: Color de hover y estados activos
+ * - --font-color: Color principal del texto
+ */
+
+/* ============================================================================
+   CONTENEDOR PRINCIPAL
+   ============================================================================ */
+
+/**
+ * Contenedor principal del blog
+ * Layout flexible que contiene el sidebar y el área de contenido principal
+ */
+.blog-container {
+  display: flex;
+  min-height: 100vh; /* Ocupa toda la altura de la ventana */
+  background-color: var(--primary-color1);
+}
+
+/* ============================================================================
+   SIDEBAR - PANEL LATERAL DE FILTROS
+   ============================================================================ */
+
+/**
+ * Panel lateral izquierdo con filtros y controles
+ * Posición sticky para mantenerlo visible durante el scroll
+ */
+.blog-sidebar {
+  width: 256px;
+  background-color: var(--primary-color2);
+  border-right: 1px solid var(--primary-color3);
+  box-shadow: rgba(0, 0, 0, 0.1) 1px 1px 0px; /* Sombra sutil para profundidad */
+  padding: 1.5rem;
+  position: sticky;
+  top: 0;
+  height: 100vh;
+  overflow-y: auto; /* Scroll interno si el contenido excede la altura */
+}
+
+/**
+ * Sección individual dentro del sidebar
+ * Agrupa controles relacionados (vistas, fechas, tags)
+ */
+.sidebar-section {
+  margin-bottom: 2rem; /* Espaciado entre secciones */
+}
+
+/**
+ * Título de cada sección del sidebar
+ * Usa flexbox para alinear iconos y texto
+ */
+.sidebar-title {
+  font-size: 0.875rem; /* 14px */
+  font-weight: 600;
+  color: var(--font-color) !important;
+  margin-bottom: 0.75rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem; /* Espacio entre icono y texto */
+}
+
+/* Asegura que el texto y los iconos hereden el color del tema */
+.sidebar-title,
+.sidebar-title span {
+  color: var(--font-color);
+}
+
+.sidebar-title svg {
+  stroke: var(--font-color);
+}
+
+/* ============================================================================
+   BOTONES DE VISTA (GRID/LIST)
+   ============================================================================ */
+
+/**
+ * Contenedor para los botones de cambio de vista
+ */
+.view-buttons {
+  display: flex;
+  gap: 0.5rem;
+}
+
+/**
+ * Botón individual de vista
+ * Estados: default, hover, active
+ */
+.view-button {
+  padding: 0.5rem;
+  border: none;
+  border-radius: 0.375rem; /* 6px - esquinas redondeadas */
+  background-color: var(--primary-color1);
+  cursor: pointer;
+  transition: background-color 0.2s; /* Transición suave del fondo */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Estado hover: retroalimentación visual al pasar el cursor */
+.view-button:hover {
+  background-color: var(--primary-color5);
+}
+
+/* Estado active: indica la vista actual seleccionada */
+.view-button.active {
+  background-color: var(--primary-color5);
+}
+
+/* Asegura que los iconos SVG hereden el color del tema */
+.view-button svg {
+  stroke: var(--font-color);
+}
+
+/* ============================================================================
+   FILTROS DE FECHA
+   ============================================================================ */
+
+/**
+ * Contenedor para los inputs de fecha
+ * Layout vertical con espaciado entre campos
+ */
+.date-inputs {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+/**
+ * Grupo individual de input de fecha (label + input)
+ */
+.date-input-group {
+  display: flex;
+  flex-direction: column;
+}
+
+/**
+ * Etiqueta del input de fecha
+ */
+.date-input-group label {
+  font-size: 0.75rem; /* 12px */
+  color: var(--font-color);
+  margin-bottom: 0.25rem;
+}
+
+/**
+ * Input de fecha
+ * Estilizado para coincidir con el tema de la aplicación
+ */
+.date-input-group input {
+  width: 100%;
+  padding: 0.25rem 0.5rem;
+  font-size: 0.875rem; /* 14px */
+  border: 1px solid var(--primary-color5);
+  border-radius: 0.375rem; /* 6px */
+  outline: none;
+  background-color: var(--primary-color1);
+  color: var(--font-color);
+}
+
+/**
+ * Estado focus del input de fecha
+ * Añade un borde de acento y sombra para indicar el foco
+ */
+.date-input-group input:focus {
+  border-color: var(--primary-color4);
+  box-shadow: 0 0 0 2px rgba(213, 92, 81, 0.2); /* Ring de foco */
+}
+
+/* ============================================================================
+   LISTA DE ETIQUETAS (TAGS)
+   ============================================================================ */
+
+/**
+ * Contenedor para la lista de checkboxes de tags
+ */
+.tags-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+/**
+ * Label del checkbox de tag
+ * Combina checkbox y texto en un elemento clickeable
+ */
+.tag-checkbox {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  cursor: pointer;
+  font-size: 0.875rem; /* 14px */
+  color: var(--font-color);
+}
+
+/**
+ * Checkbox de tag
+ * Personalizado con el color de acento del tema
+ */
+.tag-checkbox input[type="checkbox"] {
+  width: 1rem; /* 16px */
+  height: 1rem; /* 16px */
+  cursor: pointer;
+  accent-color: var(--primary-color4); /* Color personalizado del checkbox */
+}
+
+/**
+ * Botón "Ver Todas"
+ * Permite expandir la lista de tags (funcionalidad futura)
+ */
+.ver-todas-btn {
+  margin-top: 1rem;
+  font-size: 0.875rem; /* 14px */
+  color: var(--font-color);
+  background: none;
+  border: var(--font-color) 1px solid;
+  cursor: pointer;
+  padding: 0.1rem 0.4rem;
+  padding-top: 0.3rem;
+  border-radius: 0.2rem;
+  transition: all 0.2s; /* Transición suave para hover */
+}
+
+/**
+ * Estado hover del botón "Ver Todas"
+ * Invierte los colores para crear un efecto llamativo
+ */
+.ver-todas-btn:hover {
+  background-color: var(--font-color);
+  color: var(--primary-color1);
+}
+
+/* ============================================================================
+   ÁREA PRINCIPAL DE CONTENIDO
+   ============================================================================ */
+
+/**
+ * Contenedor principal del contenido del blog
+ * Ocupa el espacio restante después del sidebar
+ */
+.blog-main {
+  flex: 1; /* Crece para llenar el espacio disponible */
+  padding: 2rem;
+  overflow-y: auto; /* Scroll interno si el contenido excede la altura */
+}
+
+/**
+ * Contenedor interno con ancho máximo para mejor legibilidad
+ */
+.blog-content {
+  max-width: 1280px;
+  margin: 0 auto; /* Centrado horizontal */
+}
+
+/* ============================================================================
+   HEADER DEL BLOG
+   ============================================================================ */
+
+/**
+ * Contenedor del título y contador de posts
+ * Distribución flexible con espacio entre elementos
+ */
+.headerTitle {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 0.25rem;
+  margin-bottom: 0.5rem;
+}
+
+/**
+ * Sección izquierda del header
+ * Contiene el icono y el título
+ */
+.header-left {
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+}
+
+/* Icono de la montaña en el header */
+.header-left svg {
+  fill: var(--font-color);
+}
+
+/**
+ * Contador de posts
+ * Muestra el número total de posts disponibles
+ */
+.post-count {
+  font-size: 0.875rem; /* 14px */
+  color: var(--font-color) !important;
+  opacity: 0.6; /* Más sutil que el texto principal */
+  position: relative;
+  top: -5px; /* Ajuste fino de alineación vertical */
+}
+
+/* Icono del header */
+.headerTitle span {
+  font-size: 1.25rem; /* 20px */
+  color: var(--font-color);
+}
+
+/**
+ * Título principal del blog
+ * Usa "/" como símbolo decorativo
+ */
+.headerTitle .blog-header {
+  margin: 0;
+  font-size: 1.25rem; /* 20px */
+  line-height: 1;
+  position: relative;
+  top: -4px; /* Ajuste fino de alineación vertical */
+  color: var(--font-color);
+}
+
+/* ============================================================================
+   TAGS SELECCIONADOS (BADGES)
+   ============================================================================ */
+
+/**
+ * Contenedor para los badges de tags seleccionados
+ * Se muestra solo cuando hay tags activos
+ */
+.selected-tags {
+  display: flex;
+  flex-wrap: wrap; /* Permite múltiples líneas si es necesario */
+  gap: 0.5rem;
+  margin-bottom: 1.5rem;
+}
+
+/**
+ * Badge individual de tag seleccionado
+ * Incluye el nombre del tag y un botón para removerlo
+ */
+.selected-tag {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.25rem 0.75rem;
+  background-color: var(--primary-color3);
+  color: var(--font-color);
+  border-radius: 0.45rem; /* Esquinas redondeadas */
+  font-size: 0.875rem; /* 14px */
+}
+
+/**
+ * Botón para remover un tag seleccionado
+ * Icono X clickeable con efecto hover
+ */
+.remove-tag-btn {
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0.125rem;
+  border-radius: 9999px; /* Completamente circular */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background-color 0.2s;
+  color: var(--font-color);
+}
+
+/* Estado hover del botón de remover */
+.remove-tag-btn:hover {
+  opacity: 0.7; /* Retroalimentación visual sutil */
+}
+
+/* Icono X dentro del botón */
+.remove-tag-btn svg {
+  stroke: var(--font-color);
+}
+
+/* ============================================================================
+   GRID/LISTA DE POSTS
+   ============================================================================ */
+
+/**
+ * Contenedor principal de posts
+ * Cambia su comportamiento según el modo de vista (grid/list)
+ */
+.posts-grid {
+  display: grid;
+  gap: 1.5rem; /* Espaciado entre posts */
+  margin-bottom: 2rem;
+}
+
+/**
+ * Modo Grid
+ * Layout responsive con columnas automáticas
+ */
+.posts-grid.grid {
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+}
+
+/**
+ * Modo List
+ * Una sola columna para vista vertical
+ */
+.posts-grid.list {
+  grid-template-columns: 1fr;
+}
+
+/* Breakpoint para tablets (768px+): 2 columnas en grid */
+@media (min-width: 768px) {
+  .posts-grid.grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+/* Breakpoint para desktop (1024px+): 4 columnas en grid */
+@media (min-width: 1024px) {
+  .posts-grid.grid {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+
+/* ============================================================================
+   TARJETA DE POST (POST CARD)
+   ============================================================================ */
+
+/**
+ * Tarjeta individual de post
+ * Contiene imagen, título, metadata y tags
+ */
+.post-card {
+  background-color: var(--primary-color1);
+  border-radius: 0.2rem;
+  /* Bordes coloreados en todos los lados */
+  border-top: 2px solid var(--primary-color5);
+  border-bottom: 2px solid var(--primary-color5);
+  border-left: 2px solid var(--primary-color5);
+  border-right: 2px solid var(--primary-color5);
+  box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.15); /* Sombra sutil */
+  overflow: hidden; /* Evita que el contenido desborde las esquinas */
+  cursor: pointer;
+  transition: all 0.2s; /* Transición suave para efectos hover */
+}
+
+/**
+ * Estado hover de la tarjeta
+ * Eleva visualmente la tarjeta para indicar interactividad
+ */
+.post-card:hover {
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2); /* Sombra más pronunciada */
+  transform: translateY(-2px); /* Elevación sutil */
+}
+
+/**
+ * Header de la tarjeta de post
+ * Muestra fecha y autor en los extremos
+ */
+.post-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  padding: 1rem;
+  padding-bottom: 0.5rem; /* Menos espacio abajo para compactar */
+}
+
+/**
+ * Metadata del post (fecha y autor)
+ * Texto pequeño y de menor opacidad
+ */
+.post-date,
+.post-author {
+  font-size: 0.75rem; /* 12px */
+  color: var(--font-color);
+  opacity: 0.7; /* Más sutil que el contenido principal */
+}
+
+/**
+ * Contenedor de la imagen del post
+ * Padding lateral para no tocar los bordes de la tarjeta
+ */
+.post-image-container {
+  padding: 0 1rem;
+}
+
+/**
+ * Imagen destacada del post
+ * Tamaño fijo con object-fit para mantener proporciones
+ */
+.post-image {
+  width: 100%;
+  height: 160px;
+  object-fit: cover; /* Recorta y ajusta sin distorsionar */
+  border-radius: 0.375rem; /* 6px - esquinas redondeadas */
+}
+
+/**
+ * Contenedor del contenido textual del post
+ * Incluye título y tags
+ */
+.post-content {
+  padding: 1rem;
+  padding-top: 0.10rem; /* Reduce espacio superior */
+}
+
+/**
+ * Título del post
+ * Elemento principal que captura la atención
+ */
+.post-title {
+  text-align: left;
+  font-size: 1.5rem; /* 24px */
+  font-weight: 600;
+  color: var(--font-color);
+  margin-bottom: 0.5rem;
+  line-height: 1.4; /* Espaciado vertical para legibilidad */
+  margin-top: 0.1rem;
+}
+
+/**
+ * Contenedor de tags del post
+ * Layout flexible que permite wrapping
+ */
+.post-tags {
+  display: flex;
+  flex-wrap: wrap; /* Permite múltiples líneas si hay muchos tags */
+  gap: 0.25rem;
+  justify-content: flex-start;
+}
+
+/**
+ * Tag individual del post
+ * Badge pequeño con símbolo # y texto
+ */
+.post-tag {
+  font-size: 0.75rem; /* 12px */
+  padding: 0.25rem 0.5rem;
+  background-color: var(--primary-color1);
+  color: var(--font-color);
+  border-radius: 0.25rem; /* 4px */
+  opacity: 0.8; /* Ligeramente más tenue que el texto principal */
+}
+
+/* ============================================================================
+   DISEÑO RESPONSIVE
+   ============================================================================ */
+
+/**
+ * Breakpoint móvil (< 768px)
+ * Ajustes para pantallas pequeñas
+ */
+@media (max-width: 768px) {
+  /* Oculta el sidebar en móvil - considera implementar menú hamburguesa */
+  .blog-sidebar {
+    display: none;
+  }
+  
+  /* Reduce el padding en móvil para aprovechar el espacio */
+  .blog-main {
+    padding: 1rem;
+  }
+  
+  /* Título más grande en móvil cuando hay más espacio horizontal */
+  .blog-header {
+    font-size: 1.875rem; /* 30px */
+  }
+}
+
+/* ============================================================================
+   MODO OSCURO (DARK MODE)
+   ============================================================================ */
+
+/**
+ * Ajustes específicos para tema oscuro
+ * Modifica las sombras para adaptarse mejor a fondos oscuros
+ */
+@media (prefers-color-scheme: dark) {
+  /* Sombra del sidebar más sutil en modo oscuro */
+  .blog-sidebar {
+    box-shadow: rgba(255, 255, 255, 0.05) 1px 1px 0px;
+  }
+  
+  /* Sombra de la tarjeta de post en modo oscuro */
+  .post-card {
+    box-shadow: 1px 1px 3px rgba(255, 255, 255, 0.05);
+  }
+  
+  /* Sombra hover de la tarjeta en modo oscuro */
+  .post-card:hover {
+    box-shadow: 0 4px 6px rgba(255, 255, 255, 0.1);
+  }
+  
+  /* Ring de foco del input de fecha en modo oscuro */
+  .date-input-group input:focus {
+    box-shadow: 0 0 0 2px rgba(197, 171, 214, 0.3);
+  }
+}
+
+/* ============================================================================
+   NOTAS DE IMPLEMENTACIÓN
+   ============================================================================
+   
+   MEJORAS FUTURAS:
+   1. Implementar filtrado real de posts basado en selectedTags y dateRange
+   2. Conectar con API de Strapi para obtener posts dinámicamente
+   3. Añadir paginación o infinite scroll para grandes cantidades de posts
+   4. Implementar menú hamburguesa para filtros en móvil
+   5. Añadir animaciones de entrada para las tarjetas de post
+   6. Implementar búsqueda por texto
+   7. Añadir ordenamiento por fecha, popularidad, etc.
+   8. Implementar lazy loading para imágenes
+   9. Añadir skeleton loaders durante la carga
+   10. Mejorar accesibilidad con navegación por teclado completa
+   
+   VARIABLES CSS REQUERIDAS:
+   Asegúrate de que tu tema global defina estas variables:
+   - --primary-color1: Color de fondo principal
+   - --primary-color2: Color de fondo del sidebar
+   - --primary-color3: Color de bordes y divisores
+   - --primary-color4: Color de acento (hover, focus)
+   - --primary-color5: Color de estados activos
+   - --font-color: Color del texto principal
+   
+   CONSIDERACIONES DE RENDIMIENTO:
+   - Las imágenes usan loading="lazy" para carga diferida
+   - Transitions limitadas a propiedades de bajo costo (background, opacity, transform)
+   - Grid utiliza auto-fill para rendering eficiente
+   
+   ACCESIBILIDAD:
+   - Todos los botones tienen aria-label apropiados
+   - Inputs de fecha tienen labels asociados
+   - Se usa semántica HTML5 apropiada (article, aside, main)
+   - Soporte para navegación por teclado en elementos interactivos
+   - aria-live para actualizaciones dinámicas (contador de posts)
+   
+   ============================================================================ */
