@@ -75,8 +75,8 @@
   background: transparent;
   border: none;
   color: var(--font-color);
-  font-size: 4rem;
-  padding: 0.5rem 1rem;
+  font-size: clamp(1.5rem, 4vw, 4rem);
+  padding: 0.5rem clamp(0.25rem, 1vw, 1rem);
   cursor: pointer;
   border-radius: 8px;
   z-index: 10;
@@ -153,5 +153,28 @@
   .carousel-arrow {
     font-size: 2rem;
     padding: 0.1rem 0.5rem;
-   }
+  }
+
+  .podcast-carousel {
+    width: 100%;
+  }
+
+  .podcast-card {
+    max-width: 100%;
+    flex: 1;
+  }
+
+  .podcast-card h3 {
+    font-size: 1.2rem;
+  }
+
+  .bottom-podast-card {
+    padding-left: 1rem;
+    min-height: 5rem;
+  }
+
+  .play-circle {
+    height: 3rem;
+    width: 3rem;
+  }
 }

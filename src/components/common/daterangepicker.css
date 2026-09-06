@@ -1,0 +1,46 @@
+.date-picker {
+  margin-top: 1.5rem;
+}
+
+.date-range-title {
+  font-family: var(--font-subtitle);
+  font-size: 1.2rem;
+  display: flex;
+  gap: 10px;
+}
+
+.fields {
+  position: relative;
+  margin-top: 10px;
+  margin-left: 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  padding: 15px 0;
+  padding-left: 20px;
+  padding-right: 30px;
+}
+
+.fields::before{
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 5px;
+  height: 100%;
+  border-left: 1px solid var(--font-color);
+  border-bottom: 1px solid var(--font-color);
+}
+
+.fields label {
+  display: flex;
+  justify-content: space-between;
+  gap: 15px;
+}
+
+.date-picker input[type="date"] {
+  background: transparent;
+  border: none;
+  border-bottom: 1.5px solid #ffff;
+  color: #ffff;
+}

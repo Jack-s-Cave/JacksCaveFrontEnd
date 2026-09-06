@@ -1,17 +1,12 @@
-import React, { useEffect, useRef, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
+import { PodcastEpisode } from 'types/podcast';
 import './podcastCarousel.css';
 
-type VideoItem = {
-  thumbnail: string;
-  title: string;
-  date: string;
-};
-
 type PodcastCarouselProps = {
-  videos: VideoItem[];
+  videos: PodcastEpisode[];
 };
 
-const PodcastCarousel: React.FC<PodcastCarouselProps> = ({ videos }) => {
+const PodcastCarousel = ({ videos }: PodcastCarouselProps) => {
   const [startIndex, setStartIndex] = useState(0);
   const [fade, setFade] = useState(true);
   const [isHovered, setIsHovered] = useState(false);

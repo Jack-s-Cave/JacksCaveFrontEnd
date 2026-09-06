@@ -1,66 +1,85 @@
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import './navbar.css';
 
 type NavBarProps = {
-    isLandingPage?: boolean;
+  isLandingPage?: boolean;
+  centerComponent?: React.ReactNode;
 }
 
-const NavBar: React.FC<NavBarProps> = ({ isLandingPage }) => {
-    const navigate = useNavigate();
-    const [logo, setLogo] = useState(''); 
+const NavBar = ({ isLandingPage, centerComponent }: NavBarProps) => {
+  const navigate = useNavigate();
+  const [isDark, setIsDark] = useState(false);
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
 
-    //Deteccion de modo claro
-    useEffect(() => {
-        const setLogoBasedOnTheme = (e?: MediaQueryListEvent) => {
-            const darkModeOn = e ? e.matches : window.matchMedia('(prefers-color-scheme: dark)').matches;
-            setLogo(darkModeOn ? '/logos/jacks-text-dark.svg' : '/logos/jacks-text-light.svg');
-        };
+  // Inicializar tema desde localStorage o preferencia del sistema
+  useEffect(() => {
+    const saved = localStorage.getItem('theme');
+    const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+    const dark = saved ? saved === 'dark' : prefersDark;
+    setIsDark(dark);
+    document.documentElement.classList.toggle('dark', dark);
+  }, []);
 
-        const mediaQuery = window.matchMedia('(prefers-color-scheme: dark)');
+  const toggleTheme = () => {
+    const newDark = !isDark;
+    setIsDark(newDark);
+    document.documentElement.classList.toggle('dark', newDark);
+    localStorage.setItem('theme', newDark ? 'dark' : 'light');
+  };
 
-        setLogoBasedOnTheme();
+  const logo = isDark
+    ? '/logos/jacks-text-dark.svg'
+    : '/logos/jacks-text-light.svg';
 
-        mediaQuery.addEventListener('change', setLogoBasedOnTheme);
+  // Listener para teclas
+  useEffect(() => {
+    const handleKeyPress = (e: KeyboardEvent) => {
+      const key = e.key.toLowerCase();
+      if (key === 'b') navigate('/blogs');
+      else if (key === 'p') navigate('/podcast');
+      else if (key === 'n') navigate('/aboutus');
+    };
+    window.addEventListener('keydown', handleKeyPress);
+    return () => window.removeEventListener('keydown', handleKeyPress);
+  }, [navigate]);
 
-        return () => {
-            mediaQuery.removeEventListener('change', setLogoBasedOnTheme);
-        };
-    }, []);
+  const navTo = (path: string) => {
+    navigate(path);
+    setIsMenuOpen(false);
+  };
 
-    // Listener para teclas
-    useEffect(() => {
-        const handleKeyPress = (e: KeyboardEvent) => {
-            const key = e.key.toLowerCase();
-            if (key === 'b') navigate('/blog');
-            else if (key === 'p') navigate('/podcast');
-            else if (key === 'n') navigate('/aboutus');
-        };
-
-        window.addEventListener('keydown', handleKeyPress);
-
-        return () => {
-            window.removeEventListener('keydown', handleKeyPress);
-        };
-    }, [navigate]);
-
-    return (
-        <nav className='nav-bar'>
-            <div className="nav-left">
-                <img 
-                    className="header-logo" 
-                    src={logo} 
-                    alt="Logo"
-                    onClick={() => navigate('/')}
-                />
-            </div>
-            <ul className="nav-right">
-                <li className='nav-bar-item' onClick={() => navigate('/blog')}>[B] Blog</li>
-                <li className='nav-bar-item' onClick={() => navigate('/podcast')}>[P] Podcast</li>
-                <li className='nav-bar-item' onClick={() => navigate('/aboutus')}>[N] Nosotros</li>
-            </ul>
-        </nav>
-    );
+  return (
+    <nav className='nav-bar'>
+      <div className="nav-left">
+        <img
+            className="header-logo"
+            src={logo}
+            alt="Logo"
+            onClick={() => navTo('/')}
+        />
+      </div>
+      {centerComponent && <div className="nav-center">{centerComponent}</div>}
+      <ul className={`nav-right ${isMenuOpen ? 'open' : ''}`}>
+        <li className='nav-bar-item theme-toggle' onClick={toggleTheme}>
+          {isDark ? <img className="light-bulb-logo-dark" src="/logos/light-bulb.svg" alt="Cambiar tema"/> : <img className="light-bulb-logo" src="/logos/light-bulb.svg" alt="Cambiar tema"/>}
+        </li>
+        <li className='nav-bar-item' onClick={() => navTo('/blogs')}>[B] Blog</li>
+        <li className='nav-bar-item' onClick={() => navTo('/podcast')}>[P] Podcast</li>
+        <li className='nav-bar-item' onClick={() => navTo('/aboutus')}>[N] Nosotros</li>
+      </ul>
+      <button
+        className={`nav-hamburger ${isMenuOpen ? 'open' : ''}`}
+        onClick={() => setIsMenuOpen(!isMenuOpen)}
+        aria-label="Abrir menú"
+        aria-expanded={isMenuOpen}
+      >
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+    </nav>
+  );
 }
 
 export default NavBar;
