@@ -7,7 +7,7 @@ const getYoutubeEmbedId = (url: string): string => {
 }
 
 const mapPodcastEpisode = (item: any): PodcastEpisode => {
-  const embedId = getYoutubeEmbedId(item.link)
+  const embedId = item.youtube_link ? getYoutubeEmbedId(item.youtube_link) : ''
   return {
     id: item.id,
     title: item.title,
@@ -15,7 +15,9 @@ const mapPodcastEpisode = (item: any): PodcastEpisode => {
     embedId,
     category: item.category ?? '',
     date: item.date_publication,
-    thumbnail: `https://img.youtube.com/vi/${embedId}/hqdefault.jpg`
+    thumbnail: `https://img.youtube.com/vi/${embedId}/hqdefault.jpg`,
+    spotifyLink: item.link ?? null,
+    youtubeLink: item.youtube_link ?? null
   }
 }
 

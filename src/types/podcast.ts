@@ -6,4 +6,6 @@ export interface PodcastEpisode {
   category: string
   date: string
   thumbnail: string
+  spotifyLink: string | null
+  youtubeLink: string | null
 }
