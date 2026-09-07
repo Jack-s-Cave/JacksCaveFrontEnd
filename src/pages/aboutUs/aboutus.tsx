@@ -1,20 +1,22 @@
 import NavBar from '../../components/navbar/navbar';
 import './aboutus.css';
 import { useAsociaciones } from 'hooks/useMembers';
+import { useAsociacionInfo } from 'hooks/useAsociacionInfo';
 import { MemberCard } from 'components/members/memberCard';
 import ErrorMessage from 'components/common/errorMessage';
 import Spinner from 'components/common/spinner';
 
 const AboutUs = () => {
   const { years, selectedYear, setSelectedYear, members, loading, error } = useAsociaciones()
+  const { info: asociacionInfo } = useAsociacionInfo()
   const mostRecentYear = years[0]
 
   const associationInfo = {
     name: "AECCTI",
     subtitle1: "UNA ASOCIACIÓN",
     subtitle2: "DE ESTUDIANTES",
-    logo: null, // Se cargará de la DB
-    description: "Descripción de la asociación que se cargará desde la base de datos..."
+    description: asociacionInfo?.descripcion ?? "Descripción de la asociación que se cargará desde la base de datos...",
+    foto: asociacionInfo?.foto ?? null
   };
 
   return (
@@ -33,10 +35,13 @@ const AboutUs = () => {
                   <span className="estudiantes-text">ESTUDIANTES</span>
                 </div>
               </div>
-              {/* POSIBLE BUG EN EL FUTURO */}
-              <div className="logo-placeholder">
-                <span>Imagen Asociacion (bonitos y gorditos)</span>
-              </div>
+              {associationInfo.foto ? (
+                <img className="logo-placeholder" src={associationInfo.foto} alt={associationInfo.name} />
+              ) : (
+                <div className="logo-placeholder">
+                  <span>Imagen Asociacion (bonitos y gorditos)</span>
+                </div>
+              )}
             </div>
 
             <div className="hero-description">
