@@ -4,9 +4,11 @@ import { FaYoutube, FaInstagram, FaTiktok } from 'react-icons/fa';
 import { FiFolder, FiSearch } from 'react-icons/fi';
 import './podcast.css';
 import PodcastEpisodesList from 'components/podcast/podcastEpisodeList';
+import { usePodcastCrew } from 'hooks/usePodcastCrew';
 
 const Podcasts = () => {
   const [activeTab, setActiveTab] = useState('TODAS');
+  const { crew } = usePodcastCrew();
 
   const playlistsData = [
     {
@@ -65,11 +67,7 @@ const Podcasts = () => {
             <div className="about-content">
               <h2 className="about-title">¿QUIÉNES SOMOS?</h2>
               <p className="about-description">
-                Since My Favorite Murder launched in January of 2016, Karen 
-                Kilgariff and Georgia Hardstark have shared their lifelong 
-                interest in true crime stories and have covered infamous serial 
-                killers, mysterious cold cases, captivating cults, incredible 
-                survivor stories and important events from history.
+                {crew?.proposito ?? 'Cargando...'}
               </p>
               <div className="social-links">
                 {socialLinks.map((social, index) => (
