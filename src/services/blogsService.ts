@@ -23,10 +23,6 @@ export const blogsService = {
     const data = await api.get('article-mds?populate=*')
     return data.data.map(mapBlog)
   },
-  getNews: async (): Promise<Blog[]> => {
-    const data = await api.get('article-mds/news?populate=*')
-    return data.data.map(mapBlog)
-  },
   getBlogByID: async (id: number): Promise<Blog> => {
     const blogs = await blogsService.getAll()
     const blog = blogs.find(b => b.id === id)
