@@ -239,7 +239,7 @@
   font-family: var(--font-subtitle);
   font-size: 1.4rem;
   font-weight: 700;
-  color: var(--primary-color1);
+  color: var(--font-color);
   margin: 0 0 0.8rem 0;
 }
 
