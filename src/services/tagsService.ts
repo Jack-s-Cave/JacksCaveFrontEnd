@@ -9,7 +9,13 @@ export const mapTag = (raw: string, index: number): Tag => ({
 
 export const tagsService = {
   getAllTags: async (): Promise<Tag[]> => {
-    const data = await api.get('article-mds/unique-tags');
-    return data.data.map((label: string, index: number) => mapTag(label, index));
+    // article-mds/unique-tags isn't merged on the backend yet, so derive the
+    // distinct tags in use from a lightweight fetch (tags field only)
+    // instead of depending on it.
+    const data = await api.get('article-mds?fields[0]=tags&pagination[pageSize]=100');
+    const labels = Array.from(
+      new Set(data.data.map((item: any) => item.tags).filter((t: string | null) => !!t))
+    ) as string[];
+    return labels.map((label, index) => mapTag(label, index));
   }
 }

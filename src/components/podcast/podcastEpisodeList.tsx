@@ -1,12 +1,11 @@
 import PodcastCard from 'components/podcast/podcastCard';
-import { useAllPodcastEpisodes } from 'hooks/usePodcast';
-import ErrorMessage from 'components/common/errorMessage';
-import Spinner from 'components/common/spinner';
+import { PodcastEpisode } from 'types/podcast';
 
-const PodcastEpisodesList = () => {
-  const { episodes, loading, error } = useAllPodcastEpisodes()
-  if (loading) return <Spinner />
-  if (error) return <ErrorMessage />
+type PodcastEpisodesListProps = {
+  episodes: PodcastEpisode[]
+}
+
+const PodcastEpisodesList = ({ episodes }: PodcastEpisodesListProps) => {
   return (
     <div className="episodes-grid">
       {episodes.map(episode => <PodcastCard key={episode.id} podcastEpisode={episode} />)}

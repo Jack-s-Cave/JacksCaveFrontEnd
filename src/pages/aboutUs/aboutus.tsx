@@ -1,22 +1,22 @@
 import NavBar from '../../components/navbar/navbar';
-import { useState } from 'react';
 import './aboutus.css';
-import { useMembersByYear } from 'hooks/useMembers';
+import { useAsociaciones } from 'hooks/useMembers';
+import { useAsociacionInfo } from 'hooks/useAsociacionInfo';
 import { MemberCard } from 'components/members/memberCard';
 import ErrorMessage from 'components/common/errorMessage';
 import Spinner from 'components/common/spinner';
 
 const AboutUs = () => {
-  const years = [2025, 2024, 2023, 2022, 2021, 2020, 2019, 2018, 2017, 2016, 2015, 2014, 2013, 2012];
-  const [selectedYear, setSelectedYear] = useState(2025)
-  const { members, loading, error } = useMembersByYear(String(selectedYear))
+  const { years, selectedYear, setSelectedYear, members, loading, error } = useAsociaciones()
+  const { info: asociacionInfo } = useAsociacionInfo()
+  const mostRecentYear = years[0]
 
   const associationInfo = {
     name: "AECCTI",
     subtitle1: "UNA ASOCIACIÓN",
     subtitle2: "DE ESTUDIANTES",
-    logo: null, // Se cargará de la DB
-    description: "Descripción de la asociación que se cargará desde la base de datos..."
+    description: asociacionInfo?.descripcion ?? "Descripción de la asociación que se cargará desde la base de datos...",
+    foto: asociacionInfo?.foto ?? null
   };
 
   return (
@@ -35,10 +35,13 @@ const AboutUs = () => {
                   <span className="estudiantes-text">ESTUDIANTES</span>
                 </div>
               </div>
-              {/* POSIBLE BUG EN EL FUTURO */}
-              <div className="logo-placeholder">
-                <span>Imagen Asociacion (bonitos y gorditos)</span>
-              </div>
+              {associationInfo.foto ? (
+                <img className="logo-placeholder" src={associationInfo.foto} alt={associationInfo.name} />
+              ) : (
+                <div className="logo-placeholder">
+                  <span>Imagen Asociacion (bonitos y gorditos)</span>
+                </div>
+              )}
             </div>
 
             <div className="hero-description">
@@ -65,7 +68,7 @@ const AboutUs = () => {
         {/* Members Section */}
         <section className="members-section">        
           <h2 className="members-title">
-            {selectedYear === 2025 ? 'MIEMBROS ACTUALES' : `MIEMBROS ${selectedYear}`}
+            {selectedYear === mostRecentYear ? 'MIEMBROS ACTUALES' : `MIEMBROS ${selectedYear}`}
           </h2>
 
           <div className="members-grid">

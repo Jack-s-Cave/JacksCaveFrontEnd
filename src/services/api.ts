@@ -1,4 +1,4 @@
-const BASE_URL = process.env.REACT_APP_STRAPI_URL
+export const BASE_URL = process.env.REACT_APP_STRAPI_URL
 const TOKEN = process.env.REACT_APP_STRAPI_TOKEN
 
 async function request(method: string, path: string, body: unknown = null) {

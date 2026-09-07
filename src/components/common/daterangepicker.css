@@ -41,6 +41,21 @@
 .date-picker input[type="date"] {
   background: transparent;
   border: none;
-  border-bottom: 1.5px solid #ffff;
-  color: #ffff;
+  border-bottom: 1.5px solid var(--font-color);
+  color: var(--font-color);
+}
+
+.date-picker svg {
+  stroke: var(--font-color);
+}
+
+/* The native date-input calendar icon is a fixed dark glyph that
+   doesn't respond to `color` - invert it in dark mode so it stays
+   visible against the dark background. */
+.date-picker input[type="date"]::-webkit-calendar-picker-indicator {
+  filter: invert(0);
+}
+
+html.dark .date-picker input[type="date"]::-webkit-calendar-picker-indicator {
+  filter: invert(1);
 }

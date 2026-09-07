@@ -1,30 +1,64 @@
 import NavBar from '../../components/navbar/navbar';
-import { useState } from 'react';
+import { useEffect, useMemo, useState } from 'react';
 import { FaYoutube, FaInstagram, FaTiktok } from 'react-icons/fa';
 import { FiFolder, FiSearch } from 'react-icons/fi';
 import './podcast.css';
 import PodcastEpisodesList from 'components/podcast/podcastEpisodeList';
+import { usePodcastCrew } from 'hooks/usePodcastCrew';
+import { useAllPodcastEpisodes } from 'hooks/usePodcast';
+import ErrorMessage from 'components/common/errorMessage';
+import Spinner from 'components/common/spinner';
 
 const Podcasts = () => {
-  const [activeTab, setActiveTab] = useState('TODAS');
+  const { crew } = usePodcastCrew();
+  const { episodes, loading, error } = useAllPodcastEpisodes();
 
-  const playlistsData = [
-    {
-      id: 1,
-      title: "Los Favoritos",
-      description: "Los episodios más populares del podcast"
-    },
-    {
-      id: 2,
-      title: "Buscar trabajo", 
-      description: "Episodios sobre búsqueda de empleo y carrera"
-    },
-    {
-      id: 3,
-      title: "Noticias Tech",
-      description: "Las últimas noticias del mundo tecnológico"
+  const years = useMemo(
+    () => Array.from(new Set(episodes.map(e => new Date(e.date).getFullYear()))).sort((a, b) => b - a),
+    [episodes]
+  );
+  const [selectedYears, setSelectedYears] = useState<number[]>([]);
+  const [yearsInitialized, setYearsInitialized] = useState(false);
+
+  useEffect(() => {
+    if (!yearsInitialized && years.length > 0) {
+      setSelectedYears(years);
+      setYearsInitialized(true);
     }
-  ];
+  }, [years, yearsInitialized]);
+
+  const toggleYear = (year: number) => {
+    setSelectedYears(prev => prev.includes(year) ? prev.filter(y => y !== year) : [...prev, year]);
+  };
+
+  const [searchQuery, setSearchQuery] = useState('');
+
+  const visibleEpisodes = useMemo(() => {
+    const byYear = episodes.filter(e => selectedYears.includes(new Date(e.date).getFullYear()));
+    const q = searchQuery.trim().toLowerCase();
+    if (!q) return byYear;
+    return byYear.filter(e => e.title.toLowerCase().includes(q));
+  }, [episodes, selectedYears, searchQuery]);
+
+  // TODO: re-enable playlists view in a future release.
+  // const [activeTab, setActiveTab] = useState('TODAS');
+  // const playlistsData = [
+  //   {
+  //     id: 1,
+  //     title: "Los Favoritos",
+  //     description: "Los episodios más populares del podcast"
+  //   },
+  //   {
+  //     id: 2,
+  //     title: "Buscar trabajo",
+  //     description: "Episodios sobre búsqueda de empleo y carrera"
+  //   },
+  //   {
+  //     id: 3,
+  //     title: "Noticias Tech",
+  //     description: "Las últimas noticias del mundo tecnológico"
+  //   }
+  // ];
 
   const socialLinks = [
     { 
@@ -44,7 +78,8 @@ const Podcasts = () => {
     }
   ];
 
-  const tabs = ['LISTAS', 'TODAS'];
+  // TODO: re-enable playlists view in a future release.
+  // const tabs = ['LISTAS', 'TODAS'];
 
   return (
     <main className='podcasts-content'>
@@ -52,11 +87,13 @@ const Podcasts = () => {
       <div className="podcasts-page">
         <section className="hero-section-podcasts">
           <div className="hero-overlay">
-            <img 
-              src="https://media.istockphoto.com/id/2242721518/photo/modern-podcast-studio-with-two-armchairs-microphones-and-soft-lighting-setup.jpg?s=2048x2048&w=is&k=20&c=utXkzAsCPRfWqPsPDEq40-HIQsnR3M3_ZdcBOtay8to=" 
-              alt="Podcast Image"
-              className="hero-background"
-            />
+            {crew?.heroImage && (
+              <img
+                src={crew.heroImage}
+                alt="Podcast Image"
+                className="hero-background"
+              />
+            )}
           </div>
         </section>
 
@@ -65,11 +102,7 @@ const Podcasts = () => {
             <div className="about-content">
               <h2 className="about-title">¿QUIÉNES SOMOS?</h2>
               <p className="about-description">
-                Since My Favorite Murder launched in January of 2016, Karen 
-                Kilgariff and Georgia Hardstark have shared their lifelong 
-                interest in true crime stories and have covered infamous serial 
-                killers, mysterious cold cases, captivating cults, incredible 
-                survivor stories and important events from history.
+                {crew?.proposito ?? 'Cargando...'}
               </p>
               <div className="social-links">
                 {socialLinks.map((social, index) => (
@@ -93,11 +126,12 @@ const Podcasts = () => {
           </div>
         </section>
 
+        {/* TODO: re-enable playlists view in a future release.
         <section className="tabs-section">
           <div className="tabs-nav">
             {tabs.map((tab) => (
-              <button 
-                key={tab} 
+              <button
+                key={tab}
                 className={`tab-btn ${tab === activeTab ? 'active' : ''}`}
                 onClick={() => setActiveTab(tab)}
               >
@@ -106,6 +140,7 @@ const Podcasts = () => {
             ))}
           </div>
         </section>
+        */}
 
         <section className="publications-section">
           <div className="publications-container">
@@ -115,26 +150,16 @@ const Podcasts = () => {
                 Publicaciones
               </h3>
               <div className="year-filters">
-                <label className="year-filter">
-                  <input type="checkbox" defaultChecked />
-                  <span>2017</span>
-                </label>
-                <label className="year-filter">
-                  <input type="checkbox" defaultChecked />
-                  <span>2018</span>
-                </label>
-                <label className="year-filter">
-                  <input type="checkbox" />
-                  <span>2019</span>
-                </label>
-                <label className="year-filter">
-                  <input type="checkbox" />
-                  <span>2020</span>
-                </label>
-                <label className="year-filter">
-                  <input type="checkbox" />
-                  <span>2021</span>
-                </label>
+                {years.map(year => (
+                  <label key={year} className="year-filter">
+                    <input
+                      type="checkbox"
+                      checked={selectedYears.includes(year)}
+                      onChange={() => toggleYear(year)}
+                    />
+                    <span>{year}</span>
+                  </label>
+                ))}
               </div>
             </div>
 
@@ -142,16 +167,19 @@ const Podcasts = () => {
               <div className="search-bar">
                 <div className="search-input-wrapper">
                   <FiSearch className="search-icon" />
-                  <input 
-                    type="text" 
-                    placeholder="Buscar..." 
+                  <input
+                    type="text"
+                    placeholder="Buscar..."
                     className="search-input"
+                    value={searchQuery}
+                    onChange={(e) => setSearchQuery(e.target.value)}
                   />
                 </div>
-                <span className="post-count">(3 posts)</span>
+                <span className="post-count">({visibleEpisodes.length} posts)</span>
               </div>
 
               <div className="podcasts-grid">
+                {/* TODO: re-enable playlists view in a future release.
                 {activeTab === 'LISTAS' ? (
                   <div className="playlists-grid">
                     {playlistsData.map((playlist) => (
@@ -170,6 +198,13 @@ const Podcasts = () => {
                 ) : (
                     <PodcastEpisodesList />
                   )}
+                */}
+                {loading
+                  ? <Spinner />
+                  : error
+                    ? <ErrorMessage />
+                    : <PodcastEpisodesList episodes={visibleEpisodes} />
+                }
               </div>
             </div>
           </div>
