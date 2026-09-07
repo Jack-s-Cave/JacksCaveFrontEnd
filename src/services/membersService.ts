@@ -11,7 +11,8 @@ const mapMember = (item: any): Member => {
     id: item.id,
     name: item.nombre,
     image: item.foto?.url,
-    description: item.curriculum
+    description: item.curriculum,
+    cargo: item.Cargo ?? null
   }
 }
 

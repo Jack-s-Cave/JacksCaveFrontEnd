@@ -14,6 +14,7 @@ export const MemberCard = ({member}: MemberCardProps) => {
       </div>
       <div className="member-info">
         <h3 className="member-name">{member.name}</h3>
+        {member.cargo && <p className="member-cargo">{member.cargo}</p>}
         <p className="member-description">{member.description}</p>
       </div>
     </div>
