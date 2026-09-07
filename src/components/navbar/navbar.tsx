@@ -34,7 +34,15 @@ const NavBar = ({ isLandingPage, centerComponent }: NavBarProps) => {
 
   // Listener para teclas
   useEffect(() => {
+    const isTypingTarget = (target: EventTarget | null) => {
+      const el = target as HTMLElement | null;
+      if (!el) return false;
+      const tag = el.tagName;
+      return tag === 'INPUT' || tag === 'TEXTAREA' || el.isContentEditable;
+    };
+
     const handleKeyPress = (e: KeyboardEvent) => {
+      if (isTypingTarget(e.target)) return;
       const key = e.key.toLowerCase();
       if (key === 'b') navigate('/blogs');
       else if (key === 'p') navigate('/podcast');
