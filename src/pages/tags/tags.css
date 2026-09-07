@@ -36,10 +36,11 @@ h2 {
 }
 
 .confirm-btn {
+  font-family: var(--font-title);
   font-size: 1rem;
   color: var(--font-color);
   background: none;
-  border: var(--font-color) 1px solid;
+  border: 2px solid var(--font-color);
   cursor: pointer;
   padding: 0.6rem 1.25rem;
   border-radius: 4px;
