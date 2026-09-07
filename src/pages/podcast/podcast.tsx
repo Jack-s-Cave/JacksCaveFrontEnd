@@ -1,5 +1,4 @@
 import NavBar from '../../components/navbar/navbar';
-import { useState } from 'react';
 import { FaYoutube, FaInstagram, FaTiktok } from 'react-icons/fa';
 import { FiFolder, FiSearch } from 'react-icons/fi';
 import './podcast.css';
@@ -7,26 +6,27 @@ import PodcastEpisodesList from 'components/podcast/podcastEpisodeList';
 import { usePodcastCrew } from 'hooks/usePodcastCrew';
 
 const Podcasts = () => {
-  const [activeTab, setActiveTab] = useState('TODAS');
   const { crew } = usePodcastCrew();
 
-  const playlistsData = [
-    {
-      id: 1,
-      title: "Los Favoritos",
-      description: "Los episodios más populares del podcast"
-    },
-    {
-      id: 2,
-      title: "Buscar trabajo", 
-      description: "Episodios sobre búsqueda de empleo y carrera"
-    },
-    {
-      id: 3,
-      title: "Noticias Tech",
-      description: "Las últimas noticias del mundo tecnológico"
-    }
-  ];
+  // TODO: re-enable playlists view in a future release.
+  // const [activeTab, setActiveTab] = useState('TODAS');
+  // const playlistsData = [
+  //   {
+  //     id: 1,
+  //     title: "Los Favoritos",
+  //     description: "Los episodios más populares del podcast"
+  //   },
+  //   {
+  //     id: 2,
+  //     title: "Buscar trabajo",
+  //     description: "Episodios sobre búsqueda de empleo y carrera"
+  //   },
+  //   {
+  //     id: 3,
+  //     title: "Noticias Tech",
+  //     description: "Las últimas noticias del mundo tecnológico"
+  //   }
+  // ];
 
   const socialLinks = [
     { 
@@ -46,7 +46,8 @@ const Podcasts = () => {
     }
   ];
 
-  const tabs = ['LISTAS', 'TODAS'];
+  // TODO: re-enable playlists view in a future release.
+  // const tabs = ['LISTAS', 'TODAS'];
 
   return (
     <main className='podcasts-content'>
@@ -91,11 +92,12 @@ const Podcasts = () => {
           </div>
         </section>
 
+        {/* TODO: re-enable playlists view in a future release.
         <section className="tabs-section">
           <div className="tabs-nav">
             {tabs.map((tab) => (
-              <button 
-                key={tab} 
+              <button
+                key={tab}
                 className={`tab-btn ${tab === activeTab ? 'active' : ''}`}
                 onClick={() => setActiveTab(tab)}
               >
@@ -104,6 +106,7 @@ const Podcasts = () => {
             ))}
           </div>
         </section>
+        */}
 
         <section className="publications-section">
           <div className="publications-container">
@@ -150,6 +153,7 @@ const Podcasts = () => {
               </div>
 
               <div className="podcasts-grid">
+                {/* TODO: re-enable playlists view in a future release.
                 {activeTab === 'LISTAS' ? (
                   <div className="playlists-grid">
                     {playlistsData.map((playlist) => (
@@ -168,6 +172,8 @@ const Podcasts = () => {
                 ) : (
                     <PodcastEpisodesList />
                   )}
+                */}
+                <PodcastEpisodesList />
               </div>
             </div>
           </div>
