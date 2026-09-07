@@ -1,12 +1,40 @@
 import NavBar from '../../components/navbar/navbar';
+import { useEffect, useMemo, useState } from 'react';
 import { FaYoutube, FaInstagram, FaTiktok } from 'react-icons/fa';
 import { FiFolder, FiSearch } from 'react-icons/fi';
 import './podcast.css';
 import PodcastEpisodesList from 'components/podcast/podcastEpisodeList';
 import { usePodcastCrew } from 'hooks/usePodcastCrew';
+import { useAllPodcastEpisodes } from 'hooks/usePodcast';
+import ErrorMessage from 'components/common/errorMessage';
+import Spinner from 'components/common/spinner';
 
 const Podcasts = () => {
   const { crew } = usePodcastCrew();
+  const { episodes, loading, error } = useAllPodcastEpisodes();
+
+  const years = useMemo(
+    () => Array.from(new Set(episodes.map(e => new Date(e.date).getFullYear()))).sort((a, b) => b - a),
+    [episodes]
+  );
+  const [selectedYears, setSelectedYears] = useState<number[]>([]);
+  const [yearsInitialized, setYearsInitialized] = useState(false);
+
+  useEffect(() => {
+    if (!yearsInitialized && years.length > 0) {
+      setSelectedYears(years);
+      setYearsInitialized(true);
+    }
+  }, [years, yearsInitialized]);
+
+  const toggleYear = (year: number) => {
+    setSelectedYears(prev => prev.includes(year) ? prev.filter(y => y !== year) : [...prev, year]);
+  };
+
+  const yearFilteredEpisodes = useMemo(
+    () => episodes.filter(e => selectedYears.includes(new Date(e.date).getFullYear())),
+    [episodes, selectedYears]
+  );
 
   // TODO: re-enable playlists view in a future release.
   // const [activeTab, setActiveTab] = useState('TODAS');
@@ -118,26 +146,16 @@ const Podcasts = () => {
                 Publicaciones
               </h3>
               <div className="year-filters">
-                <label className="year-filter">
-                  <input type="checkbox" defaultChecked />
-                  <span>2017</span>
-                </label>
-                <label className="year-filter">
-                  <input type="checkbox" defaultChecked />
-                  <span>2018</span>
-                </label>
-                <label className="year-filter">
-                  <input type="checkbox" />
-                  <span>2019</span>
-                </label>
-                <label className="year-filter">
-                  <input type="checkbox" />
-                  <span>2020</span>
-                </label>
-                <label className="year-filter">
-                  <input type="checkbox" />
-                  <span>2021</span>
-                </label>
+                {years.map(year => (
+                  <label key={year} className="year-filter">
+                    <input
+                      type="checkbox"
+                      checked={selectedYears.includes(year)}
+                      onChange={() => toggleYear(year)}
+                    />
+                    <span>{year}</span>
+                  </label>
+                ))}
               </div>
             </div>
 
@@ -175,7 +193,12 @@ const Podcasts = () => {
                     <PodcastEpisodesList />
                   )}
                 */}
-                <PodcastEpisodesList />
+                {loading
+                  ? <Spinner />
+                  : error
+                    ? <ErrorMessage />
+                    : <PodcastEpisodesList episodes={yearFilteredEpisodes} />
+                }
               </div>
             </div>
           </div>
