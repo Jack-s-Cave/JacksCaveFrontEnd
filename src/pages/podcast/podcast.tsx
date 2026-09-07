@@ -55,11 +55,13 @@ const Podcasts = () => {
       <div className="podcasts-page">
         <section className="hero-section-podcasts">
           <div className="hero-overlay">
-            <img 
-              src="https://media.istockphoto.com/id/2242721518/photo/modern-podcast-studio-with-two-armchairs-microphones-and-soft-lighting-setup.jpg?s=2048x2048&w=is&k=20&c=utXkzAsCPRfWqPsPDEq40-HIQsnR3M3_ZdcBOtay8to=" 
-              alt="Podcast Image"
-              className="hero-background"
-            />
+            {crew?.heroImage && (
+              <img
+                src={crew.heroImage}
+                alt="Podcast Image"
+                className="hero-background"
+              />
+            )}
           </div>
         </section>
 
