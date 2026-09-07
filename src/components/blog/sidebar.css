@@ -59,13 +59,14 @@
  * Permite expandir la lista de tags (funcionalidad futura)
  */
 .ver-todas-btn {
+  font-family: var(--font-title);
   font-size: 0.875rem; /* 14px */
+  line-height: 1;
   color: var(--font-color);
   background: none;
-  border: var(--font-color) 1px solid;
+  border: 2px solid var(--font-color);
   cursor: pointer;
-  padding: 0.1rem 0.4rem;
-  padding-top: 0.3rem;
+  padding: 0.6rem 0.9rem;
   border-radius: 0.2rem;
   transition: all 0.2s; /* Transición suave para hover */
 }
