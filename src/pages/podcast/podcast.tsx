@@ -31,10 +31,14 @@ const Podcasts = () => {
     setSelectedYears(prev => prev.includes(year) ? prev.filter(y => y !== year) : [...prev, year]);
   };
 
-  const yearFilteredEpisodes = useMemo(
-    () => episodes.filter(e => selectedYears.includes(new Date(e.date).getFullYear())),
-    [episodes, selectedYears]
-  );
+  const [searchQuery, setSearchQuery] = useState('');
+
+  const visibleEpisodes = useMemo(() => {
+    const byYear = episodes.filter(e => selectedYears.includes(new Date(e.date).getFullYear()));
+    const q = searchQuery.trim().toLowerCase();
+    if (!q) return byYear;
+    return byYear.filter(e => e.title.toLowerCase().includes(q));
+  }, [episodes, selectedYears, searchQuery]);
 
   // TODO: re-enable playlists view in a future release.
   // const [activeTab, setActiveTab] = useState('TODAS');
@@ -163,13 +167,15 @@ const Podcasts = () => {
               <div className="search-bar">
                 <div className="search-input-wrapper">
                   <FiSearch className="search-icon" />
-                  <input 
-                    type="text" 
-                    placeholder="Buscar..." 
+                  <input
+                    type="text"
+                    placeholder="Buscar..."
                     className="search-input"
+                    value={searchQuery}
+                    onChange={(e) => setSearchQuery(e.target.value)}
                   />
                 </div>
-                <span className="post-count">(3 posts)</span>
+                <span className="post-count">({visibleEpisodes.length} posts)</span>
               </div>
 
               <div className="podcasts-grid">
@@ -197,7 +203,7 @@ const Podcasts = () => {
                   ? <Spinner />
                   : error
                     ? <ErrorMessage />
-                    : <PodcastEpisodesList episodes={yearFilteredEpisodes} />
+                    : <PodcastEpisodesList episodes={visibleEpisodes} />
                 }
               </div>
             </div>
