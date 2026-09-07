@@ -1,15 +1,13 @@
 import NavBar from '../../components/navbar/navbar';
-import { useState } from 'react';
 import './aboutus.css';
-import { useMembersByYear } from 'hooks/useMembers';
+import { useAsociaciones } from 'hooks/useMembers';
 import { MemberCard } from 'components/members/memberCard';
 import ErrorMessage from 'components/common/errorMessage';
 import Spinner from 'components/common/spinner';
 
 const AboutUs = () => {
-  const years = [2025, 2024, 2023, 2022, 2021, 2020, 2019, 2018, 2017, 2016, 2015, 2014, 2013, 2012];
-  const [selectedYear, setSelectedYear] = useState(2025)
-  const { members, loading, error } = useMembersByYear(String(selectedYear))
+  const { years, selectedYear, setSelectedYear, members, loading, error } = useAsociaciones()
+  const mostRecentYear = years[0]
 
   const associationInfo = {
     name: "AECCTI",
@@ -65,7 +63,7 @@ const AboutUs = () => {
         {/* Members Section */}
         <section className="members-section">        
           <h2 className="members-title">
-            {selectedYear === 2025 ? 'MIEMBROS ACTUALES' : `MIEMBROS ${selectedYear}`}
+            {selectedYear === mostRecentYear ? 'MIEMBROS ACTUALES' : `MIEMBROS ${selectedYear}`}
           </h2>
 
           <div className="members-grid">
