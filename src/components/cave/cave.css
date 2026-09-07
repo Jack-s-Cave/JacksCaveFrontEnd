@@ -53,6 +53,13 @@ div.cave-outside-wrapper img{
     width: fit-content; /* Ensure .cave-text wraps its content */
 }
 
+/* Light mode only: match the whitish tone of the outermost cave layer
+   (OUT-light.svg is #fbf7f4, i.e. --primary-color1) instead of the
+   dark-orange --primary-color4. Dark mode keeps --primary-color4. */
+html:not(.dark) .cave-text {
+    color: var(--primary-color1);
+}
+
 .cave-tittle {
     /* Font */
     font-family: "Roboto", sans-serif;
