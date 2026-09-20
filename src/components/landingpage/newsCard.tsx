@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from 'react';
 import './newsCard.css';
-import { Blog } from 'types/blog';
+import { Information } from 'types/information';
 import { RiNewspaperLine } from 'react-icons/ri';
 
 type NewsCardProps = {
-  newsList: Blog[];
+  newsList: Information[];
 };
 
 const NewsCard: React.FC<NewsCardProps> = ({ newsList }) => {

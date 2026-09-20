@@ -1,6 +1,7 @@
 import { Blog } from "types/blog"
 import { api } from "./api"
 import { mapTag } from "./tagsService"
+import { mediaUrl } from "helpers/mediaUrl"
 
 const mapBlog = (item: any): Blog => {
   const imagenUrl = item.imagenes?.[0]?.url;
@@ -12,7 +13,7 @@ const mapBlog = (item: any): Blog => {
     date: item.fecha_de_publicacion,
     author: item.author_profile?.nombre ?? 'Anónimo',
     image: imagenUrl
-      ? `${imagenUrl}`
+      ? mediaUrl(imagenUrl)
       : undefined,
     tags: item.tags ? [mapTag(item.tags, 0)] : []
   }
@@ -21,10 +22,6 @@ const mapBlog = (item: any): Blog => {
 export const blogsService = {
   getAll: async (): Promise<Blog[]> => {
     const data = await api.get('article-mds?populate=*')
-    return data.data.map(mapBlog)
-  },
-  getNews: async (): Promise<Blog[]> => {
-    const data = await api.get('article-mds/news?populate=*')
     return data.data.map(mapBlog)
   },
   getBlogByID: async (id: number): Promise<Blog> => {
