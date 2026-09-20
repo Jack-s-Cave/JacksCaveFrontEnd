@@ -33,6 +33,6 @@ export const SPECIAL_THANKS: SpecialThanks[] = [
   },
   {
     name: 'Francis Aguilar',
-    note: 'presidente de la asociación de estudiantes, quien impulsó y respaldó el proyecto',
+    note: 'presidenta de la asociación de estudiantes durante el ciclo académico 2024, quien impulsó y respaldó el proyecto',
   },
 ];
