@@ -1,54 +1,64 @@
-import React, { useState } from 'react';
-import { FaYoutube, FaInstagram, FaTiktok, FaSpotify } from 'react-icons/fa';
+import NavBar from '../../components/navbar/navbar';
+import { useEffect, useMemo, useState } from 'react';
+import { FaYoutube, FaInstagram, FaTiktok } from 'react-icons/fa';
 import { FiFolder, FiSearch } from 'react-icons/fi';
 import './podcast.css';
+import PodcastEpisodesList from 'components/podcast/podcastEpisodeList';
+import { usePodcastCrew } from 'hooks/usePodcastCrew';
+import { useAllPodcastEpisodes } from 'hooks/usePodcast';
+import ErrorMessage from 'components/common/errorMessage';
+import Spinner from 'components/common/spinner';
 
-const Podcasts: React.FC = () => {
-  const [activeTab, setActiveTab] = useState('TODAS');
+const Podcasts = () => {
+  const { crew } = usePodcastCrew();
+  const { episodes, loading, error } = useAllPodcastEpisodes();
 
-  // URLs de YouTube embeds
-  const podcastEpisodes = [
-    {
-      id: 1,
-      title: "¿Como ser estudiante y trabajar al mismo tiempo? | EP 2 Ludwing Cano",
-      description: "Un podcast de tecnología por estudiantes para estudiantes",
-      embedId: "zlSbBsJYFGA",
-      category: "TODAS"
-    },
-    {
-      id: 2,
-      title: "Desarrollar videojuegos en Guatemala | EP 1 Dennis Aldana",
-      description: "Un podcast de tecnología por estudiantes para estudiantes",
-      embedId: "qVDqPct6b_k",
-      category: "TODAS"
-    },
-    {
-      id: 3,
-      title: "Desarrollar videojuegos en Guatemala | EP 1 Dennis Aldana",
-      description: "Un podcast de tecnología por estudiantes para estudiantes",
-      embedId: "6guzh_QQKJA",
-      category: "TODAS"
+  const years = useMemo(
+    () => Array.from(new Set(episodes.map(e => new Date(e.date).getFullYear()))).sort((a, b) => b - a),
+    [episodes]
+  );
+  const [selectedYears, setSelectedYears] = useState<number[]>([]);
+  const [yearsInitialized, setYearsInitialized] = useState(false);
+
+  useEffect(() => {
+    if (!yearsInitialized && years.length > 0) {
+      setSelectedYears(years);
+      setYearsInitialized(true);
     }
-  ];
+  }, [years, yearsInitialized]);
 
-  // Listas de reproducción para la sección "LISTAS"
-  const playlistsData = [
-    {
-      id: 1,
-      title: "Los Favoritos",
-      description: "Los episodios más populares del podcast"
-    },
-    {
-      id: 2,
-      title: "Buscar trabajo", 
-      description: "Episodios sobre búsqueda de empleo y carrera"
-    },
-    {
-      id: 3,
-      title: "Noticias Tech",
-      description: "Las últimas noticias del mundo tecnológico"
-    }
-  ];
+  const toggleYear = (year: number) => {
+    setSelectedYears(prev => prev.includes(year) ? prev.filter(y => y !== year) : [...prev, year]);
+  };
+
+  const [searchQuery, setSearchQuery] = useState('');
+
+  const visibleEpisodes = useMemo(() => {
+    const byYear = episodes.filter(e => selectedYears.includes(new Date(e.date).getFullYear()));
+    const q = searchQuery.trim().toLowerCase();
+    if (!q) return byYear;
+    return byYear.filter(e => e.title.toLowerCase().includes(q));
+  }, [episodes, selectedYears, searchQuery]);
+
+  // TODO: re-enable playlists view in a future release.
+  // const [activeTab, setActiveTab] = useState('TODAS');
+  // const playlistsData = [
+  //   {
+  //     id: 1,
+  //     title: "Los Favoritos",
+  //     description: "Los episodios más populares del podcast"
+  //   },
+  //   {
+  //     id: 2,
+  //     title: "Buscar trabajo",
+  //     description: "Episodios sobre búsqueda de empleo y carrera"
+  //   },
+  //   {
+  //     id: 3,
+  //     title: "Noticias Tech",
+  //     description: "Las últimas noticias del mundo tecnológico"
+  //   }
+  // ];
 
   const socialLinks = [
     { 
@@ -68,172 +78,139 @@ const Podcasts: React.FC = () => {
     }
   ];
 
-  const tabs = ['LISTAS', 'TODAS'];
+  // TODO: re-enable playlists view in a future release.
+  // const tabs = ['LISTAS', 'TODAS'];
 
   return (
-    <div className="podcasts-page">
-      {/* Hero Section con imagen de fondo */}
-      <section className="hero-section-podcasts">
-        <div className="hero-overlay">
-          <img 
-            src="https://images.unsplash.com/photo-1590602847861-f357a9332bbc?w=1200&h=600&fit=crop" 
-            alt="Gas Station Illustration"
-            className="hero-background"
-          />
-        </div>
-      </section>
-
-      {/* Sección ¿Quiénes Somos? */}
-      <section className="about-section">
-        <div className="about-container">
-          <div className="about-content">
-            <h2 className="about-title">¿QUIÉNES SOMOS?</h2>
-            <p className="about-description">
-              Since My Favorite Murder launched in January of 2016, Karen 
-              Kilgariff and Georgia Hardstark have shared their lifelong 
-              interest in true crime stories and have covered infamous serial 
-              killers, mysterious cold cases, captivating cults, incredible 
-              survivor stories and important events from history.
-            </p>
-            <div className="social-links">
-              {socialLinks.map((social, index) => (
-                <a 
-                  key={index} 
-                  href={social.url} 
-                  target="_blank" 
-                  rel="noopener noreferrer"
-                  className="social-link"
-                >
-                  {social.icon}
-                </a>
-              ))}
-            </div>
+    <main className='podcasts-content'>
+      <NavBar />
+      <div className="podcasts-page">
+        <section className="hero-section-podcasts">
+          <div className="hero-overlay">
+            {crew?.heroImage && (
+              <img
+                src={crew.heroImage}
+                alt="Podcast Image"
+                className="hero-background"
+              />
+            )}
           </div>
-          <div className="about-logo">
-            {/* Placeholder cuadrado para el logo */}
-            <div className="logo-placeholder">
-              <span>Logo</span>
-            </div>
-          </div>
-        </div>
-      </section>
+        </section>
 
-      {/* Tabs Navigation */}
-      <section className="tabs-section">
-        <div className="tabs-nav">
-          {tabs.map((tab) => (
-            <button 
-              key={tab} 
-              className={`tab-btn ${tab === activeTab ? 'active' : ''}`}
-              onClick={() => setActiveTab(tab)}
-            >
-              {tab}
-            </button>
-          ))}
-        </div>
-      </section>
-
-      {/* Publicaciones Section */}
-      <section className="publications-section">
-        <div className="publications-container">
-          <div className="sidebar">
-            <h3 className="sidebar-title">
-        <FiFolder className="folder-icon" />
-        Publicaciones
-      </h3>
-      <div className="year-filters">
-        <label className="year-filter">
-          <input type="checkbox" defaultChecked />
-          <span>2017</span>
-        </label>
-        <label className="year-filter">
-          <input type="checkbox" defaultChecked />
-          <span>2018</span>
-        </label>
-        <label className="year-filter">
-          <input type="checkbox" />
-          <span>2019</span>
-        </label>
-        <label className="year-filter">
-          <input type="checkbox" />
-          <span>2020</span>
-        </label>
-        <label className="year-filter">
-          <input type="checkbox" />
-          <span>2021</span>
-        </label>
-            </div>
-          </div>
-
-          <div className="content-area">
-            <div className="search-bar">
-              <div className="search-input-wrapper">
-                <FiSearch className="search-icon" />
-                <input 
-                  type="text" 
-                  placeholder="Buscar..." 
-                  className="search-input"
-                />
+        <section className="about-section">
+          <div className="about-container">
+            <div className="about-content">
+              <h2 className="about-title">¿QUIÉNES SOMOS?</h2>
+              <p className="about-description">
+                {crew?.proposito ?? 'Cargando...'}
+              </p>
+              <div className="social-links">
+                {socialLinks.map((social, index) => (
+                  <a 
+                    key={index} 
+                    href={social.url} 
+                    target="_blank" 
+                    rel="noopener noreferrer"
+                    className="social-link"
+                  >
+                    {social.icon}
+                  </a>
+                ))}
               </div>
-              <span className="post-count">(3 posts)</span>
+            </div>
+            <div className="about-logo">
+              <div className="logo-placeholder">
+                <span>Logo</span>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* TODO: re-enable playlists view in a future release.
+        <section className="tabs-section">
+          <div className="tabs-nav">
+            {tabs.map((tab) => (
+              <button
+                key={tab}
+                className={`tab-btn ${tab === activeTab ? 'active' : ''}`}
+                onClick={() => setActiveTab(tab)}
+              >
+                {tab}
+              </button>
+            ))}
+          </div>
+        </section>
+        */}
+
+        <section className="publications-section">
+          <div className="publications-container">
+            <div className="sidebar">
+              <h3 className="sidebar-title">
+                <FiFolder className="folder-icon" />
+                Publicaciones
+              </h3>
+              <div className="year-filters">
+                {years.map(year => (
+                  <label key={year} className="year-filter">
+                    <input
+                      type="checkbox"
+                      checked={selectedYears.includes(year)}
+                      onChange={() => toggleYear(year)}
+                    />
+                    <span>{year}</span>
+                  </label>
+                ))}
+              </div>
             </div>
 
-            <div className="podcasts-grid">
-              {activeTab === 'LISTAS' ? (
-                // Mostrar listas de reproducción
-                <div className="playlists-grid">
-                  {playlistsData.map((playlist) => (
-                    <div key={playlist.id} className="playlist-card">
-                      <div className="playlist-cover">
-                        <div className="cover-placeholder">
-                          <span>Portada</span>
-                        </div>
-                      </div>
-                      <div className="playlist-info">
-                        <h3 className="playlist-title">{playlist.title}</h3>
-                      </div>
-                    </div>
-                  ))}
+            <div className="content-area">
+              <div className="search-bar">
+                <div className="search-input-wrapper">
+                  <FiSearch className="search-icon" />
+                  <input
+                    type="text"
+                    placeholder="Buscar..."
+                    className="search-input"
+                    value={searchQuery}
+                    onChange={(e) => setSearchQuery(e.target.value)}
+                  />
                 </div>
-              ) : (
-                // Mostrar episodios de podcasts en 2 columnas
-                <div className="episodes-grid">
-                  {podcastEpisodes.map((episode) => (
-                    <div key={episode.id} className="podcast-card">
-                      <div className="podcast-video">
-                        <iframe
-                          width="100%"
-                          height="200"
-                          src={`https://www.youtube.com/embed/${episode.embedId}`}
-                          title={episode.title}
-                          frameBorder="0"
-                          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                          allowFullScreen
-                        ></iframe>
-                      </div>
-                      <div className="podcast-info">
-                        <h3 className="podcast-title">{episode.title}</h3>
-                        <p className="podcast-description">{episode.description}</p>
-                        <div className="podcast-links">
-                          <div className="platform-links">
-                            <a href="#" className="platform-link youtube-link">
-                              <FaYoutube /> Youtube
-                            </a>
-                            <a href="#" className="platform-link spotify-link">
-                              <FaSpotify /> Spotify
-                            </a>
+                <span className="post-count">({visibleEpisodes.length} posts)</span>
+              </div>
+
+              <div className="podcasts-grid">
+                {/* TODO: re-enable playlists view in a future release.
+                {activeTab === 'LISTAS' ? (
+                  <div className="playlists-grid">
+                    {playlistsData.map((playlist) => (
+                      <div key={playlist.id} className="playlist-card">
+                        <div className="playlist-cover">
+                          <div className="cover-placeholder">
+                            <span>Portada</span>
                           </div>
                         </div>
+                        <div className="playlist-info">
+                          <h3 className="playlist-title">{playlist.title}</h3>
+                        </div>
                       </div>
-                    </div>
-                  ))}
-                </div>
-              )}
+                    ))}
+                  </div>
+                ) : (
+                    <PodcastEpisodesList />
+                  )}
+                */}
+                {loading
+                  ? <Spinner />
+                  : error
+                    ? <ErrorMessage />
+                    : <PodcastEpisodesList episodes={visibleEpisodes} />
+                }
+              </div>
             </div>
           </div>
-        </div>
-      </section>
-    </div>
+        </section>
+      </div>
+    </main>
   );
 };
 

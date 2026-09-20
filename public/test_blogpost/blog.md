@@ -10,9 +10,9 @@ En esta guía te mostraré los pasos y recursos más útiles para convertirte en
 
 Antes de sumergirte en React, asegúrate de dominar:
 
-- **ES6+**: `let`, `const`, arrow functions, destructuring.
-- **Módulos**: `import` y `export`.
-- **Funciones de orden superior**: `map`, `filter`, `reduce`.
+- **ES6+**: "let", "const", arrow functions, destructuring.
+- **Módulos**: "import" y "export".
+- **Funciones de orden superior**: "map", "filter", "reduce".
 - **Async/Await**: manejo de promesas.
 
 > Tip: Dedica al menos una semana a practicar JavaScript antes de comenzar con React.
@@ -26,7 +26,7 @@ Los conceptos clave que debes entender:
 1. **Componentes funcionales**
 2. **JSX**
 3. **Props y state**
-4. **Hooks básicos**: `useState`, `useEffect`
+4. **Hooks básicos**: "useState", "useEffect"
 
 
 ```jsx
@@ -106,5 +106,7 @@ Opciones populares:
 Aprender React es un viaje. La combinación de teoría, práctica y curiosidad constante es la clave del éxito.  
 No tengas miedo de romper cosas y experimentar: cada error es una oportunidad para aprender.
 
+
 ---
+
 

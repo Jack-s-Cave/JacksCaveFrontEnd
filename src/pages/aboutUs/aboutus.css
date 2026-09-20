@@ -136,6 +136,8 @@
   margin: 0 auto;
   background-color: var(--primary-color1);
   border-bottom: 1px solid #e0e0e0; /* Línea justo debajo */
+  overflow-x: auto;
+  scrollbar-width: none;
 }
 
 .year-btn {
@@ -153,13 +155,13 @@
 }
 
 .year-btn.active {
-  background-color: #e74c3c; /* Tab activo en rojo */
-  border-color: #e74c3c;
+  background-color: var(--primary-color4); /* Tab activo en rojo */
+  border-color: var(--primary-color4);
   color: white;
 }
 
 .year-btn:hover:not(.active) {
-  background-color: #f0ece9; /* hover sutil */
+  background-color: var(--primary-color4); /* hover sutil */
 }
 
 
@@ -237,8 +239,16 @@
   font-family: var(--font-subtitle);
   font-size: 1.4rem;
   font-weight: 700;
-  color: var(--primary-color1);
-  margin: 0 0 0.8rem 0;
+  color: var(--font-color);
+  margin: 0 0 0.2rem 0;
+}
+
+.member-cargo {
+  font-family: var(--font-subtitle);
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: var(--primary-color4);
+  margin: 0 0 0.6rem 0;
 }
 
 .member-description {
@@ -286,9 +296,26 @@
   .hero-section {
     padding: 2rem 1rem 2rem;
   }
-  
+
   .hero-top {
     gap: 1.5rem;
+  }
+
+  .logo-section {
+    text-align: center;
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .aeccti-title {
+    font-size: clamp(4.5rem, 12vw, 6rem);
+  }
+
+  .association-subtitle,
+  .de-text,
+  .estudiantes-text {
+    font-size: clamp(2rem, 6vw, 2.5rem);
   }
   
   .logo-placeholder {
@@ -315,3 +342,4 @@
     height: 100px;
   }
 }
+

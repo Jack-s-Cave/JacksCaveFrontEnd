@@ -1,0 +1,35 @@
+/* Credits footer - shown on every page. Deliberately small and low-contrast
+   so it doesn't compete with page content. The font family and text color
+   come from the global `footer` rule in index.css. */
+.site-footer {
+  box-sizing: border-box;
+  width: 100%;
+  padding: 1.25rem 1.5rem 1.5rem;
+  /* Pages set their own backgrounds and body has none, so the footer needs one
+     or it would render on the browser default (white) in dark mode. */
+  background-color: var(--primary-color1);
+  border-top: 1px solid var(--primary-color3);
+  text-align: center;
+}
+
+.site-footer p {
+  max-width: 60rem;
+  margin: 0 auto;
+  font-size: 0.7rem;
+  line-height: 1.7;
+  letter-spacing: 0.02em;
+  /* Opacity on the text only, not the footer, so the background stays solid. */
+  opacity: 0.65;
+}
+
+.site-footer p + p {
+  margin-top: 0.4rem;
+}
+
+.site-footer-label {
+  font-weight: 700;
+}
+
+.site-footer-aside {
+  font-style: italic;
+}

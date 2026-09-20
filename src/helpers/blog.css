@@ -7,10 +7,12 @@
   line-height: 1.8;
   color: var(--font-color);
   max-width: 1000px;
-  margin: 2rem auto;
-  padding: 3rem 2.5rem;
   background-color: var(--primary-color1);
   border-radius: 12px;
+}
+
+.sidebar-and-content {
+  display: flex;
 }
 
 /* ========================================
@@ -48,7 +50,7 @@
   font-size: 1.6rem;
   color: var(--font-color);
   position: relative;
-  padding-left: 0.5rem;
+  padding-left: 1rem;
 }
 
 .markdown-renderer h3::before {
@@ -85,8 +87,9 @@
    Párrafos y texto
    ======================================== */
 .markdown-renderer p {
+  font-size: 1.25rem;
   color: var(--font-color);
-  margin: 1.25rem 0;
+  margin: 1.25rem 2rem;
   line-height: 1.8;
 }
 
@@ -173,7 +176,6 @@
 }
 
 .copy-btn {
-  position: absolute;   /* ahora se posiciona relativo al wrapper */
   top: 15px;
   right: 8px;
   background: var(--primary-color4);
@@ -204,7 +206,7 @@
   margin: 0;
   padding: 1.5rem 1.25rem;
   overflow-x: auto;
-  background-color: var( --primary-color3);
+  background-color: var( --primary-color1);
 }
 
 .code-block-wrapper code {
@@ -359,7 +361,7 @@
   .blog-content {
     font-size: 1rem;
     padding: 2rem 1.5rem;
-    margin: 1rem;
+      margin: 1rem;
   }
   
   .markdown-renderer h1 {
@@ -414,5 +416,81 @@
   .copy-btn {
     font-size: 0.75rem;
     padding: 0.35rem 0.7rem;
+  }
+}
+
+
+/* Contenedor padre para asegurar que el blog esté centrado */
+.blog-page-wrapper {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  position: relative;
+}
+
+/* El bloque del blog se mantiene centrado */
+.blog-content-center {
+  max-width: 1000px;
+  width: 100%;
+}
+
+/* La Tabla de Contenidos anclada a la derecha de la pantalla */
+.blog-toc-fixed {
+  position: fixed;
+  right: 2rem;       /* Distancia desde el borde derecho del navegador */
+  top: 50%;          /* Lo centramos verticalmente */
+  transform: translateY(-50%); /* Ajuste fino del centrado vertical */
+  width: 200px;
+  max-height: 80vh;
+  padding: 1.5rem;
+  background: var(--primary-color1);
+  border-radius: 12px;
+  border-left: 3px solid var(--primary-color4);
+  overflow-y: auto;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+  z-index: 100;
+}
+
+.blog-toc-fixed h4 {
+  font-family: var(--font-title);
+  font-size: 0.85rem;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  margin-bottom: 1rem;
+  color: var(--primary-color4);
+  font-weight: 800;
+}
+
+.blog-toc-fixed ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.blog-toc-fixed li {
+  margin-bottom: 0.7rem;
+  line-height: 1.3;
+}
+
+.blog-toc-fixed a {
+  text-decoration: none;
+  color: var(--font-color);
+  font-size: 0.85rem;
+  opacity: 0.8;
+  transition: all 0.2s ease;
+  display: block;
+}
+
+.blog-toc-fixed a:hover {
+  opacity: 1;
+  color: var(--primary-color4);
+  transform: translateX(3px);
+}
+
+/* Responsive: Ocultar si la pantalla es muy angosta */
+@media (max-width: 1450px) {
+  /* Si la pantalla mide menos de 1450px, el TOC podría chocar con el texto */
+  .blog-toc-fixed {
+    display: none;
   }
 }
