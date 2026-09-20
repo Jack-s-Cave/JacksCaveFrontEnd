@@ -1,4 +1,5 @@
 import { CodeBlock } from "components/blog/codeBlock";
+import ArticleImage from "components/blog/articleImage";
 import { useState, useEffect } from "react";
 import ReactMarkdown from "react-markdown";
 import remarkGfm from "remark-gfm";
@@ -44,6 +45,7 @@ const MarkdownRenderer = ({ markdownContent }: MarkdownRendererProps) => {
                 ? <CodeBlock className={className}>{children}</CodeBlock>
                 : <code className="inline-code">{children}</code>
             },
+            img: ArticleImage,
             h1: ({ children }) => <h1 id={headingId(children)}>{children}</h1>,
             h2: ({ children }) => <h2 id={headingId(children)}>{children}</h2>,
             h3: ({ children }) => <h3 id={headingId(children)}>{children}</h3>,
